@@ -4,11 +4,11 @@
 # /var/www/kai/releases/*: the build is copied to a new release, then the link
 # is switched in one step, so nobody sees a half-copied site. The last five
 # releases stay, for rolling back: point the link at an older one.
-#   ./deploy.sh                          (KAI_HOST defaults to root@216.155.158.213)
+#   ./deploy.sh                          (KAI_HOST defaults to kai-deploy@216.155.158.213)
 # Run inside `nix develop`, from a machine whose SSH key the VPS accepts.
 set -euo pipefail
 cd "$(dirname "$0")"
-host=${KAI_HOST:-root@216.155.158.213}
+host=${KAI_HOST:-kai-deploy@216.155.158.213}
 base=/var/www/kai
 release="$base/releases/release.$(date -u +%Y%m%d%H%M%S).$(git rev-parse --short HEAD)"
 
