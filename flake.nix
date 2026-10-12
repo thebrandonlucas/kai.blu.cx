@@ -10,7 +10,7 @@
     in
     {
       devShells = forAll (pkgs: {
-        default = pkgs.mkShell { packages = [ pkgs.elmPackages.elm pkgs.elmPackages.elm-format ]; };
+        default = pkgs.mkShell { packages = [ pkgs.elmPackages.elm pkgs.elmPackages.elm-format pkgs.rsync pkgs.curl ]; };
       });
     };
 }

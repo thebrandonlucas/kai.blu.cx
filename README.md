@@ -20,3 +20,12 @@ screen.
 
 The source was recovered on 2026-10-12 from the deployed site (whose Elm
 build was unminified); the page is unchanged apart from the background.
+
+## Deploying
+
+```sh
+KAI_DEPLOY=user@host:/path ./deploy.sh
+```
+
+builds and copies `public/` to the VPS (the folder Caddy serves for
+kai.nix.fun), then checks the site answers with the new files.
