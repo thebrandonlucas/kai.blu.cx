@@ -24,8 +24,11 @@ build was unminified); the page is unchanged apart from the background.
 ## Deploying
 
 ```sh
-KAI_DEPLOY=user@host:/path ./deploy.sh
+nix develop
+./deploy.sh
 ```
 
-builds and copies `public/` to the VPS (the folder Caddy serves for
-kai.nix.fun), then checks the site answers with the new files.
+builds, copies `public/` to a new release on the VPS and switches
+`/var/www/kai/current` to it in one step (Caddy serves that link). The
+last five releases stay for rolling back. Needs a machine whose SSH key
+the VPS accepts (blu-tower's, as root).
