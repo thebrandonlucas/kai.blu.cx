@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#111111">
+  <meta name="description" content="Kai — a friendly frontend for determinate computing.">
+  <title>Kai</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond&amp;family=GFS+Didot&amp;display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css?v=3">
+  <script src="elm.js?v=3" defer></script>
+</head>
+<body>
+  <div id="app"></div>
+  <script>
+    window.addEventListener("DOMContentLoaded", () => {
+      Elm.Main.init({ node: document.getElementById("app") });
+    });
+  </script>
+</body>
+</html>

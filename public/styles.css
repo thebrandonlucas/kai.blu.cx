@@ -1,0 +1,148 @@
+:root {
+  color-scheme: dark;
+  background: #111111;
+  color: #e8c872;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#app {
+  min-height: 100%;
+  margin: 0;
+}
+
+/* The page itself is see-through: the painting is behind it (the root keeps
+   the dark color for overscroll). */
+body {
+  min-height: 100vh;
+  background: transparent;
+}
+
+/* Thomas Cole, "The Course of Empire: The Arcadian or Pastoral State" (1834,
+   public domain), fixed behind the page and darkened so the gold reads. The
+   tiny blurred copy shows while the full one loads. */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  background:
+    radial-gradient(ellipse at center, rgb(17 17 17 / 50%) 0, rgb(17 17 17 / 78%) 75%),
+    image-set(
+      url("images/pastoral-1920.avif") type("image/avif"),
+      url("images/pastoral-1920.webp") type("image/webp"),
+      url("images/pastoral-1920.jpg") type("image/jpeg")
+    ) center / cover no-repeat,
+    url("images/pastoral-placeholder.webp") center / cover no-repeat,
+    #111111;
+}
+
+@media (min-width: 1100px) {
+  body::before {
+    background:
+      radial-gradient(ellipse at center, rgb(17 17 17 / 50%) 0, rgb(17 17 17 / 78%) 75%),
+      image-set(
+        url("images/pastoral-2560.avif") type("image/avif"),
+        url("images/pastoral-2560.webp") type("image/webp"),
+        url("images/pastoral-2560.jpg") type("image/jpeg")
+      ) center / cover no-repeat,
+      url("images/pastoral-placeholder.webp") center / cover no-repeat,
+      #111111;
+  }
+}
+
+@media (min-width: 1700px) and (min-resolution: 1.5dppx) {
+  body::before {
+    background:
+      radial-gradient(ellipse at center, rgb(17 17 17 / 50%) 0, rgb(17 17 17 / 78%) 75%),
+      image-set(
+        url("images/pastoral-3840.avif") type("image/avif"),
+        url("images/pastoral-3840.webp") type("image/webp"),
+        url("images/pastoral-3840.jpg") type("image/jpeg")
+      ) center / cover no-repeat,
+      url("images/pastoral-placeholder.webp") center / cover no-repeat,
+      #111111;
+  }
+}
+
+.home {
+  display: flex;
+  min-height: 100vh;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 1.25rem;
+  padding: 2rem;
+  text-align: center;
+}
+
+.wordmark {
+  margin: 0;
+  color: #e8c872;
+  font: 400 clamp(6rem, 22vw, 13rem) / 0.85 "GFS Didot", serif;
+  text-shadow: 0 0 2.5rem rgb(232 200 114 / 15%), 0 2px 1.5rem rgb(0 0 0 / 60%);
+}
+
+.tagline {
+  margin: 0;
+  color: #cbbd95;
+  font: 400 clamp(1.1rem, 3vw, 1.5rem) / 1.4 "EB Garamond", serif;
+  letter-spacing: 0.02em;
+  text-shadow: 0 1px 0.75rem rgb(0 0 0 / 80%);
+}
+
+.social-links {
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 0.5rem;
+}
+
+.social-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 48px;
+  width: 48px;
+  height: 48px;
+  border: 1px solid transparent;
+  border-radius: 50%;
+  color: #e8c872;
+  text-decoration: none;
+  transition: background-color 160ms ease, border-color 160ms ease;
+}
+
+.social-link img {
+  display: block;
+  width: 28px;
+  height: 28px;
+  opacity: 0.8;
+}
+
+.social-link:hover,
+.social-link:focus-visible {
+  background-color: rgb(232 200 114 / 8%);
+  border-color: rgb(232 200 114 / 20%);
+}
+
+.social-link:hover img,
+.social-link:focus-visible img {
+  opacity: 1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .social-link {
+    transition: none;
+  }
+}
+
+.social-link:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 3px;
+}
