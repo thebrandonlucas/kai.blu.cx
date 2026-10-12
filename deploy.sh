@@ -13,10 +13,15 @@ base=/var/www/kai
 release="$base/releases/release.$(date -u +%Y%m%d%H%M%S).$(git rev-parse --short HEAD)"
 
 ./build.sh
-ssh "$host" "mkdir -p "
+ssh "$host" "mkdir -p '$release'"
 rsync -rlz --chmod=D755,F644 public/ "$host:$release/"
-ssh "$host" "ln -sfn  /current.new && mv -T /current.new /current &&
-  cd /releases && ls -1dt release.* | tail -n +6 | xargs -r rm -rf"
+ssh "$host" "ln -sfn '$release' '$base/current.new' && mv -T '$base/current.new' '$base/current' &&
+  cd '$base/releases' && ls -1dt release.* | tail -n +6 | xargs -r rm -rf"
 
 code=$(curl -s -o /dev/null -w "%{http_code}" https://kai.nix.fun/images/pastoral-placeholder.webp)
-if [ "$code" = 200 ]; then echo "Live: https://kai.nix.fun ($release)"; else echo "kai.nix.fun answers $code for the new files"; exit 1; fi
+if [ "$code" = 200 ]; then
+  echo "Live: https://kai.nix.fun ($release)"
+else
+  echo "kai.nix.fun answers $code for the new files"
+  exit 1
+fi
