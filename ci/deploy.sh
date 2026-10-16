@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Deploys kai.nix.fun from forge CI (the forge microVM on blu-tower) on every
+# Deploys kai.blu.cx from forge CI (the forge microVM on blu-tower) on every
 # push to main, with ./deploy.sh and the CI job's deploy key, as kai-deploy:
 # a user on the VPS that owns /var/www/kai and nothing else. Commits that are
 # not the head of the default branch (patches) are built but not deployed.

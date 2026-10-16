@@ -1,6 +1,6 @@
 module Main exposing (main)
 
-{-| kai.nix.fun: Kai's home page. The wordmark, the tagline and where to
+{-| kai.blu.cx: Kai's home page. The wordmark, the tagline and where to
 find the project, over Thomas Cole's "The Arcadian or Pastoral State".
 -}
 

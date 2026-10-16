@@ -1,5 +1,5 @@
 {
-  description = "kai.nix.fun: Kai's home page";
+  description = "kai.blu.cx: Kai's home page";
 
   inputs.nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
 

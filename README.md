@@ -1,4 +1,4 @@
-# kai.nix.fun
+# kai.blu.cx
 
 Kai's home page: the wordmark, the tagline and where to find the project
 ([Kai on GitHub](https://github.com/thebrandonlucas/kai)).
