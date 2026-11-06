@@ -24,6 +24,7 @@ for part in std:plugins/std/main.roc platform:platform/main.roc; do
   echo "roc docs $entry -> $out/$name"
   (cd "$kai" && "$roc" docs "$entry" --output="$OLDPWD/$out/$name") || echo "  (roc docs reported problems above; pages kept)"
   cat "$theme" >> "$out/$name/styles.css"
+  cp public/favicon.svg "$out/$name/favicon.svg"
   # Fonts, and the site bar (reference-bar.html, the static twin of
   # SiteBar.elm, with its number keys), on every page.
   find "$out/$name" -name index.html -print0 | xargs -0 sed -i \

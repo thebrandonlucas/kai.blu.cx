@@ -37,7 +37,7 @@ view active toHome =
                                 []
                        )
                 )
-                [ span [ class "bar-num" ] [ text "0" ], text "kαί" ]
+                [ span [ class "bar-num" ] [ text "0" ], img [ class "bar-mark-img", src "/images/kai-mark.svg", alt "Kai" ] [] ]
             , link 1 (active == Docs) "/docs/" "docs"
             , link 2 False "/reference/std/" "api"
             , link 3 (active == Changelog) "/changelog/" "changelog"

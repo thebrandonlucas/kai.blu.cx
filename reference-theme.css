@@ -287,3 +287,11 @@ main {
     border-right: 1px solid rgb(232 200 114 / 30%);
   }
 }
+
+/* The bar logo: ϗ, the kai compendium. */
+.kai-bar .kai-mark-img {
+  display: inline-block;
+  height: 1.3rem;
+  width: auto;
+  vertical-align: -0.3rem;
+}
