@@ -991,3 +991,30 @@ body {
     display: none;
   }
 }
+
+/* The site bar's key numbers (SiteBar.elm, site-keys.js). */
+.bar-num {
+  margin-right: 0.35rem;
+  color: rgb(232 200 114 / 55%);
+  font: 500 0.7rem / 1 var(--mono);
+}
+
+.bar-mark .bar-num {
+  vertical-align: 0.2em;
+}
+
+.bar-link-active .bar-num {
+  color: var(--gold);
+}
+
+.bar-icon {
+  align-items: center;
+}
+
+.bar-social {
+  gap: 0.6rem;
+}
+
+.bar-icon {
+  text-decoration: none;
+}

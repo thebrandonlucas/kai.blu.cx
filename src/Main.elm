@@ -12,9 +12,9 @@ The steps live in `public/tour/`: `tour.json` lists them in order and names
 each step's files, which are fetched when the page loads, so editing the
 tour needs no rebuild.
 
-Keys: ↓ / j / PageDown next, ↑ / k / PageUp previous, 1–9 and 0 a workspace,
-Home / g the first, End / G the last. Scrolling works too and snaps to a
-workspace.
+Keys: ↓ / j / PageDown next, ↑ / k / PageUp previous, Home / g the first,
+End / G the last. Scrolling works too and snaps to a workspace. The number
+keys belong to the site bar (`site-keys.js`): 0 is back to the top here.
 
 -}
 
@@ -379,19 +379,7 @@ keyMsg model key =
             Just (Go (workspaceCount model - 1))
 
         _ ->
-            String.toInt key
-                |> Maybe.andThen
-                    (\n ->
-                        if n >= 1 && n <= 9 then
-                            Just (Go (n - 1))
-
-                        else if n == 0 then
-                            -- The number row's 0 is the tenth workspace.
-                            Just (Go 9)
-
-                        else
-                            Nothing
-                    )
+            Nothing
 
 
 scrollDecoder : Decoder Msg
@@ -413,14 +401,7 @@ view model =
         , tabindex 0
         , preventDefaultOn "keydown" (keyDecoder model)
         ]
-        [ SiteBar.view
-            (if model.current == 0 then
-                SiteBar.Home
-
-             else
-                SiteBar.Tour
-            )
-            (Just (Go 1))
+        [ SiteBar.view SiteBar.Home (Just (Go 0))
         , main_ [ id "workspaces", classList [ ( "workspaces", True ), ( "instant", model.instant ) ], on "scroll" scrollDecoder ]
             (hero :: stepWorkspaces model)
         , rail model
@@ -470,30 +451,20 @@ loadedSteps model =
             []
 
 
-{-| Workspace 1: the painting, the wordmark, where to find Kai, and
-Emerson.
+{-| Workspace 1: the painting, the wordmark and Emerson. Discord and
+GitHub are in the site bar.
 -}
 hero : Html Msg
 hero =
     section [ id "ws-0", class "workspace hero" ]
         [ h1 [ class "wordmark" ] [ text "kαί" ]
         , p [ class "tagline" ] [ text "A friendly frontend for determinate computing" ]
-        , nav [ class "social-links", attribute "aria-label" "Community" ]
-            [ socialLink "https://discord.gg/SrH3w5uAa3" "Join Kai on Discord" "Discord" "icons/discord.svg"
-            , socialLink "https://github.com/thebrandonlucas/kai" "Kai on GitHub" "GitHub" "icons/github.svg"
-            ]
         , blockquote [ class "epigraph" ]
             [ p [] [ text "Why should we grope among the dry bones of the past, or put the living generation into masquerade out of its faded wardrobe?" ]
             , p [] [ text "The sun shines today also." ]
             , footer [] [ text "— Ralph Waldo Emerson, ", cite [] [ text "Nature" ] ]
             ]
         ]
-
-
-socialLink : String -> String -> String -> String -> Html msg
-socialLink url label name icon =
-    a [ href url, class "social-link", attribute "aria-label" label, title name ]
-        [ img [ src icon, alt "", width 28, height 28, attribute "aria-hidden" "true" ] [] ]
 
 
 stepWorkspaces : Model -> List (Html Msg)

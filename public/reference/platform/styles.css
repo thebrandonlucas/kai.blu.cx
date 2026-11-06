@@ -1816,3 +1816,19 @@ body {
 .kai-bar .kai-social a:hover img {
   opacity: 1;
 }
+
+/* The bar's key numbers, as in SiteBar.elm. */
+.kai-bar .kai-num {
+  margin-right: 0.35rem;
+  color: rgb(232 200 114 / 55%);
+  font: 500 0.7rem / 1 "JetBrains Mono", ui-monospace, monospace;
+}
+
+.kai-bar .kai-social a {
+  display: inline-flex;
+  align-items: center;
+}
+
+.kai-bar .kai-social a {
+  text-decoration: none;
+}

@@ -1,67 +1,80 @@
 module SiteBar exposing (Section(..), view)
 
-{-| The bar on top of every page of kai.blu.cx: the wordmark (home), the
-site's sections, and Discord and GitHub. reference.sh puts the same bar,
-as static HTML, on the generated API reference.
+{-| The bar on top of every page of kai.blu.cx, numbered for the keyboard:
+0 the wordmark (home), 1 docs, 2 api, 3 changelog, 4 blog, 5 Discord and
+6 GitHub (those two in a new tab). `site-keys.js` presses an item when its
+number is typed; reference.sh puts the same bar, as static HTML, on the
+generated API reference.
 -}
 
 import Html exposing (Html, a, header, img, nav, span, text)
-import Html.Attributes exposing (alt, attribute, class, classList, height, href, src, title, width)
-import Html.Events exposing (onClick)
+import Html.Attributes exposing (alt, attribute, class, classList, height, href, rel, src, target, title, width)
+import Html.Events exposing (preventDefaultOn)
+import Json.Decode as Decode
 
 
 type Section
     = Home
-    | Tour
     | Docs
 
 
-{-| The bar, with `active` marked. `toTour` replaces the tour link's
-navigation on the page that holds the tour (the home page scrolls to it
-instead of loading).
+{-| The bar, with `active` marked. On the home page, `toHome` replaces the
+wordmark's navigation (it scrolls back to the top instead of reloading).
 -}
 view : Section -> Maybe msg -> Html msg
-view active toTour =
+view active toHome =
     header [ class "bar site-bar" ]
         [ nav [ class "bar-site", attribute "aria-label" "Site" ]
-            [ a [ class "bar-mark", href "/", title "Kai" ] [ text "kαί" ]
-            , link (active == Tour)
-                (case toTour of
-                    Just msg ->
-                        [ href "/#2", onClick msg ]
+            [ a
+                ([ class "bar-mark", href "/", title "Kai (0)", key 0 ]
+                    ++ (case toHome of
+                            Just msg ->
+                                [ preventDefaultOn "click" (Decode.succeed ( msg, True )) ]
 
-                    Nothing ->
-                        [ href "/#2" ]
+                            Nothing ->
+                                []
+                       )
                 )
-                "tour"
-            , link (active == Docs) [ href "/docs/" ] "docs"
-            , link False [ href "/reference/std/" ] "api"
-            , link False [ href "https://github.com/thebrandonlucas/kai/releases" ] "changelog"
-            , link False [ href "https://blu.cx/projects/kai/" ] "blog"
+                [ span [ class "bar-num" ] [ text "0" ], text "kαί" ]
+            , link 1 (active == Docs) "/docs/" "docs"
+            , link 2 False "/reference/std/" "api"
+            , link 3 False "https://github.com/thebrandonlucas/kai/releases" "changelog"
+            , link 4 False "https://blu.cx/projects/kai/" "blog"
             ]
         , nav [ class "bar-social", attribute "aria-label" "Community" ]
-            [ icon "https://discord.gg/SrH3w5uAa3" "Discord" "/icons/discord.svg"
-            , icon "https://github.com/thebrandonlucas/kai" "GitHub" "/icons/github.svg"
+            [ icon 5 "https://discord.gg/SrH3w5uAa3" "Discord" "/icons/discord.svg"
+            , icon 6 "https://github.com/thebrandonlucas/kai" "GitHub" "/icons/github.svg"
             ]
         ]
 
 
-link : Bool -> List (Html.Attribute msg) -> String -> Html msg
-link current attributes label =
+key : Int -> Html.Attribute msg
+key n =
+    attribute "data-key" (String.fromInt n)
+
+
+link : Int -> Bool -> String -> String -> Html msg
+link n current url label =
     a
-        (classList [ ( "bar-link", True ), ( "bar-link-active", current ) ]
-            :: (if current then
-                    attribute "aria-current" "page"
+        [ classList [ ( "bar-link", True ), ( "bar-link-active", current ) ]
+        , attribute "aria-current"
+            (if current then
+                "page"
 
-                else
-                    class ""
-               )
-            :: attributes
-        )
-        [ text label ]
+             else
+                "false"
+            )
+        , href url
+        , key n
+        ]
+        [ span [ class "bar-num" ] [ text (String.fromInt n) ], text label ]
 
 
-icon : String -> String -> String -> Html msg
-icon url name path =
-    a [ class "bar-icon", href url, title name, attribute "aria-label" name ]
-        [ img [ src path, alt "", width 18, height 18, attribute "aria-hidden" "true" ] [] ]
+{-| A community link: opens in a new tab.
+-}
+icon : Int -> String -> String -> String -> Html msg
+icon n url name path =
+    a [ class "bar-icon", href url, target "_blank", rel "noopener", title (name ++ " (" ++ String.fromInt n ++ ")"), attribute "aria-label" name, key n ]
+        [ span [ class "bar-num" ] [ text (String.fromInt n) ]
+        , img [ src path, alt "", width 18, height 18, attribute "aria-hidden" "true" ] []
+        ]
