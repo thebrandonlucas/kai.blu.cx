@@ -16,4 +16,4 @@ has, so the mark is always a drawn path, never text.
   Antikythera gear (also inside a meander), the archer's
   kairos, and the wordmark over a meander band.
 - `public/images/kai-wordmark.svg`: the regular-weight (400) ϗ that stands
-  in for the k of the home page wordmark, ϗαί, beside GFS Didot\x27s αί.
+  in for the k of the home page wordmark, ϗαί, beside GFS Didot's αί.
