@@ -457,7 +457,9 @@ Emerson on a glass card. Discord and GitHub are in the site bar.
 hero : Html Msg
 hero =
     section [ id "ws-0", class "workspace hero" ]
-        [ h1 [ class "wordmark" ] [ text "kαί" ]
+        -- ϗαί: the kai compendium (drawn, since GFS Didot has none), then αί.
+        [ h1 [ class "wordmark", attribute "aria-label" "kαί" ]
+            [ img [ class "wordmark-kai", src "/images/kai-wordmark.svg", alt "" ] [], text "αί" ]
         , p [ class "tagline" ] [ text "A friendly frontend for determinate computing" ]
 
         -- One column: the install row and the quote card share both edges.
