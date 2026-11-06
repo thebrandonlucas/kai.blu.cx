@@ -1,0 +1,9 @@
+$ kai init
+Created ~/cow/Kaifile.roc.
+Then run `kai update` to pin its packages, then `kai run wisdom` for a
+wise cow, or `kai shell` to enter its environment. Every setting has an
+example in:
+  https://github.com/thebrandonlucas/kai/tree/master/examples
+$ kai check
+No errors found in 1240ms for Kaifile.roc
+Kaifile.roc is valid

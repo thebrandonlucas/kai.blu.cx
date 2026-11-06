@@ -69,17 +69,443 @@ body::before {
   }
 }
 
-.home {
+/* --- The desktop: a bar on top, then a column of workspaces, one screen
+   tall each, that scroll and snap like a tiling window manager's. --- */
+
+:root {
+  --gold: #e8c872;
+  --gold-dim: #cbbd95;
+  --text: #ece8dc;
+  --muted: #a8a08a;
+  --glass: rgb(12 12 12 / 46%);
+  --glass-deep: rgb(8 8 8 / 62%);
+  --edge: rgb(232 200 114 / 22%);
+  --edge-active: rgb(232 200 114 / 70%);
+  --gap: clamp(0.5rem, 1.6vw, 1.1rem);
+  --bar: 2.4rem;
+  --radius: 10px;
+  --mono: "JetBrains Mono", "Iosevka", ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
+}
+
+html,
+body,
+#app {
+  height: 100%;
+}
+
+body {
+  overflow: hidden;
+}
+
+.desktop {
   display: flex;
-  min-height: 100vh;
+  height: 100vh;
+  height: 100dvh;
+  flex-direction: column;
+  outline: none;
+}
+
+/* Top bar, Waybar-style: workspaces on the left, status on the right. */
+.bar {
+  display: flex;
+  flex: 0 0 var(--bar);
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin: var(--gap) var(--gap) 0;
+  padding: 0 0.6rem;
+  border: 1px solid var(--edge);
+  border-radius: var(--radius);
+  background: var(--glass-deep);
+  backdrop-filter: blur(14px) saturate(120%);
+  -webkit-backdrop-filter: blur(14px) saturate(120%);
+  font: 500 0.8rem / 1 var(--mono);
+  color: var(--muted);
+}
+
+.bar ol {
+  display: flex;
+  gap: 0.25rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+.ws {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.3rem 0.55rem;
+  border: 1px solid transparent;
+  border-radius: 6px;
+  background: none;
+  color: var(--muted);
+  font: inherit;
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+.ws:hover {
+  color: var(--text);
+}
+
+.ws-num {
+  color: var(--gold-dim);
+}
+
+.ws-active {
+  border-color: var(--edge-active);
+  background: rgb(232 200 114 / 12%);
+  color: var(--gold);
+}
+
+.ws-active .ws-num {
+  color: var(--gold);
+}
+
+/* Only the active workspace shows its name on narrow screens. */
+@media (max-width: 900px) {
+  .ws:not(.ws-active) .ws-label {
+    display: none;
+  }
+}
+
+.bar-status {
+  display: flex;
+  gap: 1rem;
+  white-space: nowrap;
+}
+
+.bar-clock {
+  color: var(--gold);
+}
+
+@media (max-width: 600px) {
+  .bar-host {
+    display: none;
+  }
+}
+
+.workspaces {
+  flex: 1 1 auto;
+  overflow-y: auto;
+  scroll-snap-type: y mandatory;
+  scroll-behavior: smooth;
+  scrollbar-width: none;
+}
+
+.workspaces::-webkit-scrollbar {
+  display: none;
+}
+
+.workspace {
+  display: flex;
+  height: 100%;
+  padding: var(--gap);
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
+}
+
+/* Workspace 1: the painting alone, with the wordmark. */
+.hero {
   align-items: center;
   justify-content: center;
   flex-direction: column;
   gap: 1.25rem;
-  padding: 2rem;
   text-align: center;
 }
 
+/* --- Windows: glass over the painting, a gold border, a title bar. --- */
+
+.tiling {
+  display: grid;
+  flex: 1 1 auto;
+  min-height: 0;
+  gap: var(--gap);
+  grid-template-columns: minmax(0, 1fr);
+}
+
+.tiling-split {
+  grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr);
+}
+
+.stack {
+  display: grid;
+  min-height: 0;
+  gap: var(--gap);
+  grid-auto-rows: minmax(0, 1fr);
+}
+
+@media (max-width: 900px) {
+  .tiling-split {
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-rows: minmax(0, 1.2fr) minmax(0, 1fr);
+  }
+}
+
+.window {
+  display: flex;
+  min-height: 0;
+  flex-direction: column;
+  border: 1px solid var(--edge);
+  border-radius: var(--radius);
+  background: var(--glass);
+  backdrop-filter: blur(5px) saturate(110%);
+  -webkit-backdrop-filter: blur(5px) saturate(110%);
+  box-shadow: 0 10px 40px rgb(0 0 0 / 45%);
+  overflow: hidden;
+  transition: border-color 200ms ease;
+}
+
+.window:hover,
+.window:focus-within {
+  border-color: var(--edge-active);
+}
+
+.window-code,
+.window-term {
+  background: var(--glass-deep);
+}
+
+.titlebar {
+  display: flex;
+  flex: 0 0 auto;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.45rem 0.85rem;
+  border-bottom: 1px solid var(--edge);
+  font: 500 0.75rem / 1.2 var(--mono);
+  color: var(--gold);
+}
+
+.titlebar-meta {
+  color: var(--muted);
+}
+
+.window-body {
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow-y: auto;
+  padding: clamp(1rem, 2.5vw, 2rem) clamp(1rem, 3vw, 2.5rem);
+  scrollbar-color: var(--edge) transparent;
+}
+
+.window-code .window-body,
+.window-term .window-body {
+  padding: 0.9rem 1rem;
+}
+
+/* --- Markdown: white terminal text, gold headings. --- */
+
+.md {
+  max-width: 72ch;
+  color: var(--text);
+  font: 400 clamp(0.9rem, 1.05vw, 1rem) / 1.65 var(--mono);
+}
+
+.md h1,
+.md h2,
+.md h3 {
+  margin: 0 0 0.8em;
+  color: var(--gold);
+  font-family: "EB Garamond", serif;
+  font-weight: 500;
+  line-height: 1.15;
+}
+
+.md h1 {
+  font-size: clamp(1.9rem, 3.2vw, 2.6rem);
+}
+
+.md h2 {
+  margin-top: 1.6em;
+  font-size: 1.5rem;
+}
+
+.md h3 {
+  margin-top: 1.4em;
+  font-size: 1.2rem;
+}
+
+.md p,
+.md ul,
+.md ol,
+.md pre,
+.md table,
+.md blockquote {
+  margin: 0 0 1em;
+}
+
+.md a {
+  color: var(--gold);
+}
+
+.md strong {
+  color: #fff;
+}
+
+.md code {
+  padding: 0.1em 0.35em;
+  border-radius: 4px;
+  background: rgb(232 200 114 / 10%);
+  color: var(--gold);
+  font: inherit;
+  font-size: 0.92em;
+}
+
+.md pre {
+  padding: 0.8rem 1rem;
+  border: 1px solid var(--edge);
+  border-radius: 6px;
+  background: rgb(0 0 0 / 40%);
+  overflow-x: auto;
+}
+
+.md pre code {
+  padding: 0;
+  background: none;
+  color: var(--text);
+}
+
+.md blockquote {
+  padding-left: 1rem;
+  border-left: 2px solid var(--gold);
+  color: var(--gold-dim);
+}
+
+.md table {
+  border-collapse: collapse;
+}
+
+.md th,
+.md td {
+  padding: 0.3rem 0.7rem;
+  border: 1px solid var(--edge);
+  text-align: left;
+}
+
+.md th {
+  color: var(--gold);
+}
+
+.md hr {
+  border: 0;
+  border-top: 1px solid var(--edge);
+}
+
+/* --- Kaifile and terminal panes. --- */
+
+.code,
+.term {
+  margin: 0;
+  color: var(--text);
+  font: 400 0.82rem / 1.6 var(--mono);
+  white-space: pre;
+}
+
+.code {
+  counter-reset: line;
+}
+
+.code-line::before {
+  counter-increment: line;
+  content: counter(line);
+  display: inline-block;
+  width: 2.2em;
+  margin-right: 1em;
+  color: rgb(232 200 114 / 35%);
+  text-align: right;
+  user-select: none;
+}
+
+.term {
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+.term-cmd {
+  color: #fff;
+}
+
+.term-prompt {
+  color: var(--gold);
+  user-select: none;
+}
+
+.loading,
+.error {
+  font: 400 0.9rem / 1.5 var(--mono);
+  color: var(--muted);
+}
+
+.error {
+  color: #e8a072;
+}
+
+/* --- The hint, bottom right. --- */
+
+.hint {
+  position: fixed;
+  right: calc(var(--gap) * 2);
+  bottom: calc(var(--gap) * 2);
+  z-index: 1;
+}
+
+.hint-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.45rem 0.75rem;
+  border: 1px solid var(--edge);
+  border-radius: 999px;
+  background: var(--glass-deep);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  color: var(--gold-dim);
+  font: 500 0.78rem / 1 var(--mono);
+  cursor: pointer;
+}
+
+.hint-button:hover,
+.hint-button:focus-visible {
+  border-color: var(--edge-active);
+  color: var(--gold);
+}
+
+.hint-arrow {
+  color: var(--gold);
+  font-size: 1rem;
+  animation: nudge 2.4s ease-in-out infinite;
+}
+
+.hint kbd {
+  padding: 0.1rem 0.35rem;
+  border: 1px solid var(--edge);
+  border-radius: 4px;
+  font: inherit;
+  color: var(--text);
+}
+
+@keyframes nudge {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(3px); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .workspaces {
+    scroll-behavior: auto;
+  }
+
+  .hint-arrow {
+    animation: none;
+  }
+
+  .window {
+    transition: none;
+  }
+}
 .wordmark {
   margin: 0;
   color: #e8c872;
@@ -145,4 +571,30 @@ body::before {
 .social-link:focus-visible {
   outline: 2px solid currentColor;
   outline-offset: 3px;
+}
+
+/* The jump to a linked workspace on load is immediate. */
+.workspaces.instant {
+  scroll-behavior: auto;
+}
+
+/* Code blocks and keys inside the Markdown. */
+.md pre {
+  font: 400 0.85rem / 1.6 var(--mono);
+}
+
+.md kbd {
+  padding: 0.05em 0.4em;
+  border: 1px solid var(--edge-active);
+  border-radius: 4px;
+  color: var(--gold);
+  font: inherit;
+  font-size: 0.9em;
+}
+
+/* Text stays readable on the lighter glass. */
+.md,
+.code,
+.term {
+  text-shadow: 0 1px 2px rgb(0 0 0 / 70%);
 }

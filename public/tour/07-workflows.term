@@ -1,0 +1,17 @@
+$ kai workflow ci
+kai: workflow ci step 1/2: run hello
+ ________________
+< hello from kai >
+ ----------------
+        \   ^__^
+         \  (oo)\_______
+            (__)\       )\/\
+                ||----w |
+                ||     ||
+kai: workflow ci step 2/2: build greeting
+building greeting: path:~/hello/.kai/generated/nix#packages.x86_64-linux.greeting (output greeting.txt)
+this derivation will be built:
+  /nix/store/ifkmk5hiwv24sh41sdj2as37rcj6x0yb-kai-greeting.drv
+building '/nix/store/ifkmk5hiwv24sh41sdj2as37rcj6x0yb-kai-greeting.drv'...
+/nix/store/rn15k0a2rr4m3aqcc3aacpxdiaxggmx1-kai-greeting
+built greeting: path:~/hello/.kai/generated/nix#packages.x86_64-linux.greeting -> /nix/store/rn15k0a2rr4m3aqcc3aacpxdiaxggmx1-kai-greeting

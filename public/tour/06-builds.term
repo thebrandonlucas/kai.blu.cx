@@ -1,0 +1,11 @@
+$ kai build greeting
+building greeting: path:~/hello/.kai/generated/nix#packages.x86_64-linux.greeting (output greeting.txt)
+these 3 derivations will be built:
+  /nix/store/nljwjkm1x232hj69flyss5585k7nnl1r-kai-artifacts-greeting.drv
+  /nix/store/pgz40pgb1caj91w62shx8fw8adglr2rf-kai-inputs-greeting.drv
+  /nix/store/d8v1a92k3sk344fgkrslhin6cxz1d2l0-kai-greeting.drv
+building '/nix/store/nljwjkm1x232hj69flyss5585k7nnl1r-kai-artifacts-greeting.drv'...
+building '/nix/store/pgz40pgb1caj91w62shx8fw8adglr2rf-kai-inputs-greeting.drv'...
+building '/nix/store/d8v1a92k3sk344fgkrslhin6cxz1d2l0-kai-greeting.drv'...
+/nix/store/7sqqaip7lq3xbicdz9b24wazi46licxn-kai-greeting
+built greeting: path:~/hello/.kai/generated/nix#packages.x86_64-linux.greeting -> /nix/store/7sqqaip7lq3xbicdz9b24wazi46licxn-kai-greeting

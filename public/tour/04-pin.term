@@ -1,0 +1,8 @@
+$ kai update
+kai: using nix (updating every installed backend that fits)
+updated ~/cow/.kai/lock.json
+kai: default added at 1d060086
+kai: using guix (updating every installed backend that fits)
+Updating channel 'guix' from Git repository at 'https://git.guix.gnu.org/guix.git'...
+Authenticating channel 'guix', commits 9edb3f6 to 8942b03 (14 new commits)...
+updated ~/cow/.kai/lock.json

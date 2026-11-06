@@ -1,0 +1,20 @@
+$ kai run wisdom
+ ______________________________________
+/ Due to circumstances beyond your     \
+| control, you are master of your fate |
+\ and captain of your soul.            /
+ --------------------------------------
+        \   ^__^
+         \  (oo)\_______
+            (__)\       )\/\
+                ||----w |
+                ||     ||
+$ kai shell default -- cowsay hello from kai
+ ________________
+< hello from kai >
+ ----------------
+        \   ^__^
+         \  (oo)\_______
+            (__)\       )\/\
+                ||----w |
+                ||     ||
