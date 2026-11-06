@@ -205,3 +205,85 @@ body #module-search-form {
 body #module-search-form #module-search {
   background-color: #080808;
 }
+
+/* Search results: Roc gives the list the page background, which is
+   see-through here, so results and the page under them overlapped. Opaque,
+   with a clear gold highlight on the chosen and hovered row. */
+body #search-type-ahead {
+  background-color: #0b0b0a;
+  border: 1px solid rgb(232 200 114 / 55%);
+  box-shadow: 0 12px 40px rgb(0 0 0 / 60%);
+}
+
+body #search-type-ahead a:focus,
+body #search-type-ahead a:hover {
+  background: rgb(232 200 114 / 16%);
+  box-shadow: inset 3px 0 0 #e8c872;
+}
+
+/* A blur on the content makes it the frame for fixed elements inside it, so
+   on phones Roc's fixed search bar scrolled away with the page. No blur:
+   slightly darker glass instead. */
+#sidebar-nav,
+main {
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+}
+
+main {
+  background: rgb(10 10 10 / 58%);
+}
+
+/* Roc's bird, drawn behind the reference's index page. */
+.index-decoration-logo {
+  display: none;
+}
+
+/* Phones: the bar drops its key numbers and tightens so it fits. */
+@media (max-width: 600px) {
+  .kai-bar {
+    gap: 0.8rem;
+    padding: 0.55rem 0.75rem;
+    font-size: 0.74rem;
+  }
+
+  .kai-bar .kai-num {
+    display: none;
+  }
+
+  .kai-bar .kai-social {
+    gap: 0.5rem;
+  }
+}
+
+/* Phones (Roc's layout below 768px pins its search bar to the top): our
+   bar is pinned above it, and the search bar sits just below ours. */
+@media only screen and (max-width: 768px) {
+  .kai-bar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2.75rem;
+    box-sizing: border-box;
+    z-index: 20;
+  }
+
+  body {
+    padding-top: 2.75rem;
+  }
+
+  #module-search-form {
+    top: 2.75rem;
+  }
+}
+
+/* The phone menu slides in over the page: opaque, and below our bar. */
+@media only screen and (max-width: 768px) {
+  #sidebar-nav {
+    top: 2.75rem;
+    z-index: 15;
+    background-color: #0b0b0a;
+    border-right: 1px solid rgb(232 200 114 / 30%);
+  }
+}
