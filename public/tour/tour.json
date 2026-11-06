@@ -4,9 +4,9 @@
     { "id": "02-install", "title": "install", "markdown": "02-install.md" },
     { "id": "03-first-kaifile", "title": "kaifile", "markdown": "03-first-kaifile.md", "kaifile": "03-first-kaifile.roc", "terminal": "03-first-kaifile.term" },
     { "id": "04-pin", "title": "pin", "markdown": "04-pin.md", "terminal": "04-pin.term" },
-    { "id": "05-shells-and-tasks", "title": "run", "markdown": "05-shells-and-tasks.md", "kaifile": "03-first-kaifile.roc", "terminal": "05-shells-and-tasks.term" },
+    { "id": "05-shells-and-tasks", "title": "run", "markdown": "05-shells-and-tasks.md", "kaifile": "03-first-kaifile.roc", "terminal": "05-shells-and-tasks.term", "open": "terminal" },
     { "id": "06-builds", "title": "build", "markdown": "06-builds.md", "kaifile": "06-builds.roc", "terminal": "06-builds.term" },
-    { "id": "07-workflows", "title": "workflow", "markdown": "07-workflows.md", "kaifile": "06-builds.roc", "terminal": "07-workflows.term" },
+    { "id": "07-workflows", "title": "workflow", "markdown": "07-workflows.md", "kaifile": "06-builds.roc", "terminal": "07-workflows.term", "open": "terminal" },
     { "id": "08-roc", "title": "roc", "markdown": "08-roc.md" },
     { "id": "09-next", "title": "next", "markdown": "09-next.md" }
   ]

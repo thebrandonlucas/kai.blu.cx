@@ -45,7 +45,17 @@ type alias Step =
     , markdown : String
     , kaifile : Maybe String
     , terminal : Maybe String
+
+    -- The tab shown first when the step has both (default: the Kaifile).
+    , open : Pane
     }
+
+
+{-| The tabs of a step's right-hand window, like a Hyprland window group.
+-}
+type Pane
+    = KaifilePane
+    | TerminalPane
 
 
 {-| A step's files, by path, as they arrive.
@@ -74,6 +84,9 @@ type alias Model =
     -- the hint don't flicker through the workspaces in between.
     , moving : Maybe Int
     , jump : Int
+
+    -- Tabs the reader switched, by step id.
+    , tabs : Dict String Pane
     }
 
 
@@ -90,6 +103,7 @@ init hash =
       , instant = startOf hash > 0
       , moving = Nothing
       , jump = 0
+      , tabs = Dict.empty
       }
     , Cmd.batch
         [ Http.get { url = "tour/tour.json", expect = Http.expectJson GotTour (Decode.field "steps" (Decode.list stepDecoder)) }
@@ -102,12 +116,22 @@ init hash =
 
 stepDecoder : Decoder Step
 stepDecoder =
-    Decode.map5 Step
+    Decode.map6 Step
         (Decode.field "id" Decode.string)
         (Decode.field "title" Decode.string)
         (Decode.field "markdown" Decode.string)
         (Decode.maybe (Decode.field "kaifile" Decode.string))
         (Decode.maybe (Decode.field "terminal" Decode.string))
+        (Decode.maybe (Decode.field "open" Decode.string)
+            |> Decode.map
+                (\open ->
+                    if open == Just "terminal" then
+                        TerminalPane
+
+                    else
+                        KaifilePane
+                )
+        )
 
 
 
@@ -121,6 +145,8 @@ type Msg
     | Move Int
     | Scrolled Float Float
     | Landed Int
+    | ShowTab String Pane
+    | ToggleTab
     | GotZone Time.Zone
     | Tick Time.Posix
     | NoOp
@@ -187,6 +213,17 @@ update msg model =
 
             else
                 ( model, Cmd.none )
+
+        ShowTab stepId pane ->
+            ( { model | tabs = Dict.insert stepId pane model.tabs }, Cmd.none )
+
+        ToggleTab ->
+            case currentStep model of
+                Just step ->
+                    ( { model | tabs = Dict.insert step.id (other (paneOf model step)) model.tabs }, Cmd.none )
+
+                Nothing ->
+                    ( model, Cmd.none )
 
         GotZone zone ->
             ( { model | zone = zone }, Cmd.none )
@@ -299,6 +336,14 @@ keyDecoder model =
 keyMsg : Model -> String -> Maybe Msg
 keyMsg model key =
     case key of
+        "Tab" ->
+            -- Switches tabs only where there are two; elsewhere Tab moves focus.
+            if Maybe.map hasTabs (currentStep model) == Just True then
+                Just ToggleTab
+
+            else
+                Nothing
+
         "ArrowDown" ->
             Just (Move 1)
 
@@ -476,38 +521,151 @@ stepWorkspaces model =
         Loaded list ->
             -- Lazy: scrolling changes only `current`, so the windows aren't
             -- drawn again while the page scrolls.
-            List.indexedMap (\i step -> Html.Lazy.lazy4 stepView model.files (List.length list) i step) list
+            List.indexedMap (\i step -> Html.Lazy.lazy5 stepView model.files (List.length list) i step (paneOf model step)) list
 
 
-{-| A tour step: one glass window, its text alone or tiled with a Kaifile
-and a terminal.
+{-| A tour step: one glass window with its text, tiled beside a window
+group holding its Kaifile and terminal as tabs, if it has them.
 -}
-stepView : Files -> Int -> Int -> Step -> Html Msg
-stepView files total i step =
+stepView : Files -> Int -> Int -> Step -> Pane -> Html Msg
+stepView files total i step pane =
     let
         n =
             i + 1
 
-        tiles =
+        tabs =
             List.filterMap identity
-                [ Maybe.map (codeTile files) step.kaifile
-                , Maybe.map (terminalTile files) step.terminal
+                [ Maybe.map (\path -> ( KaifilePane, path )) step.kaifile
+                , Maybe.map (\path -> ( TerminalPane, path )) step.terminal
                 ]
     in
     section [ id ("ws-" ++ String.fromInt n), class "workspace" ]
-        [ div [ classList [ ( "tiling", True ), ( "tiling-split", not (List.isEmpty tiles) ) ] ]
+        [ div [ classList [ ( "tiling", True ), ( "tiling-split", not (List.isEmpty tabs) ) ] ]
             (div [ class "window window-prose" ]
                 [ titlebar ("~/tour/" ++ step.id ++ ".md") (String.fromInt n ++ "/" ++ String.fromInt total)
                 , div [ class "window-body" ] [ fileView files step.markdown markdownView ]
                 ]
-                :: (if List.isEmpty tiles then
+                :: (if List.isEmpty tabs then
                         []
 
                     else
-                        [ div [ class "stack" ] tiles ]
+                        [ windowGroup files step.id pane tabs ]
                    )
             )
         ]
+
+
+{-| One window, several tabs; the shown one fills the window.
+-}
+windowGroup : Files -> String -> Pane -> List ( Pane, String ) -> Html Msg
+windowGroup files stepId pane tabs =
+    let
+        shown =
+            if List.any (\( p, _ ) -> p == pane) tabs then
+                pane
+
+            else
+                List.head tabs |> Maybe.map Tuple.first |> Maybe.withDefault KaifilePane
+    in
+    div [ classList [ ( "window", True ), ( "window-group", True ), ( "window-term", shown == TerminalPane ), ( "window-code", shown == KaifilePane ) ] ]
+        [ div [ class "tabbar", attribute "role" "tablist" ]
+            (List.map
+                (\( p, _ ) ->
+                    button
+                        [ classList [ ( "tab", True ), ( "tab-active", p == shown ) ]
+                        , attribute "role" "tab"
+                        , attribute "aria-selected"
+                            (if p == shown then
+                                "true"
+
+                             else
+                                "false"
+                            )
+                        , onClick (ShowTab stepId p)
+                        ]
+                        [ text (paneName p) ]
+                )
+                tabs
+                ++ [ span [ class "tabbar-meta" ]
+                        [ if List.length tabs > 1 then
+                            kbd [] [ text "Tab" ]
+
+                          else
+                            text ""
+                        , text (" " ++ paneMeta shown)
+                        ]
+                   ]
+            )
+        , div [ class "window-body" ]
+            (List.filterMap
+                (\( p, path ) ->
+                    if p == shown then
+                        Just
+                            (fileView files
+                                path
+                                (if p == KaifilePane then
+                                    codeView
+
+                                 else
+                                    terminalView
+                                )
+                            )
+
+                    else
+                        Nothing
+                )
+                tabs
+            )
+        ]
+
+
+paneName : Pane -> String
+paneName pane =
+    case pane of
+        KaifilePane ->
+            "Kaifile.roc"
+
+        TerminalPane ->
+            "terminal"
+
+
+paneMeta : Pane -> String
+paneMeta pane =
+    case pane of
+        KaifilePane ->
+            "roc"
+
+        TerminalPane ->
+            "kai 0.0.11"
+
+
+other : Pane -> Pane
+other pane =
+    case pane of
+        KaifilePane ->
+            TerminalPane
+
+        TerminalPane ->
+            KaifilePane
+
+
+{-| The tab a step shows: the reader's choice, else the step's own.
+-}
+paneOf : Model -> Step -> Pane
+paneOf model step =
+    Dict.get step.id model.tabs |> Maybe.withDefault step.open
+
+
+hasTabs : Step -> Bool
+hasTabs step =
+    step.kaifile /= Nothing && step.terminal /= Nothing
+
+
+{-| The step on screen (workspace 1 is the hero, not a step).
+-}
+currentStep : Model -> Maybe Step
+currentStep model =
+    loadedSteps model |> List.drop (model.current - 1) |> List.head |> Maybe.andThen (\s -> if model.current >= 1 then Just s else Nothing)
 
 
 titlebar : String -> String -> Html msg
@@ -515,22 +673,6 @@ titlebar name meta =
     div [ class "titlebar" ]
         [ span [ class "titlebar-name" ] [ text name ]
         , span [ class "titlebar-meta" ] [ text meta ]
-        ]
-
-
-codeTile : Files -> String -> Html msg
-codeTile files path =
-    div [ class "window window-code" ]
-        [ titlebar "Kaifile.roc" "roc"
-        , div [ class "window-body" ] [ fileView files path codeView ]
-        ]
-
-
-terminalTile : Files -> String -> Html msg
-terminalTile files path =
-    div [ class "window window-term" ]
-        [ titlebar "terminal" "kai 0.0.11"
-        , div [ class "window-body" ] [ fileView files path terminalView ]
         ]
 
 
@@ -558,14 +700,63 @@ markdownView =
         [ class "md" ]
 
 
-{-| A Roc file with line numbers and syntax highlighting.
+{-| A Roc file with line numbers and syntax highlighting. The app header's
+package URLs are long and the same in every Kaifile, so the header is
+folded to one line (hover for the URLs); the numbers stay the file's.
 -}
 codeView : String -> Html msg
 codeView source =
-    pre [ class "code" ]
-        (String.lines (String.trimRight source)
-            |> List.map (\line -> span [ class "code-line" ] (RocHighlight.line line ++ [ text "\n" ]))
-        )
+    pre [ class "code" ] (codeLines 1 (String.lines (String.trimRight source)))
+
+
+codeLines : Int -> List String -> List (Html msg)
+codeLines n lines =
+    case lines of
+        [] ->
+            []
+
+        first :: rest ->
+            if String.startsWith "app [" first && String.endsWith "{" first then
+                let
+                    ( body, after ) =
+                        splitAt (\l -> String.trim l == "}") rest
+
+                    folded =
+                        String.join "\n" (List.map String.trim body)
+                in
+                codeLine n
+                    (RocHighlight.line (String.dropRight 1 first)
+                        ++ [ text "{ ", span [ class "fold", title folded ] [ text "⋯" ], text " }" ]
+                    )
+                    :: codeLines (n + List.length body + 2) (List.drop 1 after)
+
+            else
+                codeLine n (RocHighlight.line first) :: codeLines (n + 1) rest
+
+
+codeLine : Int -> List (Html msg) -> Html msg
+codeLine n content =
+    span [ class "code-line" ] (span [ class "ln" ] [ text (String.fromInt n) ] :: content ++ [ text "\n" ])
+
+
+{-| The lines before the first one `stop` accepts, and the rest from it.
+-}
+splitAt : (String -> Bool) -> List String -> ( List String, List String )
+splitAt stop lines =
+    case lines of
+        [] ->
+            ( [], [] )
+
+        l :: rest ->
+            if stop l then
+                ( [], lines )
+
+            else
+                let
+                    ( before, after ) =
+                        splitAt stop rest
+                in
+                ( l :: before, after )
 
 
 {-| A recorded session: lines starting with `$ ` are commands, shown after

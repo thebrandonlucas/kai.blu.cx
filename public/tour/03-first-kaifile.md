@@ -1,7 +1,7 @@
 # Your first Kaifile
 
 In an empty directory, `kai init` writes a starter `Kaifile.roc` (in the
-Kaifile pane). It is an ordinary [Roc](https://roc-lang.org) program: a header that
+Kaifile tab). It is an ordinary [Roc](https://roc-lang.org) program: a header that
 names Kai's platform and its standard plugin, `std`, then a list of settings.
 
 | Setting | What it does |

@@ -660,3 +660,73 @@ body {
   transform: translateZ(0);
   backface-visibility: hidden;
 }
+
+/* --- The window group: Kaifile and terminal as tabs in one window. --- */
+
+.tabbar {
+  display: flex;
+  flex: 0 0 auto;
+  align-items: stretch;
+  gap: 0.15rem;
+  padding: 0 0.4rem;
+  border-bottom: 1px solid var(--edge);
+  font: 500 0.75rem / 1.2 var(--mono);
+}
+
+.tab {
+  padding: 0.45rem 0.7rem;
+  border: 0;
+  border-bottom: 2px solid transparent;
+  background: none;
+  color: var(--muted);
+  font: inherit;
+  cursor: pointer;
+}
+
+.tab:hover {
+  color: var(--text);
+}
+
+.tab-active {
+  border-bottom-color: var(--gold);
+  color: var(--gold);
+}
+
+.tabbar-meta {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  margin-left: auto;
+  padding-right: 0.45rem;
+  color: var(--muted);
+}
+
+.tabbar-meta kbd {
+  padding: 0.05rem 0.35rem;
+  border: 1px solid var(--edge);
+  border-radius: 4px;
+  font: inherit;
+  color: var(--text);
+}
+
+/* Line numbers are spans now (the header fold skips some). */
+.code-line::before {
+  content: none;
+}
+
+.ln {
+  display: inline-block;
+  width: 2.2em;
+  margin-right: 1em;
+  color: rgb(232 200 114 / 35%);
+  text-align: right;
+  user-select: none;
+}
+
+.fold {
+  padding: 0 0.3em;
+  border: 1px solid var(--edge);
+  border-radius: 4px;
+  color: var(--gold);
+  cursor: help;
+}

@@ -29,7 +29,9 @@ needs no rebuild:
 
 - `tour.json` lists the steps in order. Each has an `id` (shown in the window
   title), a `title` (the bar's label), a `markdown` file and, optionally, a
-  `kaifile` (a Roc file shown with line numbers) and a `terminal` file.
+  `kaifile` (a Roc file, highlighted, with its header folded) and a `terminal`
+  file, shown as tabs in one window (Tab switches); `"open": "terminal"`
+  makes the terminal the first tab.
 - **Markdown** is GitHub-flavoured (tables included); inline HTML such as
   `<kbd>` works.
 - **Terminal files** are recorded sessions: a line starting with `$ ` is a
