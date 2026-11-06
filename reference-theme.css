@@ -181,3 +181,27 @@ body {
 .kai-bar .kai-social a {
   text-decoration: none;
 }
+
+/* Roc pins the search bar above the content as it scrolls, with the page
+   background, which is see-through here: give it its own dark glass so
+   the text scrolling under it is hidden. */
+#module-search-form {
+  background: rgb(12 12 12 / 90%);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border-bottom: 1px solid rgb(232 200 114 / 18%);
+}
+
+#module-search {
+  background: rgb(6 6 6 / 85%);
+  color: #ece8dc;
+}
+
+/* Opaque: nothing scrolls visibly under the search bar or its box. */
+body #module-search-form {
+  background-color: #0e0e0d;
+}
+
+body #module-search-form #module-search {
+  background-color: #080808;
+}
