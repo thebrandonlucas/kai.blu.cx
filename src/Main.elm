@@ -462,7 +462,7 @@ hero =
         , blockquote [ class "epigraph" ]
             [ p [] [ text "Why should we grope among the dry bones of the past, or put the living generation into masquerade out of its faded wardrobe?" ]
             , p [] [ text "The sun shines today also." ]
-            , footer [] [ text "— Ralph Waldo Emerson, ", cite [] [ text "Nature" ] ]
+            , footer [] [ text "— Emerson, ", cite [] [ text "Nature" ] ]
             ]
         ]
 
