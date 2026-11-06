@@ -10,3 +10,18 @@ document.addEventListener("keydown", (event) => {
   event.preventDefault();
   item.click();
 });
+
+// Copy buttons: a button with data-copy puts that text on the clipboard
+// and says so for a moment.
+document.addEventListener("click", async (event) => {
+  const button = event.target.closest("[data-copy]");
+  if (!button) return;
+  try {
+    await navigator.clipboard.writeText(button.dataset.copy);
+    const label = button.textContent;
+    button.textContent = "copied";
+    setTimeout(() => (button.textContent = label), 1400);
+  } catch (_) {
+    // No clipboard (an insecure page, or refused): the command is still there to select.
+  }
+});

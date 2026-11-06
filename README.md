@@ -97,3 +97,12 @@ builds, copies `public/` to a new release on the VPS and switches
 `/var/www/kai/current` to it in one step (Caddy serves that link). The
 last five releases stay for rolling back. Needs a machine whose SSH key
 the VPS accepts (blu-tower's, as root).
+
+The home page's install command is `curl -fsSL https://kai.blu.cx/install.sh | sh`,
+so the VPS's Caddy site for kai.blu.cx (`/etc/caddy/kai.caddy`) needs
+
+```caddy
+redir /install.sh https://github.com/thebrandonlucas/kai/releases/latest/download/install.sh 302
+```
+
+(the preview on the tailnet doesn't have it).

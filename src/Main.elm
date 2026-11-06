@@ -451,20 +451,45 @@ loadedSteps model =
             []
 
 
-{-| Workspace 1: the painting, the wordmark and Emerson. Discord and
-GitHub are in the site bar.
+{-| Workspace 1: the painting, the wordmark, the install command and
+Emerson on a glass card. Discord and GitHub are in the site bar.
 -}
 hero : Html Msg
 hero =
     section [ id "ws-0", class "workspace hero" ]
         [ h1 [ class "wordmark" ] [ text "kαί" ]
         , p [ class "tagline" ] [ text "A friendly frontend for determinate computing" ]
+        , install
         , blockquote [ class "epigraph" ]
             [ p [] [ text "Why should we grope among the dry bones of the past, or put the living generation into masquerade out of its faded wardrobe?" ]
             , p [] [ text "The sun shines today also." ]
             , footer [] [ text "— Emerson, ", cite [] [ text "Nature" ] ]
             ]
         ]
+
+
+{-| The one-line install, with a copy button (site-keys.js copies a
+`data-copy` button's text) and a link to read the script first.
+kai.blu.cx/install.sh redirects to the latest release's install.sh.
+-}
+install : Html msg
+install =
+    div [ class "install" ]
+        [ div [ class "install-line" ]
+            [ span [ class "install-prompt" ] [ text "$" ]
+            , Html.code [ class "install-command" ] [ text installCommand ]
+            , button [ class "install-copy", attribute "data-copy" installCommand, title "Copy", attribute "aria-label" "Copy the install command" ] [ text "copy" ]
+            ]
+        , p [ class "install-note" ]
+            [ text "Checks the download against the release's SHA256SUMS · "
+            , a [ href "https://github.com/thebrandonlucas/kai/blob/master/install.sh" ] [ text "read the script" ]
+            ]
+        ]
+
+
+installCommand : String
+installCommand =
+    "curl -fsSL https://kai.blu.cx/install.sh | sh"
 
 
 stepWorkspaces : Model -> List (Html Msg)
