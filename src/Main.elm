@@ -481,8 +481,7 @@ install =
             , button [ class "install-copy", attribute "data-copy" installCommand, title "Copy", attribute "aria-label" "Copy the install command" ] [ text "copy" ]
             ]
         , p [ class "install-note" ]
-            [ text "Checks the download against the release's SHA256SUMS · "
-            , a [ href "https://github.com/thebrandonlucas/kai/blob/master/install.sh" ] [ text "read the script" ]
+            [ a [ href "https://github.com/thebrandonlucas/kai/blob/master/install.sh" ] [ text "read the script" ]
             ]
         ]
 
