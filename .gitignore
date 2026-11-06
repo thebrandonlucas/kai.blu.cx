@@ -1,4 +1,8 @@
 elm-stuff/
 public/elm.js
 result
-public/docs.js
+/public/docs.js
+/public/changelog.js
+/public/blog/*
+!/public/blog/posts/
+/public/feed.xml

@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#111111">
+  <title>$title$ · Kai</title>
+$if(description)$
+  <meta name="description" content="$description$">
+$endif$
+  <link rel="canonical" href="$canonical$">
+  <link rel="alternate" type="application/atom+xml" title="Kai blog" href="/blog/feed.xml">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Kai">
+  <meta property="og:title" content="$title$">
+$if(description)$
+  <meta property="og:description" content="$description$">
+$endif$
+  <meta property="og:image" content="https://kai.blu.cx/images/og.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500&amp;family=GFS+Didot&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/styles.css?v=13">
+  <script src="/site-keys.js" defer></script>
+</head>
+<body>
+<div class="desktop">
+$bar$
+<main class="page-tiling">
+<article class="window window-reading">
+<div class="titlebar"><span class="titlebar-name">~/blog/$slug$.md</span><span class="titlebar-meta">$date$</span></div>
+<div class="window-body">
+<div class="md">
+<h1>$title$</h1>
+<p class="post-meta">$long_date$</p>
+$body$
+</div>
+<footer class="pager">
+<a class="pager-link" href="/blog/">← all posts</a>
+$if(original)$
+<span class="post-original">First published on <a href="$original$">blu.cx</a></span>
+$endif$
+</footer>
+</div>
+</article>
+</main>
+</div>
+</body>
+</html>

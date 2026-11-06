@@ -459,30 +459,30 @@ hero =
     section [ id "ws-0", class "workspace hero" ]
         [ h1 [ class "wordmark" ] [ text "kαί" ]
         , p [ class "tagline" ] [ text "A friendly frontend for determinate computing" ]
-        , install
-        , blockquote [ class "epigraph" ]
-            [ p [] [ text "Why should we grope among the dry bones of the past, or put the living generation into masquerade out of its faded wardrobe?" ]
-            , p [] [ text "The sun shines today also." ]
-            , footer [] [ text "— Emerson, ", cite [] [ text "Nature" ] ]
+
+        -- One column: the install row and the quote card share both edges.
+        , div [ class "hero-column" ]
+            [ install
+            , blockquote [ class "epigraph" ]
+                [ p [] [ text "Why should we grope among the dry bones of the past, or put the living generation into masquerade out of its faded wardrobe?" ]
+                , p [] [ text "The sun shines today also." ]
+                , footer [] [ text "— Emerson, ", cite [] [ text "Nature" ] ]
+                ]
             ]
         ]
 
 
-{-| The one-line install, with a copy button (site-keys.js copies a
-`data-copy` button's text) and a link to read the script first.
+{-| The one-line install: the command, a copy button (site-keys.js copies a
+`data-copy` button's text) and, at the row's end, a link to the script.
 kai.blu.cx/install.sh redirects to the latest release's install.sh.
 -}
 install : Html msg
 install =
-    div [ class "install" ]
-        [ div [ class "install-line" ]
-            [ span [ class "install-prompt" ] [ text "$" ]
-            , Html.code [ class "install-command" ] [ text installCommand ]
-            , button [ class "install-copy", attribute "data-copy" installCommand, title "Copy", attribute "aria-label" "Copy the install command" ] [ text "copy" ]
-            ]
-        , p [ class "install-note" ]
-            [ a [ href "https://github.com/thebrandonlucas/kai/blob/master/install.sh" ] [ text "read the script" ]
-            ]
+    div [ class "install-line" ]
+        [ span [ class "install-prompt" ] [ text "$" ]
+        , Html.code [ class "install-command" ] [ text installCommand ]
+        , button [ class "install-copy", attribute "data-copy" installCommand, title "Copy", attribute "aria-label" "Copy the install command" ] [ text "copy" ]
+        , a [ class "install-script", href "https://github.com/thebrandonlucas/kai/blob/master/install.sh", title "Read the install script" ] [ text "script" ]
         ]
 
 

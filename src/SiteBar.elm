@@ -16,6 +16,8 @@ import Json.Decode as Decode
 type Section
     = Home
     | Docs
+    | Changelog
+    | Blog
 
 
 {-| The bar, with `active` marked. On the home page, `toHome` replaces the
@@ -38,8 +40,8 @@ view active toHome =
                 [ span [ class "bar-num" ] [ text "0" ], text "kαί" ]
             , link 1 (active == Docs) "/docs/" "docs"
             , link 2 False "/reference/std/" "api"
-            , link 3 False "https://github.com/thebrandonlucas/kai/releases" "changelog"
-            , link 4 False "https://blu.cx/projects/kai/" "blog"
+            , link 3 (active == Changelog) "/changelog/" "changelog"
+            , link 4 (active == Blog) "/blog/" "blog"
             ]
         , nav [ class "bar-social", attribute "aria-label" "Community" ]
             [ icon 5 "https://discord.gg/SrH3w5uAa3" "Discord" "/icons/discord.svg"

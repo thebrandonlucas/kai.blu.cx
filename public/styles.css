@@ -1112,3 +1112,162 @@ body {
     gap: 0.5rem;
   }
 }
+
+/* --- Single-window pages: the blog and the changelog. --- */
+
+.page-tiling {
+  display: flex;
+  flex: 1 1 auto;
+  justify-content: center;
+  min-height: 0;
+  padding: var(--gap);
+}
+
+.page-tiling .window-reading {
+  width: min(100%, 64rem);
+}
+
+.page-tiling .md {
+  max-width: 72ch;
+  margin: 0 auto;
+}
+
+.page-tiling .pager {
+  max-width: 72ch;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.post-meta {
+  margin-top: -0.4em;
+  color: var(--muted);
+  font-size: 0.85em;
+}
+
+.post-original {
+  color: var(--muted);
+}
+
+.post-original a,
+.feed-link {
+  color: var(--gold-dim);
+}
+
+.post-list {
+  margin: 1.5rem 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.post-list li {
+  margin: 0 0 1.3rem;
+}
+
+.post-link {
+  display: flex;
+  gap: 1.2rem;
+  align-items: baseline;
+  text-decoration: none;
+}
+
+.post-date {
+  flex: 0 0 auto;
+  color: var(--muted);
+  font-size: 0.85em;
+}
+
+.post-title {
+  color: var(--gold);
+  font-family: "EB Garamond", serif;
+  font-size: 1.25em;
+}
+
+.post-link:hover .post-title {
+  text-decoration: underline;
+}
+
+.post-summary {
+  margin: 0.25rem 0 0 calc(10ch + 1.2rem);
+  color: var(--text);
+  font-size: 0.9em;
+}
+
+.md img {
+  max-width: 100%;
+  border-radius: 6px;
+}
+
+@media (max-width: 600px) {
+  .post-link {
+    flex-direction: column;
+    gap: 0.1rem;
+  }
+
+  .post-summary {
+    margin-left: 0;
+  }
+}
+
+/* The install row and the quote card in one column, edges aligned: the
+   row spans the card's width, the command takes the room left, and the
+   script link ends the row. */
+.hero-column {
+  display: flex;
+  flex-direction: column;
+  gap: 1.6rem;
+  width: min(36rem, calc(100vw - 2 * var(--gap) - 2rem));
+  margin-top: 0.4rem;
+}
+
+.hero-column .install-line {
+  width: 100%;
+  max-width: none;
+  box-sizing: border-box;
+}
+
+.hero-column .install-command {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.install-script {
+  flex: 0 0 auto;
+  color: var(--gold-dim);
+  font: 500 0.72rem / 1 var(--mono);
+  text-decoration: none;
+}
+
+.install-script:hover,
+.install-script:focus-visible {
+  color: var(--gold);
+  text-decoration: underline;
+}
+
+.hero-column .epigraph {
+  width: 100%;
+  max-width: none;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+/* Phones: the command gets the whole first line; copy and script follow. */
+@media (max-width: 600px) {
+  .hero-column .install-line {
+    flex-wrap: wrap;
+    row-gap: 0.5rem;
+  }
+
+  .hero-column .install-command {
+    flex: 1 1 calc(100% - 2rem);
+    white-space: normal;
+    word-break: break-all;
+  }
+
+  .hero-column .install-copy {
+    margin-left: auto;
+  }
+}
+
+.install-line {
+  text-align: left;
+}
