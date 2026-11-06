@@ -1018,3 +1018,31 @@ body {
 .bar-icon {
   text-decoration: none;
 }
+
+/* Emerson, readable over the painting: cream instead of muted gold, a
+   little heavier and larger, a stronger halo, and a soft dark glow behind
+   the lines (no visible edge). */
+.epigraph {
+  position: relative;
+  max-width: 36rem;
+  color: #efe4c4;
+  font-weight: 500;
+  font-size: clamp(1.12rem, 2.4vw, 1.4rem);
+  text-shadow:
+    0 0 1px rgb(0 0 0 / 90%),
+    0 1px 3px rgb(0 0 0 / 85%),
+    0 0 18px rgb(0 0 0 / 70%);
+}
+
+.epigraph::before {
+  content: "";
+  position: absolute;
+  inset: -1.5rem -3rem;
+  z-index: -1;
+  background: radial-gradient(ellipse at center, rgb(8 8 8 / 55%) 0, rgb(8 8 8 / 35%) 45%, transparent 72%);
+  pointer-events: none;
+}
+
+.epigraph footer {
+  color: #cbbd95;
+}
