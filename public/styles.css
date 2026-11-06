@@ -869,3 +869,125 @@ body {
 .epigraph cite {
   font-style: italic;
 }
+
+/* --- The site bar (SiteBar.elm), on every page. --- */
+
+.site-bar .bar-site {
+  gap: 1.15rem;
+}
+
+.bar-social {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.bar-icon {
+  display: inline-flex;
+  padding: 0.3rem;
+  border-radius: 6px;
+}
+
+.bar-icon img {
+  display: block;
+  opacity: 0.75;
+}
+
+.bar-icon:hover {
+  background: rgb(232 200 114 / 10%);
+}
+
+.bar-icon:hover img {
+  opacity: 1;
+}
+
+@media (max-width: 560px) {
+  .site-bar .bar-site {
+    gap: 0.7rem;
+  }
+
+  .site-bar .bar-link {
+    font-size: 0.72rem;
+  }
+}
+
+/* --- The tour's rail: a dot per workspace down the right edge. --- */
+
+.rail {
+  position: fixed;
+  top: 50%;
+  right: 1px;
+  z-index: 2;
+  transform: translateY(-50%);
+}
+
+.rail ol {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.rail-dot {
+  position: relative;
+  display: block;
+  width: 0.9rem;
+  height: 1.1rem;
+  padding: 0;
+  border: 0;
+  background: none;
+  cursor: pointer;
+}
+
+.rail-dot::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 6px;
+  height: 6px;
+  border-radius: 999px;
+  background: rgb(232 200 114 / 35%);
+  transform: translate(-50%, -50%);
+  transition: height 160ms ease, background-color 160ms ease;
+}
+
+.rail-dot:hover::before {
+  background: var(--gold-dim);
+}
+
+.rail-dot-active::before {
+  height: 16px;
+  background: var(--gold);
+}
+
+/* The step's number and name, beside the dot you point at. */
+.rail-label {
+  position: absolute;
+  top: 50%;
+  right: 1.5rem;
+  padding: 0.25rem 0.5rem;
+  border: 1px solid var(--edge);
+  border-radius: 6px;
+  background: var(--glass-deep);
+  color: var(--gold);
+  font: 500 0.72rem / 1 var(--mono);
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(-50%);
+  transition: opacity 120ms ease;
+}
+
+.rail-dot:hover .rail-label,
+.rail-dot:focus-visible .rail-label {
+  opacity: 1;
+}
+
+@media (max-width: 700px) {
+  .rail {
+    display: none;
+  }
+}

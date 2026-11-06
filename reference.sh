@@ -27,7 +27,7 @@ for part in std:plugins/std/main.roc platform:platform/main.roc; do
   # Fonts, and a bar back to the rest of the site, on every page.
   find "$out/$name" -name index.html -print0 | xargs -0 sed -i \
     -e 's#<link rel="stylesheet" href="\([./]*\)styles.css">#<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500\&amp;family=GFS+Didot\&amp;family=JetBrains+Mono:wght@400;500\&amp;display=swap"><link rel="stylesheet" href="\1styles.css">#' \
-    -e 's#<body\([^>]*\)>#<body\1><header class="kai-bar"><a class="kai-mark" href="/">kαί</a><a href="/\#2">tour</a><a href="/docs/">docs</a><a href="/reference/std/" aria-current="page">reference</a></header>#'
+    -e 's#<body\([^>]*\)>#<body\1><header class="kai-bar"><a class="kai-mark" href="/">kαί</a><a href="/\#2">tour</a><a href="/docs/">docs</a><a href="/reference/std/" aria-current="page">api</a><a href="https://github.com/thebrandonlucas/kai/releases">changelog</a><a href="https://blu.cx/projects/kai/">blog</a><span class="kai-social"><a href="https://discord.gg/SrH3w5uAa3" aria-label="Discord" title="Discord"><img src="/icons/discord.svg" alt="" width="18" height="18"></a><a href="https://github.com/thebrandonlucas/kai" aria-label="GitHub" title="GitHub"><img src="/icons/github.svg" alt="" width="18" height="18"></a></span></header>#'
 done
 
 cat > "$out/index.html" <<'EOF'

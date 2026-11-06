@@ -31,6 +31,7 @@ import Json.Decode as Decode exposing (Decoder)
 import Markdown
 import Process
 import RocHighlight
+import SiteBar
 import Task
 import Time
 
@@ -306,7 +307,7 @@ workspaceCount model =
 
 subscriptions : Model -> Sub Msg
 subscriptions _ =
-    Time.every 10000 Tick
+    Sub.none
 
 
 {-| Keys, handled on the desktop (which holds focus) so the browser's own
@@ -412,40 +413,41 @@ view model =
         , tabindex 0
         , preventDefaultOn "keydown" (keyDecoder model)
         ]
-        [ bar model
+        [ SiteBar.view
+            (if model.current == 0 then
+                SiteBar.Home
+
+             else
+                SiteBar.Tour
+            )
+            (Just (Go 1))
         , main_ [ id "workspaces", classList [ ( "workspaces", True ), ( "instant", model.instant ) ], on "scroll" scrollDecoder ]
             (hero :: stepWorkspaces model)
+        , rail model
         , hint model
         ]
 
 
-{-| The top bar: workspaces on the left, the clock on the right.
+{-| Where you are in the tour: a dot per workspace down the right edge,
+the step's number and name beside the dot you point at.
 -}
-bar : Model -> Html Msg
-bar model =
-    header [ class "bar" ]
-        [ nav [ class "bar-workspaces", attribute "aria-label" "Tour" ]
-            [ ol []
-                (List.indexedMap (workspaceButton model.current)
-                    ("kαί" :: List.map .title (loadedSteps model))
-                )
-            ]
-        , div [ class "bar-status" ]
-            [ a [ class "bar-link", href "/docs/" ] [ text "docs" ]
-            , a [ class "bar-link", href "/reference/std/" ] [ text "reference" ]
-            , span [ class "bar-divider" ] []
-            , span [ class "bar-clock" ] [ text (clock model) ]
-            ]
+rail : Model -> Html Msg
+rail model =
+    nav [ class "rail", attribute "aria-label" "Tour steps" ]
+        [ ol []
+            (List.indexedMap (railDot model.current)
+                ("start" :: List.map .title (loadedSteps model))
+            )
         ]
 
 
-workspaceButton : Int -> Int -> String -> Html Msg
-workspaceButton current n label =
+railDot : Int -> Int -> String -> Html Msg
+railDot current n label =
     li []
         [ button
-            [ classList [ ( "ws", True ), ( "ws-active", n == current ) ]
+            [ classList [ ( "rail-dot", True ), ( "rail-dot-active", n == current ) ]
             , onClick (Go n)
-            , title label
+            , attribute "aria-label" label
             , attribute "aria-current"
                 (if n == current then
                     "step"
@@ -454,25 +456,8 @@ workspaceButton current n label =
                     "false"
                 )
             ]
-            [ span [ class "ws-num" ] [ text (String.fromInt (modBy 10 (n + 1))) ]
-            , span [ class "ws-label" ] [ text label ]
-            ]
+            [ span [ class "rail-label" ] [ text (String.fromInt (modBy 10 (n + 1)) ++ " " ++ label) ] ]
         ]
-
-
-clock : Model -> String
-clock model =
-    case model.now of
-        Just now ->
-            pad (Time.toHour model.zone now) ++ ":" ++ pad (Time.toMinute model.zone now)
-
-        Nothing ->
-            ""
-
-
-pad : Int -> String
-pad n =
-    String.padLeft 2 '0' (String.fromInt n)
 
 
 loadedSteps : Model -> List Step

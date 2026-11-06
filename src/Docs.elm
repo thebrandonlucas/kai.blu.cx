@@ -22,6 +22,7 @@ import Html.Events exposing (preventDefaultOn)
 import Http
 import Json.Decode as Decode exposing (Decoder)
 import Markdown
+import SiteBar
 import Task
 import Url exposing (Url)
 
@@ -82,7 +83,13 @@ update msg model =
             ( { model | pages = Dict.insert slug (Result.mapError (\_ -> "This page didn't load.") result) model.pages }, Cmd.none )
 
         Clicked (Browser.Internal url) ->
-            ( model, Nav.pushUrl model.key (Url.toString url) )
+            -- Only the docs' own pages stay in this app; the rest of the
+            -- site (home, tour, api) loads as a page of its own.
+            if String.startsWith "/docs" url.path then
+                ( model, Nav.pushUrl model.key (Url.toString url) )
+
+            else
+                ( model, Nav.load (Url.toString url) )
 
         Clicked (Browser.External link) ->
             ( model, Nav.load link )
@@ -243,7 +250,7 @@ view model =
                 "Kai docs"
     , body =
         [ div [ id "desktop", class "desktop", tabindex 0, preventDefaultOn "keydown" (keyDecoder model) ]
-            [ siteBar
+            [ SiteBar.view SiteBar.Docs Nothing
             , div [ class "docs-tiling" ]
                 [ tree model
                 , reading model
@@ -251,21 +258,6 @@ view model =
             ]
         ]
     }
-
-
-{-| The bar: the site's sections, docs active.
--}
-siteBar : Html msg
-siteBar =
-    header [ class "bar" ]
-        [ nav [ class "bar-site", attribute "aria-label" "Site" ]
-            [ a [ class "bar-mark", href "/" ] [ text "kαί" ]
-            , a [ class "bar-link", href "/#2" ] [ text "tour" ]
-            , a [ class "bar-link bar-link-active", href "/docs/", attribute "aria-current" "page" ] [ text "docs" ]
-            , a [ class "bar-link", href "/reference/std/" ] [ text "reference" ]
-            ]
-        , div [ class "bar-status" ] [ span [ class "bar-host" ] [ text "kai 0.0.11" ] ]
-        ]
 
 
 {-| The file-tree window: every page, by section, then the reference.

@@ -140,3 +140,28 @@ h2,
   color: #e8c872;
   font: 400 1.1rem / 1 "GFS Didot", serif;
 }
+
+/* The bar spans the page above Roc's sidebar and content. */
+body {
+  grid-template-rows: auto minmax(0, 1fr);
+}
+
+.kai-bar {
+  grid-column: 1 / -1;
+}
+
+/* Discord and GitHub at the bar's right end. */
+.kai-bar .kai-social {
+  display: flex;
+  gap: 0.7rem;
+  margin-left: auto;
+}
+
+.kai-bar .kai-social img {
+  display: block;
+  opacity: 0.75;
+}
+
+.kai-bar .kai-social a:hover img {
+  opacity: 1;
+}
