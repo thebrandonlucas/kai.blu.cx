@@ -12,5 +12,6 @@ has, so the mark is always a drawn path, never text.
   square) and `public/images/kai-mark.svg` (the bar's logo).
 - `mockups.py` draws the logo ideas in `mockups/` (open
   `mockups/index.html`): ϗ alone, on a coin, in fine and bold meander
-  frames, in an Antikythera gear (also inside a meander), the archer's
+  frames, in circular meanders (fine, bold, and at a coin's rim), in an
+  Antikythera gear (also inside a meander), the archer's
   kairos, and the wordmark over a meander band.

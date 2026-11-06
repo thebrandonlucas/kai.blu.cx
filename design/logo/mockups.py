@@ -83,6 +83,42 @@ marks = {
                        svg(meander_frame(14, 46, 5) + gear(256, 256, 150, 176, 26, 6) + kai(256, 256, 190))),
 }
 
+# Appended to mockups.py: a meander bent into a ring.
+import math
+
+
+def meander_ring(cx, cy, r_out, depth, n, sw):
+    """A Greek-key band bent round a circle: outer and inner rules, and n
+    hooked spirals, each a unit of the straight band mapped onto the ring
+    (along the band becomes the angle, into the band the radius)."""
+    hook = [(0.18, 1.0), (0.18, 0.2), (0.82, 0.2), (0.82, 0.66), (0.44, 0.66), (0.44, 0.44)]
+
+    def pt(i, ux, uy):
+        a = (i + ux) / n * 2 * math.pi - math.pi / 2
+        r = r_out - uy * depth
+        return cx + r * math.cos(a), cy + r * math.sin(a)
+
+    parts = []
+    for i in range(n):
+        d = []
+        for k, ((x0, y0), (x1, y1)) in enumerate(zip(hook, hook[1:])):
+            # Segments along the band are arcs: sample them.
+            steps = 8 if y0 == y1 else 1
+            for s in range(0 if k == 0 else 1, steps + 1):
+                t = s / steps
+                x, y = pt(i, x0 + (x1 - x0) * t, y0 + (y1 - y0) * t)
+                d.append(("M" if not d else "L") + f"{x:.2f} {y:.2f}")
+        parts.append("".join(d))
+    rules = (f'<circle cx="{cx}" cy="{cy}" r="{r_out}" fill="none" stroke="{GOLD}" stroke-width="{sw}"/>'
+             f'<circle cx="{cx}" cy="{cy}" r="{r_out - depth}" fill="none" stroke="{GOLD}" stroke-width="{sw}"/>')
+    return rules + f'<path fill="none" stroke="{GOLD}" stroke-width="{sw}" stroke-linejoin="miter" stroke-linecap="square" d="{" ".join(parts)}"/>'
+
+
+marks["9-meander-ring"] = ("ϗ in a circular meander", svg(meander_ring(256, 256, 236, 52, 22, 5) + kai(256, 256, 240)))
+marks["10-meander-ring-bold"] = ("ϗ in a bold circular meander", svg(meander_ring(256, 256, 240, 76, 18, 10) + kai(256, 256, 190)))
+marks["11-meander-ring-coin"] = ("ϗ on a coin, a circular meander at its rim",
+    svg(meander_ring(256, 256, 244, 44, 26, 4.5) + f'<circle cx="256" cy="256" r="182" fill="none" stroke="{GOLD}" stroke-width="2.5"/>' + kai(256, 256, 230)))
+
 lockup = svg(
     f'<text x="400" y="190" text-anchor="middle" font-family="GFS Didot, serif" font-size="210" fill="{GOLD}">kαί</text>'
     + meander_band(80, 720, 236, 40, 5),
