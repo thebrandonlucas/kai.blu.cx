@@ -598,3 +598,65 @@ body {
 .term {
   text-shadow: 0 1px 2px rgb(0 0 0 / 70%);
 }
+
+/* Roc syntax highlighting, in the painting's colours: gold keywords, sage
+   strings, sky-blue calls, amber tags and types. */
+.tok-keyword {
+  color: var(--gold);
+}
+
+.tok-string {
+  color: #b9cc94;
+}
+
+.tok-interp {
+  color: #e2d29a;
+}
+
+.tok-tag {
+  color: #e0a86a;
+}
+
+.tok-call {
+  color: #9fc0d6;
+}
+
+.tok-number {
+  color: #d6a3c4;
+}
+
+.tok-comment {
+  color: #8b8470;
+  font-style: italic;
+}
+
+.tok-punct {
+  color: #b3ab95;
+}
+
+/* The hint: back and next side by side. */
+.hint {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.hint kbd + kbd {
+  margin-left: 0.2rem;
+}
+
+.hint-up {
+  animation-name: nudge-up;
+}
+
+@keyframes nudge-up {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-3px); }
+}
+
+/* Glass over a scrolling page: each window gets its own compositor layer so
+   its backdrop blur isn't repainted (and doesn't flicker) as it scrolls. */
+.window,
+.hint-button {
+  transform: translateZ(0);
+  backface-visibility: hidden;
+}

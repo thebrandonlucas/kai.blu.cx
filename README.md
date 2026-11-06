@@ -9,7 +9,7 @@ with its text, tiled with a Kaifile pane and a terminal pane when the step has
 them.
 
 **Moving around:** <kbd>↓</kbd> <kbd>j</kbd> <kbd>Space</kbd> next,
-<kbd>↑</kbd> <kbd>k</kbd> previous, <kbd>1</kbd>–<kbd>9</kbd> a workspace,
+<kbd>↑</kbd> <kbd>k</kbd> previous, <kbd>1</kbd>–<kbd>9</kbd> and <kbd>0</kbd> a workspace,
 <kbd>g</kbd> / <kbd>G</kbd> first and last, or scroll (it snaps), or click the
 bar or the hint in the bottom right. `#n` in the URL opens workspace *n*
 (`kai.blu.cx/#4`).

@@ -12,7 +12,7 @@ The steps live in `public/tour/`: `tour.json` lists them in order and names
 each step's files, which are fetched when the page loads, so editing the
 tour needs no rebuild.
 
-Keys: ↓ / j / PageDown next, ↑ / k / PageUp previous, 1–9 a workspace,
+Keys: ↓ / j / PageDown next, ↑ / k / PageUp previous, 1–9 and 0 a workspace,
 Home / g the first, End / G the last. Scrolling works too and snaps to a
 workspace.
 
@@ -25,10 +25,12 @@ import Dict exposing (Dict)
 import Html exposing (Html, a, button, div, footer, h1, header, img, kbd, li, main_, nav, ol, p, pre, section, span, text)
 import Html.Attributes exposing (alt, attribute, class, classList, height, href, id, src, tabindex, title, width)
 import Html.Events exposing (on, onClick, preventDefaultOn)
+import Html.Lazy
 import Http
 import Json.Decode as Decode exposing (Decoder)
 import Markdown
 import Process
+import RocHighlight
 import Task
 import Time
 
@@ -66,6 +68,12 @@ type alias Model =
     , now : Maybe Time.Posix
     , start : Int
     , instant : Bool
+
+    -- The workspace a key or click is scrolling to, and that jump's number.
+    -- Until it arrives, scroll events don't change `current`, so the bar and
+    -- the hint don't flicker through the workspaces in between.
+    , moving : Maybe Int
+    , jump : Int
     }
 
 
@@ -80,6 +88,8 @@ init hash =
       , now = Nothing
       , start = startOf hash
       , instant = startOf hash > 0
+      , moving = Nothing
+      , jump = 0
       }
     , Cmd.batch
         [ Http.get { url = "tour/tour.json", expect = Http.expectJson GotTour (Decode.field "steps" (Decode.list stepDecoder)) }
@@ -110,6 +120,7 @@ type Msg
     | Go Int
     | Move Int
     | Scrolled Float Float
+    | Landed Int
     | GotZone Time.Zone
     | Tick Time.Posix
     | NoOp
@@ -145,8 +156,34 @@ update msg model =
             goTo (model.current + delta) model
 
         Scrolled top height ->
-            if height > 0 then
-                ( { model | current = round (top / height), instant = False }, Cmd.none )
+            if height <= 0 then
+                ( model, Cmd.none )
+
+            else
+                case model.moving of
+                    Just target ->
+                        -- Mid-jump: wait until the jump arrives.
+                        if abs (top - toFloat target * height) < 2 then
+                            ( { model | moving = Nothing, current = target, instant = False }, Cmd.none )
+
+                        else
+                            ( model, Cmd.none )
+
+                    Nothing ->
+                        let
+                            at =
+                                round (top / height)
+                        in
+                        if at == model.current && not model.instant then
+                            ( model, Cmd.none )
+
+                        else
+                            ( { model | current = at, instant = False }, Cmd.none )
+
+        Landed jump ->
+            -- A jump the reader interrupted by scrolling: follow the scroll again.
+            if jump == model.jump then
+                ( { model | moving = Nothing }, Cmd.none )
 
             else
                 ( model, Cmd.none )
@@ -191,18 +228,26 @@ httpError err =
 
 
 {-| Scroll the desktop to workspace `n` (clamped). The CSS makes the scroll
-smooth; `Scrolled` then sets `current`.
+smooth. `current` changes at once, and scroll events leave it alone until
+the scroll arrives (or, if the reader scrolls away mid-jump, for at most
+1.5 s).
 -}
 goTo : Int -> Model -> ( Model, Cmd Msg )
 goTo n model =
     let
         target =
             clamp 0 (workspaceCount model - 1) n
+
+        jump =
+            model.jump + 1
     in
-    ( { model | current = target }
-    , Dom.getViewportOf "workspaces"
-        |> Task.andThen (\vp -> Dom.setViewportOf "workspaces" 0 (toFloat target * vp.viewport.height))
-        |> Task.attempt (\_ -> NoOp)
+    ( { model | current = target, moving = Just target, jump = jump }
+    , Cmd.batch
+        [ Dom.getViewportOf "workspaces"
+            |> Task.andThen (\vp -> Dom.setViewportOf "workspaces" 0 (toFloat target * vp.viewport.height))
+            |> Task.attempt (\_ -> NoOp)
+        , Process.sleep 1500 |> Task.perform (\_ -> Landed jump)
+        ]
     )
 
 
@@ -294,6 +339,10 @@ keyMsg model key =
                         if n >= 1 && n <= 9 then
                             Just (Go (n - 1))
 
+                        else if n == 0 then
+                            -- The number row's 0 is the tenth workspace.
+                            Just (Go 9)
+
                         else
                             Nothing
                     )
@@ -358,7 +407,7 @@ workspaceButton current n label =
                     "false"
                 )
             ]
-            [ span [ class "ws-num" ] [ text (String.fromInt (n + 1)) ]
+            [ span [ class "ws-num" ] [ text (String.fromInt (modBy 10 (n + 1))) ]
             , span [ class "ws-label" ] [ text label ]
             ]
         ]
@@ -425,7 +474,9 @@ stepWorkspaces model =
             ]
 
         Loaded list ->
-            List.indexedMap (stepView model.files (List.length list)) list
+            -- Lazy: scrolling changes only `current`, so the windows aren't
+            -- drawn again while the page scrolls.
+            List.indexedMap (\i step -> Html.Lazy.lazy4 stepView model.files (List.length list) i step) list
 
 
 {-| A tour step: one glass window, its text alone or tiled with a Kaifile
@@ -507,11 +558,13 @@ markdownView =
         [ class "md" ]
 
 
+{-| A Roc file with line numbers and syntax highlighting.
+-}
 codeView : String -> Html msg
 codeView source =
     pre [ class "code" ]
         (String.lines (String.trimRight source)
-            |> List.map (\line -> span [ class "code-line" ] [ text (line ++ "\n") ])
+            |> List.map (\line -> span [ class "code-line" ] (RocHighlight.line line ++ [ text "\n" ]))
         )
 
 
@@ -533,34 +586,50 @@ terminalView transcript =
         )
 
 
-{-| Bottom right: how to move on, also a button.
+{-| Bottom right: the keys for back and next, each also a button.
 -}
 hint : Model -> Html Msg
 hint model =
     let
+        first =
+            model.current == 0
+
         last =
             model.current >= workspaceCount model - 1
     in
     footer [ class "hint" ]
-        [ if last then
-            button [ class "hint-button", onClick (Go 0), attribute "aria-label" "Back to the start" ]
-                [ span [ class "hint-arrow" ] [ text "↑" ], text "back to the top ", kbd [] [ text "g" ] ]
+        (List.filterMap identity
+            [ if first then
+                Nothing
 
-          else
-            button [ class "hint-button", onClick (Move 1), attribute "aria-label" "Next" ]
-                [ span [ class "hint-arrow" ] [ text "↓" ]
-                , text
-                    (if model.current == 0 then
-                        "take the tour "
-
-                     else
-                        "next "
+              else
+                Just
+                    (button [ class "hint-button", onClick (Move -1), attribute "aria-label" "Back" ]
+                        [ span [ class "hint-arrow hint-up" ] [ text "↑" ], text "back ", kbd [] [ text "k" ], kbd [] [ text "↑" ] ]
                     )
-                , kbd [] [ text "j" ]
-                , text " "
-                , kbd [] [ text "↓" ]
-                ]
-        ]
+            , if last then
+                Just
+                    (button [ class "hint-button", onClick (Go 0), attribute "aria-label" "Back to the start" ]
+                        [ text "to the top ", kbd [] [ text "g" ] ]
+                    )
+
+              else
+                Just
+                    (button [ class "hint-button", onClick (Move 1), attribute "aria-label" "Next" ]
+                        [ span [ class "hint-arrow" ] [ text "↓" ]
+                        , text
+                            (if first then
+                                "take the tour "
+
+                             else
+                                "next "
+                            )
+                        , kbd [] [ text "j" ]
+                        , kbd [] [ text "↓" ]
+                        ]
+                    )
+            ]
+        )
 
 
 
