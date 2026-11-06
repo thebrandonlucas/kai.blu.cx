@@ -40,6 +40,34 @@ needs no rebuild:
   `run`, `shell`, `build`, `workflow`), with `/tmp` paths shortened to `~/cow`
   and `~/hello`, exit-code lines and Guix's progress bar removed.
 
+
+## Docs and reference
+
+- **Guides**, at `/docs/` (`public/docs/index.html`, `src/Docs.elm` →
+  `public/docs.js`): a file tree of the pages beside a reading window.
+  The pages are in `public/docs/pages/`: `docs.json` lists the sections and
+  their pages, each page is `<slug>.md`, and `/docs/#<slug>` opens one.
+  Keys: <kbd>j</kbd>/<kbd>k</kbd> scroll, <kbd>h</kbd>/<kbd>l</kbd> the
+  previous and next page, <kbd>g</kbd>/<kbd>G</kbd> top and bottom. They were
+  first split from Kai's README and `docs/plugin.md` at v0.0.11.
+- **API reference**, at `/reference/std/` and `/reference/platform/`,
+  generated from Kai's source by `roc docs` and restyled:
+
+  ```sh
+  ./reference.sh ~/src/kai "$(which roc)"   # use the checkout's .roc-version
+  ```
+
+  `reference-theme.css` is appended to each reference's stylesheet, and a bar
+  linking back to the site is added to every page. Run it for each release.
+
+## Editing in Syncthing
+
+The tour and the guides are edited in the Sync folder's `kai.blu.cx/`
+(`tour/` and `docs/`), on any device. blu-tower's `kai-site-sync` service
+copies each change, within seconds, to the preview and to this repo
+(`public/tour/` and `public/docs/pages/`), so the Syncthing copy is the source
+and edits made only here are overwritten.
+
 ## Preview
 
 Before deploying, the build is previewed on the tailnet at

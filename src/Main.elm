@@ -22,7 +22,7 @@ import Browser
 import Browser.Dom as Dom
 import Browser.Events
 import Dict exposing (Dict)
-import Html exposing (Html, a, button, div, footer, h1, header, img, kbd, li, main_, nav, ol, p, pre, section, span, text)
+import Html exposing (Html, a, blockquote, button, cite, div, footer, h1, header, img, kbd, li, main_, nav, ol, p, pre, section, span, text)
 import Html.Attributes exposing (alt, attribute, class, classList, height, href, id, src, tabindex, title, width)
 import Html.Events exposing (on, onClick, preventDefaultOn)
 import Html.Lazy
@@ -431,7 +431,9 @@ bar model =
                 )
             ]
         , div [ class "bar-status" ]
-            [ span [ class "bar-host" ] [ text "kai.blu.cx" ]
+            [ a [ class "bar-link", href "/docs/" ] [ text "docs" ]
+            , a [ class "bar-link", href "/reference/std/" ] [ text "reference" ]
+            , span [ class "bar-divider" ] []
             , span [ class "bar-clock" ] [ text (clock model) ]
             ]
         ]
@@ -483,7 +485,8 @@ loadedSteps model =
             []
 
 
-{-| Workspace 1: the painting, the wordmark and where to find Kai.
+{-| Workspace 1: the painting, the wordmark, where to find Kai, and
+Emerson.
 -}
 hero : Html Msg
 hero =
@@ -493,6 +496,11 @@ hero =
         , nav [ class "social-links", attribute "aria-label" "Community" ]
             [ socialLink "https://discord.gg/SrH3w5uAa3" "Join Kai on Discord" "Discord" "icons/discord.svg"
             , socialLink "https://github.com/thebrandonlucas/kai" "Kai on GitHub" "GitHub" "icons/github.svg"
+            ]
+        , blockquote [ class "epigraph" ]
+            [ p [] [ text "Why should we grope among the dry bones of the past, or put the living generation into masquerade out of its faded wardrobe?" ]
+            , p [] [ text "The sun shines today also." ]
+            , footer [] [ text "— Ralph Waldo Emerson, ", cite [] [ text "Nature" ] ]
             ]
         ]
 

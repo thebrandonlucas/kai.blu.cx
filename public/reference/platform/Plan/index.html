@@ -1,0 +1,699 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Plan Docs</title>
+    <meta name="viewport" content="width=device-width">
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500&amp;family=GFS+Didot&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap"><link rel="stylesheet" href="../styles.css">
+    <script src="../search.js" defer></script>
+</head>
+<body><header class="kai-bar"><a class="kai-mark" href="/">kαί</a><a href="/#2">tour</a><a href="/docs/">docs</a><a href="/reference/std/" aria-current="page">reference</a></header>
+<svg xmlns="http://www.w3.org/2000/svg" style="display:none">
+  <defs>
+    <symbol id="link-icon" viewBox="0 0 640 512">
+      <path d="M562.8 267.7c56.5-56.5 56.5-148 0-204.5c-50-50-128.8-56.5-186.3-15.4l-1.6 1.1c-14.4 10.3-17.7 30.3-7.4 44.6s30.3 17.7 44.6 7.4l1.6-1.1c32.1-22.9 76-19.3 103.8 8.6c31.5 31.5 31.5 82.5 0 114L405.3 334.8c-31.5 31.5-82.5 31.5-114 0c-27.9-27.9-31.5-71.8-8.6-103.8l1.1-1.6c10.3-14.4 6.9-34.4-7.4-44.6s-34.4-6.9-44.6 7.4l-1.1 1.6C189.5 251.2 196 330 246 380c56.5 56.5 148 56.5 204.5 0L562.8 267.7zM43.2 244.3c-56.5 56.5-56.5 148 0 204.5c50 50 128.8 56.5 186.3 15.4l1.6-1.1c14.4-10.3 17.7-30.3 7.4-44.6s-30.3-17.7-44.6-7.4l-1.6 1.1c-32.1 22.9-76 19.3-103.8-8.6C57 372 57 321 88.5 289.5L200.7 177.2c31.5-31.5 82.5-31.5 114 0c27.9 27.9 31.5 71.8 8.6 103.9l-1.1 1.6c-10.3 14.4-6.9 34.4 7.4 44.6s34.4 6.9 44.6-7.4l1.1-1.6C416.5 260.8 410 182 360 132c-56.5-56.5-148-56.5-204.5 0L43.2 244.3z"/>
+    </symbol>
+  </defs>
+</svg>
+    <nav id="sidebar-nav">
+        <div class="pkg-and-logo">
+            <a class="logo" href="../"><svg viewBox="0 -6 51 58" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="logo-link">
+    <title id="logo-link">Home</title>
+    <polygon role="presentation" points="0,0 23.8834,3.21052 37.2438,19.0101 45.9665,16.6324 50.5,22 45,22 44.0315,26.3689 26.4673,39.3424 27.4527,45.2132 17.655,53 23.6751,22.7086" />
+</svg></a>
+            <h1 class="pkg-full-name"><a href="../">main</a></h1>
+        </div>
+        <div class="module-links-container">
+            <ul class="module-links">
+                <li class="sidebar-entry">
+                    <a class="sidebar-module-link" data-module-name="Backend" href="../Backend/"><span>Backend</span></a>
+                    <details>
+                        <summary class="sidebar-module-summary" aria-label="Backend entries"><span class="entry-toggle" aria-hidden="true"></span></summary>
+                        <ul class="sidebar-sub-entries">
+                        </ul>
+                    </details>
+                </li>
+                <li class="sidebar-entry">
+                    <a class="sidebar-module-link" data-module-name="Command" href="../Command/"><span>Command</span></a>
+                    <details>
+                        <summary class="sidebar-module-summary" aria-label="Command entries"><span class="entry-toggle" aria-hidden="true"></span></summary>
+                        <ul class="sidebar-sub-entries">
+                        <li><a class="sidebar-value" href="../Command/#Command.name">name</a></li>
+                        <li><a class="sidebar-value" href="../Command/#Command.flag">flag</a></li>
+                        <li><a class="sidebar-value" href="../Command/#Command.path">path</a></li>
+                        <li><a class="sidebar-value" href="../Command/#Command.trailing">trailing</a></li>
+                        <li class="sidebar-type">
+                          <a class="sidebar-type-name" href="../Command/#Command.Page">Page</a>
+                        </li>
+                        <li class="sidebar-type">
+                          <a class="sidebar-type-name" href="../Command/#Command.Arg">Arg</a>
+                        </li>
+                        <li class="sidebar-type">
+                          <a class="sidebar-type-name" href="../Command/#Command.Choice">Choice</a>
+                        </li>
+                        <li class="sidebar-type">
+                          <a class="sidebar-type-name" href="../Command/#Command.Args">Args</a>
+                        </li>
+                        </ul>
+                    </details>
+                </li>
+                <li class="sidebar-entry">
+                    <a class="sidebar-module-link" data-module-name="Conformance" href="../Conformance/"><span>Conformance</span></a>
+                    <details>
+                        <summary class="sidebar-module-summary" aria-label="Conformance entries"><span class="entry-toggle" aria-hidden="true"></span></summary>
+                        <ul class="sidebar-sub-entries">
+                        <li><a class="sidebar-value" href="../Conformance/#Conformance.missing">missing</a></li>
+                        <li class="sidebar-type">
+                          <a class="sidebar-type-name" href="../Conformance/#Conformance.Case">Case</a>
+                        </li>
+                        </ul>
+                    </details>
+                </li>
+                <li class="sidebar-entry">
+                    <a class="sidebar-module-link" data-module-name="Implementation" href="../Implementation/"><span>Implementation</span></a>
+                    <details>
+                        <summary class="sidebar-module-summary" aria-label="Implementation entries"><span class="entry-toggle" aria-hidden="true"></span></summary>
+                        <ul class="sidebar-sub-entries">
+                        <li class="sidebar-type">
+                          <a class="sidebar-type-name" href="../Implementation/#Implementation.Context">Context</a>
+                        </li>
+                        </ul>
+                    </details>
+                </li>
+                <li class="sidebar-entry">
+                    <a class="sidebar-module-link" data-module-name="Kaifile" href="../Kaifile/"><span>Kaifile</span></a>
+                    <details>
+                        <summary class="sidebar-module-summary" aria-label="Kaifile entries"><span class="entry-toggle" aria-hidden="true"></span></summary>
+                        <ul class="sidebar-sub-entries">
+                        <li><a class="sidebar-value" href="../Kaifile/#Kaifile.new">new</a></li>
+                        <li><a class="sidebar-value" href="../Kaifile/#Kaifile.prefer">prefer</a></li>
+                        <li><a class="sidebar-value" href="../Kaifile/#Kaifile.backends">backends</a></li>
+                        <li><a class="sidebar-value" href="../Kaifile/#Kaifile.candidates">candidates</a></li>
+                        <li><a class="sidebar-value" href="../Kaifile/#Kaifile.validate">validate</a></li>
+                        <li><a class="sidebar-value" href="../Kaifile/#Kaifile.builtins">builtins</a></li>
+                        <li><a class="sidebar-value" href="../Kaifile/#Kaifile.registry">registry</a></li>
+                        <li class="sidebar-type">
+                          <a class="sidebar-type-name" href="../Kaifile/#Kaifile.Choice">Choice</a>
+                        </li>
+                        <li class="sidebar-type">
+                          <a class="sidebar-type-name" href="../Kaifile/#Kaifile.Contexts">Contexts</a>
+                        </li>
+                        </ul>
+                    </details>
+                </li>
+                <li class="sidebar-entry">
+                    <a class="sidebar-module-link" data-module-name="Layout" href="../Layout/"><span>Layout</span></a>
+                    <details>
+                        <summary class="sidebar-module-summary" aria-label="Layout entries"><span class="entry-toggle" aria-hidden="true"></span></summary>
+                        <ul class="sidebar-sub-entries">
+                        <li><a class="sidebar-value" href="../Layout/#Layout.is_eq">is_eq</a></li>
+                        <li><a class="sidebar-value" href="../Layout/#Layout.encoder_for">encoder_for</a></li>
+                        <li><a class="sidebar-value" href="../Layout/#Layout.parser_for">parser_for</a></li>
+                        <li><a class="sidebar-value" href="../Layout/#Layout.validate">validate</a></li>
+                        <li><a class="sidebar-value" href="../Layout/#Layout.contains">contains</a></li>
+                        </ul>
+                    </details>
+                </li>
+                <li class="sidebar-entry">
+                    <a class="sidebar-module-link" data-module-name="LockFile" href="../LockFile/"><span>LockFile</span></a>
+                    <details>
+                        <summary class="sidebar-module-summary" aria-label="LockFile entries"><span class="entry-toggle" aria-hidden="true"></span></summary>
+                        <ul class="sidebar-sub-entries">
+                        <li><a class="sidebar-value" href="../LockFile/#LockFile.section">section</a></li>
+                        <li><a class="sidebar-value" href="../LockFile/#LockFile.splice">splice</a></li>
+                        </ul>
+                    </details>
+                </li>
+                <li class="sidebar-entry">
+                    <a class="sidebar-module-link" data-module-name="LockJson" href="../LockJson/"><span>LockJson</span></a>
+                    <details>
+                        <summary class="sidebar-module-summary" aria-label="LockJson entries"><span class="entry-toggle" aria-hidden="true"></span></summary>
+                        <ul class="sidebar-sub-entries">
+                        <li><a class="sidebar-value" href="../LockJson/#LockJson.is_eq">is_eq</a></li>
+                        <li><a class="sidebar-value" href="../LockJson/#LockJson.decode">decode</a></li>
+                        <li><a class="sidebar-value" href="../LockJson/#LockJson.encode">encode</a></li>
+                        <li><a class="sidebar-value" href="../LockJson/#LockJson.quote">quote</a></li>
+                        <li><a class="sidebar-value" href="../LockJson/#LockJson.field">field</a></li>
+                        <li><a class="sidebar-value" href="../LockJson/#LockJson.object">object</a></li>
+                        <li><a class="sidebar-value" href="../LockJson/#LockJson.array">array</a></li>
+                        <li><a class="sidebar-value" href="../LockJson/#LockJson.string">string</a></li>
+                        <li><a class="sidebar-value" href="../LockJson/#LockJson.set">set</a></li>
+                        <li><a class="sidebar-value" href="../LockJson/#LockJson.parse">parse</a></li>
+                        <li><a class="sidebar-value" href="../LockJson/#LockJson.literal">literal</a></li>
+                        <li><a class="sidebar-value" href="../LockJson/#LockJson.whitespace">whitespace</a></li>
+                        <li><a class="sidebar-value" href="../LockJson/#LockJson.digit">digit</a></li>
+                        <li><a class="sidebar-value" href="../LockJson/#LockJson.number">number</a></li>
+                        <li><a class="sidebar-value" href="../LockJson/#LockJson.read_string">read_string</a></li>
+                        <li><a class="sidebar-value" href="../LockJson/#LockJson.hex4">hex4</a></li>
+                        <li><a class="sidebar-value" href="../LockJson/#LockJson.utf8">utf8</a></li>
+                        <li class="sidebar-type">
+                          <a class="sidebar-type-name" href="../LockJson/#LockJson.Parsed">Parsed</a>
+                        </li>
+                        </ul>
+                    </details>
+                </li>
+                <li class="sidebar-entry">
+                    <a class="sidebar-module-link active" data-module-name="Plan" href="../Plan/"><span>Plan</span></a>
+                    <details open>
+                        <summary class="sidebar-module-summary" aria-label="Plan entries"><span class="entry-toggle" aria-hidden="true"></span></summary>
+                        <ul class="sidebar-sub-entries">
+                        <li><a class="sidebar-value" href="../Plan/#Plan.is_eq">is_eq</a></li>
+                        <li><a class="sidebar-value" href="../Plan/#Plan.encoder_for">encoder_for</a></li>
+                        <li><a class="sidebar-value" href="../Plan/#Plan.parser_for">parser_for</a></li>
+                        <li><a class="sidebar-value" href="../Plan/#Plan.fail">fail</a></li>
+                        <li><a class="sidebar-value" href="../Plan/#Plan.closest">closest</a></li>
+                        <li><a class="sidebar-value" href="../Plan/#Plan.distance">distance</a></li>
+                        <li class="sidebar-type">
+                          <a class="sidebar-type-name" href="../Plan/#Plan.Step">Step</a>
+                          <ul class="sidebar-sub-entries">
+                          <li><a class="sidebar-value" href="../Plan/#Plan.Step.is_eq">is_eq</a></li>
+                          <li><a class="sidebar-value" href="../Plan/#Plan.Step.encoder_for">encoder_for</a></li>
+                          <li><a class="sidebar-value" href="../Plan/#Plan.Step.parser_for">parser_for</a></li>
+                          </ul>
+                        </li>
+                        <li class="sidebar-type">
+                          <a class="sidebar-type-name" href="../Plan/#Plan.Next">Next</a>
+                          <ul class="sidebar-sub-entries">
+                          <li><a class="sidebar-value" href="../Plan/#Plan.Next.is_eq">is_eq</a></li>
+                          <li><a class="sidebar-value" href="../Plan/#Plan.Next.encoder_for">encoder_for</a></li>
+                          <li><a class="sidebar-value" href="../Plan/#Plan.Next.parser_for">parser_for</a></li>
+                          </ul>
+                        </li>
+                        <li class="sidebar-type">
+                          <a class="sidebar-type-name" href="../Plan/#Plan.File">File</a>
+                        </li>
+                        <li class="sidebar-type">
+                          <a class="sidebar-type-name" href="../Plan/#Plan.Program">Program</a>
+                        </li>
+                        <li class="sidebar-type">
+                          <a class="sidebar-type-name" href="../Plan/#Plan.Output">Output</a>
+                        </li>
+                        <li class="sidebar-type">
+                          <a class="sidebar-type-name" href="../Plan/#Plan.Artifact">Artifact</a>
+                        </li>
+                        <li class="sidebar-type">
+                          <a class="sidebar-type-name" href="../Plan/#Plan.Failure">Failure</a>
+                        </li>
+                        </ul>
+                    </details>
+                </li>
+                <li class="sidebar-entry">
+                    <a class="sidebar-module-link" data-module-name="Plugin" href="../Plugin/"><span>Plugin</span></a>
+                    <details>
+                        <summary class="sidebar-module-summary" aria-label="Plugin entries"><span class="entry-toggle" aria-hidden="true"></span></summary>
+                        <ul class="sidebar-sub-entries">
+                        <li><a class="sidebar-value" href="../Plugin/#Plugin.new">new</a></li>
+                        <li><a class="sidebar-value" href="../Plugin/#Plugin.without">without</a></li>
+                        <li><a class="sidebar-value" href="../Plugin/#Plugin.without_command">without_command</a></li>
+                        <li><a class="sidebar-value" href="../Plugin/#Plugin.with_implementations">with_implementations</a></li>
+                        <li><a class="sidebar-value" href="../Plugin/#Plugin.invalid">invalid</a></li>
+                        </ul>
+                    </details>
+                </li>
+                <li class="sidebar-entry">
+                    <a class="sidebar-module-link" data-module-name="Protocol" href="../Protocol/"><span>Protocol</span></a>
+                    <details>
+                        <summary class="sidebar-module-summary" aria-label="Protocol entries"><span class="entry-toggle" aria-hidden="true"></span></summary>
+                        <ul class="sidebar-sub-entries">
+                        <li><a class="sidebar-value" href="../Protocol/#Protocol.current">current</a></li>
+                        <li><a class="sidebar-value" href="../Protocol/#Protocol.decode_response">decode_response</a></li>
+                        <li class="sidebar-type">
+                          <a class="sidebar-type-name" href="../Protocol/#Protocol.Version">Version</a>
+                        </li>
+                        <li class="sidebar-type">
+                          <a class="sidebar-type-name" href="../Protocol/#Protocol.Request">Request</a>
+                          <ul class="sidebar-sub-entries">
+                          <li><a class="sidebar-value" href="../Protocol/#Protocol.Request.is_eq">is_eq</a></li>
+                          <li><a class="sidebar-value" href="../Protocol/#Protocol.Request.encoder_for">encoder_for</a></li>
+                          <li><a class="sidebar-value" href="../Protocol/#Protocol.Request.parser_for">parser_for</a></li>
+                          </ul>
+                        </li>
+                        <li class="sidebar-type">
+                          <a class="sidebar-type-name" href="../Protocol/#Protocol.Response">Response</a>
+                          <ul class="sidebar-sub-entries">
+                          <li><a class="sidebar-value" href="../Protocol/#Protocol.Response.is_eq">is_eq</a></li>
+                          <li><a class="sidebar-value" href="../Protocol/#Protocol.Response.encoder_for">encoder_for</a></li>
+                          <li><a class="sidebar-value" href="../Protocol/#Protocol.Response.parser_for">parser_for</a></li>
+                          </ul>
+                        </li>
+                        <li class="sidebar-type">
+                          <a class="sidebar-type-name" href="../Protocol/#Protocol.Body">Body</a>
+                          <ul class="sidebar-sub-entries">
+                          <li><a class="sidebar-value" href="../Protocol/#Protocol.Body.is_eq">is_eq</a></li>
+                          <li><a class="sidebar-value" href="../Protocol/#Protocol.Body.encoder_for">encoder_for</a></li>
+                          <li><a class="sidebar-value" href="../Protocol/#Protocol.Body.parser_for">parser_for</a></li>
+                          </ul>
+                        </li>
+                        <li class="sidebar-type">
+                          <a class="sidebar-type-name" href="../Protocol/#Protocol.Candidate">Candidate</a>
+                        </li>
+                        <li class="sidebar-type">
+                          <a class="sidebar-type-name" href="../Protocol/#Protocol.Manifest">Manifest</a>
+                          <ul class="sidebar-sub-entries">
+                          <li><a class="sidebar-value" href="../Protocol/#Protocol.Manifest.is_eq">is_eq</a></li>
+                          <li><a class="sidebar-value" href="../Protocol/#Protocol.Manifest.encoder_for">encoder_for</a></li>
+                          <li><a class="sidebar-value" href="../Protocol/#Protocol.Manifest.parser_for">parser_for</a></li>
+                          </ul>
+                        </li>
+                        </ul>
+                    </details>
+                </li>
+                <li class="sidebar-entry">
+                    <a class="sidebar-module-link" data-module-name="Sexpr" href="../Sexpr/"><span>Sexpr</span></a>
+                    <details>
+                        <summary class="sidebar-module-summary" aria-label="Sexpr entries"><span class="entry-toggle" aria-hidden="true"></span></summary>
+                        <ul class="sidebar-sub-entries">
+                        <li><a class="sidebar-value" href="../Sexpr/#Sexpr.to_str">to_str</a></li>
+                        <li><a class="sidebar-value" href="../Sexpr/#Sexpr.parse">parse</a></li>
+                        <li><a class="sidebar-value" href="../Sexpr/#Sexpr.tokenize">tokenize</a></li>
+                        <li><a class="sidebar-value" href="../Sexpr/#Sexpr.is_delimiter">is_delimiter</a></li>
+                        <li><a class="sidebar-value" href="../Sexpr/#Sexpr.read_string">read_string</a></li>
+                        <li><a class="sidebar-value" href="../Sexpr/#Sexpr.quote">quote</a></li>
+                        <li><a class="sidebar-value" href="../Sexpr/#Sexpr.append">append</a></li>
+                        <li><a class="sidebar-value" href="../Sexpr/#Sexpr.separate">separate</a></li>
+                        <li><a class="sidebar-value" href="../Sexpr/#Sexpr.write_item">write_item</a></li>
+                        <li><a class="sidebar-value" href="../Sexpr/#Sexpr.write_payload">write_payload</a></li>
+                        <li><a class="sidebar-value" href="../Sexpr/#Sexpr.write_field">write_field</a></li>
+                        <li><a class="sidebar-value" href="../Sexpr/#Sexpr.wire_name">wire_name</a></li>
+                        <li><a class="sidebar-value" href="../Sexpr/#Sexpr.open">open</a></li>
+                        <li><a class="sidebar-value" href="../Sexpr/#Sexpr.number">number</a></li>
+                        <li><a class="sidebar-value" href="../Sexpr/#Sexpr.skip_value">skip_value</a></li>
+                        <li><a class="sidebar-value" href="../Sexpr/#Sexpr.expected">expected</a></li>
+                        <li><a class="sidebar-value" href="../Sexpr/#Sexpr.describe">describe</a></li>
+                        <li class="sidebar-type">
+                          <a class="sidebar-type-name" href="../Sexpr/#Sexpr.Token">Token</a>
+                          <ul class="sidebar-sub-entries">
+                          <li><a class="sidebar-value" href="../Sexpr/#Sexpr.Token.is_eq">is_eq</a></li>
+                          </ul>
+                        </li>
+                        <li class="sidebar-type">
+                          <a class="sidebar-type-name" href="../Sexpr/#Sexpr.Out">Out</a>
+                        </li>
+                        <li class="sidebar-type">
+                          <a class="sidebar-type-name" href="../Sexpr/#Sexpr.Format">Format</a>
+                          <ul class="sidebar-sub-entries">
+                          <li><a class="sidebar-value" href="../Sexpr/#Sexpr.Format.encode_str">encode_str</a></li>
+                          <li><a class="sidebar-value" href="../Sexpr/#Sexpr.Format.encode_bool">encode_bool</a></li>
+                          <li><a class="sidebar-value" href="../Sexpr/#Sexpr.Format.encode_u8">encode_u8</a></li>
+                          <li><a class="sidebar-value" href="../Sexpr/#Sexpr.Format.encode_u16">encode_u16</a></li>
+                          <li><a class="sidebar-value" href="../Sexpr/#Sexpr.Format.encode_u32">encode_u32</a></li>
+                          <li><a class="sidebar-value" href="../Sexpr/#Sexpr.Format.encode_u64">encode_u64</a></li>
+                          <li><a class="sidebar-value" href="../Sexpr/#Sexpr.Format.encode_i64">encode_i64</a></li>
+                          <li><a class="sidebar-value" href="../Sexpr/#Sexpr.Format.encode_list">encode_list</a></li>
+                          <li><a class="sidebar-value" href="../Sexpr/#Sexpr.Format.encode_tuple">encode_tuple</a></li>
+                          <li><a class="sidebar-value" href="../Sexpr/#Sexpr.Format.encode_record">encode_record</a></li>
+                          <li><a class="sidebar-value" href="../Sexpr/#Sexpr.Format.encode_tag">encode_tag</a></li>
+                          <li><a class="sidebar-value" href="../Sexpr/#Sexpr.Format.rename_field">rename_field</a></li>
+                          <li><a class="sidebar-value" href="../Sexpr/#Sexpr.Format.parse_str">parse_str</a></li>
+                          <li><a class="sidebar-value" href="../Sexpr/#Sexpr.Format.parse_bool">parse_bool</a></li>
+                          <li><a class="sidebar-value" href="../Sexpr/#Sexpr.Format.parse_u8">parse_u8</a></li>
+                          <li><a class="sidebar-value" href="../Sexpr/#Sexpr.Format.parse_u16">parse_u16</a></li>
+                          <li><a class="sidebar-value" href="../Sexpr/#Sexpr.Format.parse_u32">parse_u32</a></li>
+                          <li><a class="sidebar-value" href="../Sexpr/#Sexpr.Format.parse_u64">parse_u64</a></li>
+                          <li><a class="sidebar-value" href="../Sexpr/#Sexpr.Format.parse_i64">parse_i64</a></li>
+                          <li><a class="sidebar-value" href="../Sexpr/#Sexpr.Format.parse_list_start">parse_list_start</a></li>
+                          <li><a class="sidebar-value" href="../Sexpr/#Sexpr.Format.parse_list_next">parse_list_next</a></li>
+                          <li><a class="sidebar-value" href="../Sexpr/#Sexpr.Format.parse_list_after_item">parse_list_after_item</a></li>
+                          <li><a class="sidebar-value" href="../Sexpr/#Sexpr.Format.parse_record_start">parse_record_start</a></li>
+                          <li><a class="sidebar-value" href="../Sexpr/#Sexpr.Format.parse_record_field">parse_record_field</a></li>
+                          <li><a class="sidebar-value" href="../Sexpr/#Sexpr.Format.parse_record_after_field">parse_record_after_field</a></li>
+                          <li><a class="sidebar-value" href="../Sexpr/#Sexpr.Format.skip_record_field">skip_record_field</a></li>
+                          <li><a class="sidebar-value" href="../Sexpr/#Sexpr.Format.invalid_value">invalid_value</a></li>
+                          <li><a class="sidebar-value" href="../Sexpr/#Sexpr.Format.parse_tag_union">parse_tag_union</a></li>
+                          </ul>
+                        </li>
+                        </ul>
+                    </details>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <main>
+        <form id="module-search-form">
+            <input type="search" id="module-search" placeholder="Search Documentation" autocomplete="off" />
+            <input type="search" id="module-search-nojs" placeholder="Enable JavaScript to search" autocomplete="off" disabled aria-label="Search requires JavaScript" />
+            <noscript><style>#module-search{display:none}#module-search-nojs{display:block}</style></noscript>
+            <button class="menu-toggle" type="button" aria-label="Toggle sidebar"><svg viewBox="0 6 18 12" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+    <path d="M0 6h18v2H0V6zm0 5h18v2H0v-2zm0 5h18v2H0v-2z"/>
+</svg></button>
+            <ul id="search-type-ahead" class="hidden">
+            <li class="hidden"><a class="type-ahead-link" href="../Command/#Command.name"><span class="type-ahead-module-name">Command</span>.<span class="type-ahead-def-name">name</span> <span class="type-ahead-signature">: <span class="type">Args</span>, <span class="type">Str</span><span class="sig-arrow"> -&gt; </span><span class="type">Str</span></span></a></li>
+            <li class="hidden"><a class="type-ahead-link" href="../Command/#Command.flag"><span class="type-ahead-module-name">Command</span>.<span class="type-ahead-def-name">flag</span> <span class="type-ahead-signature">: <span class="type">Args</span>, <span class="type">Str</span><span class="sig-arrow"> -&gt; </span><span class="type">Bool</span></span></a></li>
+            <li class="hidden"><a class="type-ahead-link" href="../Command/#Command.path"><span class="type-ahead-module-name">Command</span>.<span class="type-ahead-def-name">path</span> <span class="type-ahead-signature">: <span class="type">Args</span>, <span class="type">Str</span><span class="sig-arrow"> -&gt; </span><span class="type">Try</span>(<span class="type">Str</span>, [<span class="type">NoValue</span>])</span></a></li>
+            <li class="hidden"><a class="type-ahead-link" href="../Command/#Command.trailing"><span class="type-ahead-module-name">Command</span>.<span class="type-ahead-def-name">trailing</span> <span class="type-ahead-signature">: <span class="type">Args</span>, <span class="type">Str</span><span class="sig-arrow"> -&gt; </span><span class="type">List</span>(<span class="type">Str</span>)</span></a></li>
+            <li class="hidden"><a class="type-ahead-link" href="../Command/#Command.Page"><span class="type-ahead-module-name">Command</span>.<span class="type-ahead-def-name">Page</span> <span class="type-ahead-signature">: { description : <span class="type">Str</span>, examples : <span class="type">List</span>(<span class="type">Str</span>), config : <span class="type">List</span>(<span class="type">Str</span>) }</span></a></li>
+            <li class="hidden"><a class="type-ahead-link" href="../Command/#Command.Arg"><span class="type-ahead-module-name">Command</span>.<span class="type-ahead-def-name">Arg</span> <span class="type-ahead-signature">:= [<span class="type">Name</span>({ name : <span class="type">Str</span>, help : <span class="type">Str</span>, choices : <span class="type">List</span>(<span class="type">Choice</span>), default : [<span class="type">Required</span>, <span class="type">Default</span>(<span class="type">Str</span>)] }), <span class="type">Trailing</span>({ name : <span class="type">Str</span>, help : <span class="type">Str</span>, choices : <span class="type">List</span>(<span class="type">Choice</span>) }), <span class="type">Flag</span>({ name : <span class="type">Str</span>, short : <span class="type">Str</span>, help : <span class="type">Str</span> }), <span class="type">Path</span>({ name : <span class="type">Str</span>, short : <span class="type">Str</span>, help : <span class="type">Str</span> })]</span></a></li>
+            <li class="hidden"><a class="type-ahead-link" href="../Command/#Command.Choice"><span class="type-ahead-module-name">Command</span>.<span class="type-ahead-def-name">Choice</span> <span class="type-ahead-signature">: { value : <span class="type">Str</span>, summary : <span class="type">Str</span>, details : <span class="type">List</span>(<span class="type">Str</span>) }</span></a></li>
+            <li class="hidden"><a class="type-ahead-link" href="../Command/#Command.Args"><span class="type-ahead-module-name">Command</span>.<span class="type-ahead-def-name">Args</span> <span class="type-ahead-signature">: <span class="type">List</span>({ name : <span class="type">Str</span>, value : [<span class="type">Present</span>(<span class="type">Str</span>), <span class="type">Many</span>(<span class="type">List</span>(<span class="type">Str</span>))] })</span></a></li>
+            <li class="hidden"><a class="type-ahead-link" href="../Conformance/#Conformance.missing"><span class="type-ahead-module-name">Conformance</span>.<span class="type-ahead-def-name">missing</span> <span class="type-ahead-signature">: <span class="type">Plugin</span>, <span class="type">List</span>(<span class="type">Case</span>)<span class="sig-arrow"> -&gt; </span><span class="type">List</span>((<span class="type">Str</span>, <span class="type">Str</span>))</span></a></li>
+            <li class="hidden"><a class="type-ahead-link" href="../Conformance/#Conformance.Case"><span class="type-ahead-module-name">Conformance</span>.<span class="type-ahead-def-name">Case</span> <span class="type-ahead-signature">: { command : <span class="type">Str</span>, backend : <span class="type">Str</span> }</span></a></li>
+            <li class="hidden"><a class="type-ahead-link" href="../Implementation/#Implementation.Context"><span class="type-ahead-module-name">Implementation</span>.<span class="type-ahead-def-name">Context</span> <span class="type-ahead-signature">: { args : <span class="type">Args</span>, backend : <span class="type">Str</span>, host : { system : <span class="type">Str</span> }, layout : <span class="type">Layout</span>, revision : { describe : <span class="type">Str</span>, commit_date : <span class="type">Str</span> }, lock : [<span class="type">Absent</span>, <span class="type">Present</span>(<span class="type">Str</span>)], phase : <span class="type">U64</span>, observed : <span class="type">List</span>({ path : <span class="type">Str</span>, contents : [<span class="type">Missing</span>, <span class="type">Text</span>(<span class="type">Str</span>)] }) }</span></a></li>
+            <li class="hidden"><a class="type-ahead-link" href="../Kaifile/#Kaifile.new"><span class="type-ahead-module-name">Kaifile</span>.<span class="type-ahead-def-name">new</span> <span class="type-ahead-signature">: <span class="type">List</span>(<span class="type">Plugin</span>)<span class="sig-arrow"> -&gt; </span><span class="type">Kaifile</span></span></a></li>
+            <li class="hidden"><a class="type-ahead-link" href="../Kaifile/#Kaifile.prefer"><span class="type-ahead-module-name">Kaifile</span>.<span class="type-ahead-def-name">prefer</span> <span class="type-ahead-signature">: <span class="type">Kaifile</span>, <span class="type">List</span>(<span class="type">Str</span>)<span class="sig-arrow"> -&gt; </span><span class="type">Kaifile</span></span></a></li>
+            <li class="hidden"><a class="type-ahead-link" href="../Kaifile/#Kaifile.backends"><span class="type-ahead-module-name">Kaifile</span>.<span class="type-ahead-def-name">backends</span> <span class="type-ahead-signature">: <span class="type">Kaifile</span><span class="sig-arrow"> -&gt; </span><span class="type">List</span>(<span class="type">Backend</span>)</span></a></li>
+            <li class="hidden"><a class="type-ahead-link" href="../Kaifile/#Kaifile.candidates"><span class="type-ahead-module-name">Kaifile</span>.<span class="type-ahead-def-name">candidates</span> <span class="type-ahead-signature">: <span class="type">Kaifile</span>, <span class="type">Str</span>, <span class="type">Choice</span>, <span class="type">Contexts</span><span class="sig-arrow"> -&gt; </span><span class="type">Body</span></span></a></li>
+            <li class="hidden"><a class="type-ahead-link" href="../Kaifile/#Kaifile.validate"><span class="type-ahead-module-name">Kaifile</span>.<span class="type-ahead-def-name">validate</span> <span class="type-ahead-signature">: <span class="type">Kaifile</span><span class="sig-arrow"> -&gt; </span><span class="type">Try</span>(<span class="type">Str</span>, <span class="type">Str</span>)</span></a></li>
+            <li class="hidden"><a class="type-ahead-link" href="../Kaifile/#Kaifile.builtins"><span class="type-ahead-module-name">Kaifile</span>.<span class="type-ahead-def-name">builtins</span> <span class="type-ahead-signature">: <span class="type">List</span>(<span class="type">Str</span>)</span></a></li>
+            <li class="hidden"><a class="type-ahead-link" href="../Kaifile/#Kaifile.registry"><span class="type-ahead-module-name">Kaifile</span>.<span class="type-ahead-def-name">registry</span> <span class="type-ahead-signature">: <span class="type">Kaifile</span><span class="sig-arrow"> -&gt; </span><span class="type">Try</span>({}, <span class="type">Str</span>)</span></a></li>
+            <li class="hidden"><a class="type-ahead-link" href="../Kaifile/#Kaifile.Choice"><span class="type-ahead-module-name">Kaifile</span>.<span class="type-ahead-def-name">Choice</span> <span class="type-ahead-signature">: [<span class="type">Auto</span>, <span class="type">Only</span>(<span class="type">Str</span>)]</span></a></li>
+            <li class="hidden"><a class="type-ahead-link" href="../Kaifile/#Kaifile.Contexts"><span class="type-ahead-module-name">Kaifile</span>.<span class="type-ahead-def-name">Contexts</span> <span class="type-ahead-signature">: <span class="type">Str</span><span class="sig-arrow"> -&gt; </span><span class="type">Context</span></span></a></li>
+            <li class="hidden"><a class="type-ahead-link" href="../Layout/#Layout.is_eq"><span class="type-ahead-module-name">Layout</span>.<span class="type-ahead-def-name">is_eq</span> <span class="type-ahead-signature">: _</span></a></li>
+            <li class="hidden"><a class="type-ahead-link" href="../Layout/#Layout.encoder_for"><span class="type-ahead-module-name">Layout</span>.<span class="type-ahead-def-name">encoder_for</span> <span class="type-ahead-signature">: _</span></a></li>
+            <li class="hidden"><a class="type-ahead-link" href="../Layout/#Layout.parser_for"><span class="type-ahead-module-name">Layout</span>.<span class="type-ahead-def-name">parser_for</span> <span class="type-ahead-signature">: _</span></a></li>
+            <li class="hidden"><a class="type-ahead-link" href="../Layout/#Layout.validate"><span class="type-ahead-module-name">Layout</span>.<span class="type-ahead-def-name">validate</span> <span class="type-ahead-signature">: <span class="type">Layout</span><span class="sig-arrow"> -&gt; </span><span class="type">Try</span>({}, <span class="type">Str</span>)</span></a></li>
+            <li class="hidden"><a class="type-ahead-link" href="../Layout/#Layout.contains"><span class="type-ahead-module-name">Layout</span>.<span class="type-ahead-def-name">contains</span> <span class="type-ahead-signature">: <span class="type">Str</span>, <span class="type">Str</span><span class="sig-arrow"> -&gt; </span><span class="type">Bool</span></span></a></li>
+            <li class="hidden"><a class="type-ahead-link" href="../LockFile/#LockFile.section"><span class="type-ahead-module-name">LockFile</span>.<span class="type-ahead-def-name">section</span> <span class="type-ahead-signature">: <span class="type">Str</span>, <span class="type">Str</span><span class="sig-arrow"> -&gt; </span><span class="type">Try</span>([<span class="type">Absent</span>, <span class="type">Present</span>(<span class="type">LockJson</span>)], <span class="type">Str</span>)</span></a></li>
+            <li class="hidden"><a class="type-ahead-link" href="../LockFile/#LockFile.splice"><span class="type-ahead-module-name">LockFile</span>.<span class="type-ahead-def-name">splice</span> <span class="type-ahead-signature">: [<span class="type">Absent</span>, <span class="type">Present</span>(<span class="type">Str</span>)], <span class="type">Str</span>, <span class="type">LockJson</span><span class="sig-arrow"> -&gt; </span><span class="type">Try</span>(<span class="type">Str</span>, <span class="type">Str</span>)</span></a></li>
+            <li class="hidden"><a class="type-ahead-link" href="../LockJson/#LockJson.is_eq"><span class="type-ahead-module-name">LockJson</span>.<span class="type-ahead-def-name">is_eq</span> <span class="type-ahead-signature">: _</span></a></li>
+            <li class="hidden"><a class="type-ahead-link" href="../LockJson/#LockJson.decode"><span class="type-ahead-module-name">LockJson</span>.<span class="type-ahead-def-name">decode</span> <span class="type-ahead-signature">: <span class="type">Str</span><span class="sig-arrow"> -&gt; </span><span class="type">Try</span>(<span class="type">LockJson</span>, <span class="type">Str</span>)</span></a></li>
+            <li class="hidden"><a class="type-ahead-link" href="../LockJson/#LockJson.encode"><span class="type-ahead-module-name">LockJson</span>.<span class="type-ahead-def-name">encode</span> <span class="type-ahead-signature">: <span class="type">LockJson</span><span class="sig-arrow"> -&gt; </span><span class="type">Str</span></span></a></li>
+            <li class="hidden"><a class="type-ahead-link" href="../LockJson/#LockJson.quote"><span class="type-ahead-module-name">LockJson</span>.<span class="type-ahead-def-name">quote</span> <span class="type-ahead-signature">: <span class="type">Str</span><span class="sig-arrow"> -&gt; </span><span class="type">Str</span></span></a></li>
+            <li class="hidden"><a class="type-ahead-link" href="../LockJson/#LockJson.field"><span class="type-ahead-module-name">LockJson</span>.<span class="type-ahead-def-name">field</span> <span class="type-ahead-signature">: <span class="type">LockJson</span>, <span class="type">Str</span><span class="sig-arrow"> -&gt; </span><span class="type">Try</span>(<span class="type">LockJson</span>, <span class="type">Str</span>)</span></a></li>
+            <li class="hidden"><a class="type-ahead-link" href="../LockJson/#LockJson.object"><span class="type-ahead-module-name">LockJson</span>.<span class="type-ahead-def-name">object</span> <span class="type-ahead-signature">: <span class="type">LockJson</span><span class="sig-arrow"> -&gt; </span><span class="type">Try</span>(<span class="type">List</span>({ name : <span class="type">Str</span>, value : <span class="type">LockJson</span> }), <span class="type">Str</span>)</span></a></li>
+            <li class="hidden"><a class="type-ahead-link" href="../LockJson/#LockJson.array"><span class="type-ahead-module-name">LockJson</span>.<span class="type-ahead-def-name">array</span> <span class="type-ahead-signature">: <span class="type">LockJson</span><span class="sig-arrow"> -&gt; </span><span class="type">Try</span>(<span class="type">List</span>(<span class="type">LockJson</span>), <span class="type">Str</span>)</span></a></li>
+            <li class="hidden"><a class="type-ahead-link" href="../LockJson/#LockJson.string"><span class="type-ahead-module-name">LockJson</span>.<span class="type-ahead-def-name">string</span> <span class="type-ahead-signature">: <span class="type">LockJson</span><span class="sig-arrow"> -&gt; </span><span class="type">Try</span>(<span class="type">Str</span>, <span class="type">Str</span>)</span></a></li>
+            <li class="hidden"><a class="type-ahead-link" href="../LockJson/#LockJson.set"><span class="type-ahead-module-name">LockJson</span>.<span class="type-ahead-def-name">set</span> <span class="type-ahead-signature">: <span class="type">LockJson</span>, <span class="type">Str</span>, <span class="type">LockJson</span><span class="sig-arrow"> -&gt; </span><span class="type">Try</span>(<span class="type">LockJson</span>, <span class="type">Str</span>)</span></a></li>
+            <li class="hidden"><a class="type-ahead-link" href="../LockJson/#LockJson.parse"><span class="type-ahead-module-name">LockJson</span>.<span class="type-ahead-def-name">parse</span> <span class="type-ahead-signature">: <span class="type">List</span>(<span class="type">U8</span>), <span class="type">U64</span>, <span class="type">U64</span><span class="sig-arrow"> -&gt; </span><span class="type">Try</span>(<span class="type">Parsed</span>, <span class="type">Str</span>)</span></a></li>
+            <li class="hidden"><a class="type-ahead-link" href="../LockJson/#LockJson.literal"><span class="type-ahead-module-name">LockJson</span>.<span class="type-ahead-def-name">literal</span> <span class="type-ahead-signature">: <span class="type">List</span>(<span class="type">U8</span>), <span class="type">U64</span>, <span class="type">Str</span>, <span class="type">LockJson</span><span class="sig-arrow"> -&gt; </span><span class="type">Try</span>(<span class="type">Parsed</span>, <span class="type">Str</span>)</span></a></li>
+            <li class="hidden"><a class="type-ahead-link" href="../LockJson/#LockJson.whitespace"><span class="type-ahead-module-name">LockJson</span>.<span class="type-ahead-def-name">whitespace</span> <span class="type-ahead-signature">: <span class="type">List</span>(<span class="type">U8</span>), <span class="type">U64</span><span class="sig-arrow"> -&gt; </span><span class="type">U64</span></span></a></li>
+            <li class="hidden"><a class="type-ahead-link" href="../LockJson/#LockJson.digit"><span class="type-ahead-module-name">LockJson</span>.<span class="type-ahead-def-name">digit</span> <span class="type-ahead-signature">: <span class="type">U8</span><span class="sig-arrow"> -&gt; </span><span class="type">Bool</span></span></a></li>
+            <li class="hidden"><a class="type-ahead-link" href="../LockJson/#LockJson.number"><span class="type-ahead-module-name">LockJson</span>.<span class="type-ahead-def-name">number</span> <span class="type-ahead-signature">: <span class="type">List</span>(<span class="type">U8</span>), <span class="type">U64</span><span class="sig-arrow"> -&gt; </span><span class="type">Try</span>(<span class="type">Parsed</span>, <span class="type">Str</span>)</span></a></li>
+            <li class="hidden"><a class="type-ahead-link" href="../LockJson/#LockJson.read_string"><span class="type-ahead-module-name">LockJson</span>.<span class="type-ahead-def-name">read_string</span> <span class="type-ahead-signature">: <span class="type">List</span>(<span class="type">U8</span>), <span class="type">U64</span><span class="sig-arrow"> -&gt; </span><span class="type">Try</span>({ text : <span class="type">Str</span>, next : <span class="type">U64</span> }, <span class="type">Str</span>)</span></a></li>
+            <li class="hidden"><a class="type-ahead-link" href="../LockJson/#LockJson.hex4"><span class="type-ahead-module-name">LockJson</span>.<span class="type-ahead-def-name">hex4</span> <span class="type-ahead-signature">: <span class="type">List</span>(<span class="type">U8</span>), <span class="type">U64</span><span class="sig-arrow"> -&gt; </span><span class="type">Try</span>(<span class="type">U32</span>, <span class="type">Str</span>)</span></a></li>
+            <li class="hidden"><a class="type-ahead-link" href="../LockJson/#LockJson.utf8"><span class="type-ahead-module-name">LockJson</span>.<span class="type-ahead-def-name">utf8</span> <span class="type-ahead-signature">: <span class="type">U32</span><span class="sig-arrow"> -&gt; </span><span class="type">List</span>(<span class="type">U8</span>)</span></a></li>
+            <li class="hidden"><a class="type-ahead-link" href="../LockJson/#LockJson.Parsed"><span class="type-ahead-module-name">LockJson</span>.<span class="type-ahead-def-name">Parsed</span> <span class="type-ahead-signature">: { value : <span class="type">LockJson</span>, next : <span class="type">U64</span> }</span></a></li>
+            <li class="hidden"><a class="type-ahead-link" href="../Plan/#Plan.is_eq"><span class="type-ahead-module-name">Plan</span>.<span class="type-ahead-def-name">is_eq</span> <span class="type-ahead-signature">: _</span></a></li>
+            <li class="hidden"><a class="type-ahead-link" href="../Plan/#Plan.encoder_for"><span class="type-ahead-module-name">Plan</span>.<span class="type-ahead-def-name">encoder_for</span> <span class="type-ahead-signature">: _</span></a></li>
+            <li class="hidden"><a class="type-ahead-link" href="../Plan/#Plan.parser_for"><span class="type-ahead-module-name">Plan</span>.<span class="type-ahead-def-name">parser_for</span> <span class="type-ahead-signature">: _</span></a></li>
+            <li class="hidden"><a class="type-ahead-link" href="../Plan/#Plan.fail"><span class="type-ahead-module-name">Plan</span>.<span class="type-ahead-def-name">fail</span> <span class="type-ahead-signature">: <span class="type">Str</span><span class="sig-arrow"> -&gt; </span><span class="type">Failure</span></span></a></li>
+            <li class="hidden"><a class="type-ahead-link" href="../Plan/#Plan.closest"><span class="type-ahead-module-name">Plan</span>.<span class="type-ahead-def-name">closest</span> <span class="type-ahead-signature">: <span class="type">Str</span>, <span class="type">List</span>(<span class="type">Str</span>)<span class="sig-arrow"> -&gt; </span><span class="type">List</span>(<span class="type">Str</span>)</span></a></li>
+            <li class="hidden"><a class="type-ahead-link" href="../Plan/#Plan.distance"><span class="type-ahead-module-name">Plan</span>.<span class="type-ahead-def-name">distance</span> <span class="type-ahead-signature">: <span class="type">Str</span>, <span class="type">Str</span><span class="sig-arrow"> -&gt; </span><span class="type">U64</span></span></a></li>
+            <li class="hidden"><a class="type-ahead-link" href="../Plan/#Plan.Step"><span class="type-ahead-module-name">Plan</span>.<span class="type-ahead-def-name">Step</span> <span class="type-ahead-signature">:= [<span class="type">Note</span>(<span class="type">Str</span>), <span class="type">Print</span>(<span class="type">Str</span>), <span class="type">Stage</span>(<span class="type">Str</span>), <span class="type">MayFail</span>(<span class="type">U64</span>), <span class="type">Confirm</span>(<span class="type">Str</span>), <span class="type">Write</span>(<span class="type">List</span>(<span class="type">File</span>)), <span class="type">VerifyPath</span>({ path : <span class="type">Str</span>, argv : <span class="type">List</span>(<span class="type">Str</span>), stdout : <span class="type">Str</span>, update : <span class="type">Str</span> }), <span class="type">CheckSource</span>(<span class="type">Str</span>), <span class="type">Snapshot</span>({ root : <span class="type">Str</span>, destination : <span class="type">Str</span>, exclude : <span class="type">List</span>(<span class="type">Str</span>), files : [<span class="type">All</span>, <span class="type">Only</span>(<span class="type">List</span>(<span class="type">Str</span>))], store : <span class="type">Str</span> }), <span class="type">InstallRunner</span>({ destination : <span class="type">Str</span> }), <span class="type">Realise</span>({ bin : <span class="type">Str</span>, programs : <span class="type">List</span>(<span class="type">Program</span>) }), <span class="type">Measure</span>({ files : <span class="type">List</span>({ key : <span class="type">Str</span>, urls : <span class="type">List</span>(<span class="type">Str</span>) }), result : <span class="type">Str</span> }), <span class="type">ExpectPrograms</span>({ description : <span class="type">Str</span>, programs : <span class="type">List</span>(<span class="type">Str</span>) }), <span class="type">Run</span>({ description : <span class="type">Str</span>, argv : <span class="type">List</span>(<span class="type">Str</span>), output : <span class="type">Output</span>, secrets : <span class="type">List</span>(<span class="type">Str</span>), removed_environment_variables : <span class="type">List</span>(<span class="type">Str</span>), kept_environment_variables : <span class="type">List</span>(<span class="type">Str</span>) }), <span class="type">PublishLock</span>({ previous : [<span class="type">Absent</span>, <span class="type">Present</span>(<span class="type">Str</span>)], contents : <span class="type">Str</span> })]</span></a></li>
+            <li class="hidden"><a class="type-ahead-link" href="../Plan/#Plan.Step.is_eq"><span class="type-ahead-module-name">Plan.Step</span>.<span class="type-ahead-def-name">is_eq</span> <span class="type-ahead-signature">: _</span></a></li>
+            <li class="hidden"><a class="type-ahead-link" href="../Plan/#Plan.Step.encoder_for"><span class="type-ahead-module-name">Plan.Step</span>.<span class="type-ahead-def-name">encoder_for</span> <span class="type-ahead-signature">: _</span></a></li>
+            <li class="hidden"><a class="type-ahead-link" href="../Plan/#Plan.Step.parser_for"><span class="type-ahead-module-name">Plan.Step</span>.<span class="type-ahead-def-name">parser_for</span> <span class="type-ahead-signature">: _</span></a></li>
+            <li class="hidden"><a class="type-ahead-link" href="../Plan/#Plan.Next"><span class="type-ahead-module-name">Plan</span>.<span class="type-ahead-def-name">Next</span> <span class="type-ahead-signature">:= [<span class="type">Done</span>, <span class="type">Observe</span>(<span class="type">List</span>(<span class="type">Str</span>))]</span></a></li>
+            <li class="hidden"><a class="type-ahead-link" href="../Plan/#Plan.Next.is_eq"><span class="type-ahead-module-name">Plan.Next</span>.<span class="type-ahead-def-name">is_eq</span> <span class="type-ahead-signature">: _</span></a></li>
+            <li class="hidden"><a class="type-ahead-link" href="../Plan/#Plan.Next.encoder_for"><span class="type-ahead-module-name">Plan.Next</span>.<span class="type-ahead-def-name">encoder_for</span> <span class="type-ahead-signature">: _</span></a></li>
+            <li class="hidden"><a class="type-ahead-link" href="../Plan/#Plan.Next.parser_for"><span class="type-ahead-module-name">Plan.Next</span>.<span class="type-ahead-def-name">parser_for</span> <span class="type-ahead-signature">: _</span></a></li>
+            <li class="hidden"><a class="type-ahead-link" href="../Plan/#Plan.File"><span class="type-ahead-module-name">Plan</span>.<span class="type-ahead-def-name">File</span> <span class="type-ahead-signature">: { path : <span class="type">Str</span>, contents : <span class="type">Str</span> }</span></a></li>
+            <li class="hidden"><a class="type-ahead-link" href="../Plan/#Plan.Program"><span class="type-ahead-module-name">Plan</span>.<span class="type-ahead-def-name">Program</span> <span class="type-ahead-signature">: { name : <span class="type">Str</span>, urls : <span class="type">List</span>(<span class="type">Str</span>), sha256 : <span class="type">Str</span>, size : <span class="type">U64</span>, unpack : [<span class="type">File</span>, <span class="type">Archive</span>(<span class="type">Str</span>)] }</span></a></li>
+            <li class="hidden"><a class="type-ahead-link" href="../Plan/#Plan.Output"><span class="type-ahead-module-name">Plan</span>.<span class="type-ahead-def-name">Output</span> <span class="type-ahead-signature">: [<span class="type">Inherit</span>, <span class="type">Quiet</span>, <span class="type">Remembered</span>(<span class="type">List</span>(<span class="type">Str</span>)), <span class="type">Artifact</span>(<span class="type">Artifact</span>)]</span></a></li>
+            <li class="hidden"><a class="type-ahead-link" href="../Plan/#Plan.Artifact"><span class="type-ahead-module-name">Plan</span>.<span class="type-ahead-def-name">Artifact</span> <span class="type-ahead-signature">: { name : <span class="type">Str</span>, label : <span class="type">Str</span>, output : <span class="type">Str</span> }</span></a></li>
+            <li class="hidden"><a class="type-ahead-link" href="../Plan/#Plan.Failure"><span class="type-ahead-module-name">Plan</span>.<span class="type-ahead-def-name">Failure</span> <span class="type-ahead-signature">: { code : <span class="type">Str</span>, message : <span class="type">Str</span>, hint : <span class="type">Str</span>, suggestions : <span class="type">List</span>(<span class="type">Str</span>) }</span></a></li>
+            <li class="hidden"><a class="type-ahead-link" href="../Plugin/#Plugin.new"><span class="type-ahead-module-name">Plugin</span>.<span class="type-ahead-def-name">new</span> <span class="type-ahead-signature">: { name : <span class="type">Str</span>, version : <span class="type">Str</span>, describe : <span class="type">Str</span>, commands : <span class="type">List</span>(<span class="type">Command</span>), backends : <span class="type">List</span>(<span class="type">Backend</span>), implementations : <span class="type">List</span>(<span class="type">Implementation</span>) }<span class="sig-arrow"> -&gt; </span><span class="type">Plugin</span></span></a></li>
+            <li class="hidden"><a class="type-ahead-link" href="../Plugin/#Plugin.without"><span class="type-ahead-module-name">Plugin</span>.<span class="type-ahead-def-name">without</span> <span class="type-ahead-signature">: <span class="type">Plugin</span>, { command : <span class="type">Str</span>, backend : <span class="type">Str</span> }<span class="sig-arrow"> -&gt; </span><span class="type">Plugin</span></span></a></li>
+            <li class="hidden"><a class="type-ahead-link" href="../Plugin/#Plugin.without_command"><span class="type-ahead-module-name">Plugin</span>.<span class="type-ahead-def-name">without_command</span> <span class="type-ahead-signature">: <span class="type">Plugin</span>, <span class="type">Str</span><span class="sig-arrow"> -&gt; </span><span class="type">Plugin</span></span></a></li>
+            <li class="hidden"><a class="type-ahead-link" href="../Plugin/#Plugin.with_implementations"><span class="type-ahead-module-name">Plugin</span>.<span class="type-ahead-def-name">with_implementations</span> <span class="type-ahead-signature">: <span class="type">Plugin</span>, <span class="type">List</span>(<span class="type">Implementation</span>)<span class="sig-arrow"> -&gt; </span><span class="type">Plugin</span></span></a></li>
+            <li class="hidden"><a class="type-ahead-link" href="../Plugin/#Plugin.invalid"><span class="type-ahead-module-name">Plugin</span>.<span class="type-ahead-def-name">invalid</span> <span class="type-ahead-signature">: <span class="type">Str</span>, <span class="type">List</span>(<span class="type">Str</span>)<span class="sig-arrow"> -&gt; </span><span class="type">Plugin</span></span></a></li>
+            <li class="hidden"><a class="type-ahead-link" href="../Protocol/#Protocol.current"><span class="type-ahead-module-name">Protocol</span>.<span class="type-ahead-def-name">current</span> <span class="type-ahead-signature">: <span class="type">Version</span></span></a></li>
+            <li class="hidden"><a class="type-ahead-link" href="../Protocol/#Protocol.decode_response"><span class="type-ahead-module-name">Protocol</span>.<span class="type-ahead-def-name">decode_response</span> <span class="type-ahead-signature">: <span class="type">Str</span><span class="sig-arrow"> -&gt; </span><span class="type">Try</span>(<span class="type">Response</span>, [<span class="type">InvalidSexpr</span>(<span class="type">Str</span>), <span class="type">MissingRequiredField</span>(<span class="type">Str</span>), <span class="type">Incompatible</span>(<span class="type">Version</span>)])</span></a></li>
+            <li class="hidden"><a class="type-ahead-link" href="../Protocol/#Protocol.Version"><span class="type-ahead-module-name">Protocol</span>.<span class="type-ahead-def-name">Version</span> <span class="type-ahead-signature">: { major : <span class="type">U64</span>, minor : <span class="type">U64</span> }</span></a></li>
+            <li class="hidden"><a class="type-ahead-link" href="../Protocol/#Protocol.Request"><span class="type-ahead-module-name">Protocol</span>.<span class="type-ahead-def-name">Request</span> <span class="type-ahead-signature">:= { protocol : <span class="type">Version</span>, argv : <span class="type">List</span>(<span class="type">Str</span>), working_directory : <span class="type">Str</span>, style : [<span class="type">Color</span>, <span class="type">Plain</span>], host : { system : <span class="type">Str</span> }, layout : <span class="type">Layout</span>, revision : { describe : <span class="type">Str</span>, commit_date : <span class="type">Str</span> }, lock : [<span class="type">Absent</span>, <span class="type">Present</span>(<span class="type">Str</span>)], resume : [<span class="type">Fresh</span>, <span class="type">Resume</span>({ command : <span class="type">Str</span>, backend : <span class="type">Str</span>, phase : <span class="type">U64</span>, observed : <span class="type">List</span>({ path : <span class="type">Str</span>, contents : [<span class="type">Missing</span>, <span class="type">Text</span>(<span class="type">Str</span>)] }) })] }</span></a></li>
+            <li class="hidden"><a class="type-ahead-link" href="../Protocol/#Protocol.Request.is_eq"><span class="type-ahead-module-name">Protocol.Request</span>.<span class="type-ahead-def-name">is_eq</span> <span class="type-ahead-signature">: _</span></a></li>
+            <li class="hidden"><a class="type-ahead-link" href="../Protocol/#Protocol.Request.encoder_for"><span class="type-ahead-module-name">Protocol.Request</span>.<span class="type-ahead-def-name">encoder_for</span> <span class="type-ahead-signature">: _</span></a></li>
+            <li class="hidden"><a class="type-ahead-link" href="../Protocol/#Protocol.Request.parser_for"><span class="type-ahead-module-name">Protocol.Request</span>.<span class="type-ahead-def-name">parser_for</span> <span class="type-ahead-signature">: _</span></a></li>
+            <li class="hidden"><a class="type-ahead-link" href="../Protocol/#Protocol.Response"><span class="type-ahead-module-name">Protocol</span>.<span class="type-ahead-def-name">Response</span> <span class="type-ahead-signature">:= { protocol : <span class="type">Version</span>, platform_ : <span class="type">Str</span>, body : <span class="type">Body</span> }</span></a></li>
+            <li class="hidden"><a class="type-ahead-link" href="../Protocol/#Protocol.Response.is_eq"><span class="type-ahead-module-name">Protocol.Response</span>.<span class="type-ahead-def-name">is_eq</span> <span class="type-ahead-signature">: _</span></a></li>
+            <li class="hidden"><a class="type-ahead-link" href="../Protocol/#Protocol.Response.encoder_for"><span class="type-ahead-module-name">Protocol.Response</span>.<span class="type-ahead-def-name">encoder_for</span> <span class="type-ahead-signature">: _</span></a></li>
+            <li class="hidden"><a class="type-ahead-link" href="../Protocol/#Protocol.Response.parser_for"><span class="type-ahead-module-name">Protocol.Response</span>.<span class="type-ahead-def-name">parser_for</span> <span class="type-ahead-signature">: _</span></a></li>
+            <li class="hidden"><a class="type-ahead-link" href="../Protocol/#Protocol.Body"><span class="type-ahead-module-name">Protocol</span>.<span class="type-ahead-def-name">Body</span> <span class="type-ahead-signature">:= [<span class="type">Help</span>(<span class="type">Str</span>), <span class="type">Usage</span>(<span class="type">Str</span>), <span class="type">Describe</span>(<span class="type">Manifest</span>), <span class="type">Candidates</span>({ command : <span class="type">Str</span>, plugin : <span class="type">Str</span>, choice : [<span class="type">Auto</span>, <span class="type">Only</span>(<span class="type">Str</span>)], lock : [<span class="type">ReadsLock</span>, <span class="type">OwnsLock</span>], options : <span class="type">List</span>(<span class="type">Candidate</span>) }), <span class="type">Refused</span>(<span class="type">Str</span>)]</span></a></li>
+            <li class="hidden"><a class="type-ahead-link" href="../Protocol/#Protocol.Body.is_eq"><span class="type-ahead-module-name">Protocol.Body</span>.<span class="type-ahead-def-name">is_eq</span> <span class="type-ahead-signature">: _</span></a></li>
+            <li class="hidden"><a class="type-ahead-link" href="../Protocol/#Protocol.Body.encoder_for"><span class="type-ahead-module-name">Protocol.Body</span>.<span class="type-ahead-def-name">encoder_for</span> <span class="type-ahead-signature">: _</span></a></li>
+            <li class="hidden"><a class="type-ahead-link" href="../Protocol/#Protocol.Body.parser_for"><span class="type-ahead-module-name">Protocol.Body</span>.<span class="type-ahead-def-name">parser_for</span> <span class="type-ahead-signature">: _</span></a></li>
+            <li class="hidden"><a class="type-ahead-link" href="../Protocol/#Protocol.Candidate"><span class="type-ahead-module-name">Protocol</span>.<span class="type-ahead-def-name">Candidate</span> <span class="type-ahead-signature">: { backend : <span class="type">Str</span>, plugin : <span class="type">Str</span>, probes : <span class="type">List</span>({ program : <span class="type">Str</span>, flag : [<span class="type">DoubleDashVersion</span>, <span class="type">DashV</span>, <span class="type">VersionWord</span>] }), outcome : [<span class="type">Unfit</span>(<span class="type">Str</span>), <span class="type">Planned</span>(<span class="type">Plan</span>), <span class="type">Failed</span>(<span class="type">Str</span>), <span class="type">Failure</span>(<span class="type">Failure</span>)] }</span></a></li>
+            <li class="hidden"><a class="type-ahead-link" href="../Protocol/#Protocol.Manifest"><span class="type-ahead-module-name">Protocol</span>.<span class="type-ahead-def-name">Manifest</span> <span class="type-ahead-signature">:= { plugins : <span class="type">List</span>({ name : <span class="type">Str</span>, version : <span class="type">Str</span> }), commands : <span class="type">List</span>(<span class="type">Str</span>), backends : <span class="type">List</span>(<span class="type">Str</span>) }</span></a></li>
+            <li class="hidden"><a class="type-ahead-link" href="../Protocol/#Protocol.Manifest.is_eq"><span class="type-ahead-module-name">Protocol.Manifest</span>.<span class="type-ahead-def-name">is_eq</span> <span class="type-ahead-signature">: _</span></a></li>
+            <li class="hidden"><a class="type-ahead-link" href="../Protocol/#Protocol.Manifest.encoder_for"><span class="type-ahead-module-name">Protocol.Manifest</span>.<span class="type-ahead-def-name">encoder_for</span> <span class="type-ahead-signature">: _</span></a></li>
+            <li class="hidden"><a class="type-ahead-link" href="../Protocol/#Protocol.Manifest.parser_for"><span class="type-ahead-module-name">Protocol.Manifest</span>.<span class="type-ahead-def-name">parser_for</span> <span class="type-ahead-signature">: _</span></a></li>
+            <li class="hidden"><a class="type-ahead-link" href="../Sexpr/#Sexpr.to_str"><span class="type-ahead-module-name">Sexpr</span>.<span class="type-ahead-def-name">to_str</span> <span class="type-ahead-signature">: <span class="type-var">a</span><span class="sig-arrow"> -&gt; </span><span class="type">Str</span> <span class="kw">where</span> [<span class="type-var">a</span>.encoder_for : <span class="type">Format</span><span class="sig-arrow"> -&gt; </span>(<span class="type-var">a</span>, <span class="type">Out</span><span class="sig-arrow"> -&gt; </span><span class="type">Try</span>(<span class="type">Out</span>, []))]</span></a></li>
+            <li class="hidden"><a class="type-ahead-link" href="../Sexpr/#Sexpr.parse"><span class="type-ahead-module-name">Sexpr</span>.<span class="type-ahead-def-name">parse</span> <span class="type-ahead-signature">: <span class="type">Str</span><span class="sig-arrow"> -&gt; </span><span class="type">Try</span>(<span class="type-var">a</span>, [<span class="type">InvalidSexpr</span>(<span class="type">Str</span>), ..<span class="type-var">errs</span>]) <span class="kw">where</span> [<span class="type-var">a</span>.parser_for : <span class="type">Format</span><span class="sig-arrow"> -&gt; </span>(<span class="type">List</span>(<span class="type">Token</span>)<span class="sig-arrow"> -&gt; </span><span class="type">Try</span>({ value : <span class="type-var">a</span>, rest : <span class="type">List</span>(<span class="type">Token</span>) }, [<span class="type">InvalidSexpr</span>(<span class="type">Str</span>), ..<span class="type-var">errs</span>]))]</span></a></li>
+            <li class="hidden"><a class="type-ahead-link" href="../Sexpr/#Sexpr.tokenize"><span class="type-ahead-module-name">Sexpr</span>.<span class="type-ahead-def-name">tokenize</span> <span class="type-ahead-signature">: <span class="type">Str</span><span class="sig-arrow"> -&gt; </span><span class="type">Try</span>(<span class="type">List</span>(<span class="type">Token</span>), [<span class="type">InvalidSexpr</span>(<span class="type">Str</span>)])</span></a></li>
+            <li class="hidden"><a class="type-ahead-link" href="../Sexpr/#Sexpr.is_delimiter"><span class="type-ahead-module-name">Sexpr</span>.<span class="type-ahead-def-name">is_delimiter</span> <span class="type-ahead-signature">: <span class="type">U8</span><span class="sig-arrow"> -&gt; </span><span class="type">Bool</span></span></a></li>
+            <li class="hidden"><a class="type-ahead-link" href="../Sexpr/#Sexpr.read_string"><span class="type-ahead-module-name">Sexpr</span>.<span class="type-ahead-def-name">read_string</span> <span class="type-ahead-signature">: <span class="type">List</span>(<span class="type">U8</span>), <span class="type">U64</span><span class="sig-arrow"> -&gt; </span><span class="type">Try</span>({ value : <span class="type">Str</span>, next : <span class="type">U64</span> }, [<span class="type">InvalidSexpr</span>(<span class="type">Str</span>)])</span></a></li>
+            <li class="hidden"><a class="type-ahead-link" href="../Sexpr/#Sexpr.quote"><span class="type-ahead-module-name">Sexpr</span>.<span class="type-ahead-def-name">quote</span> <span class="type-ahead-signature">: <span class="type">Str</span><span class="sig-arrow"> -&gt; </span><span class="type">Str</span></span></a></li>
+            <li class="hidden"><a class="type-ahead-link" href="../Sexpr/#Sexpr.append"><span class="type-ahead-module-name">Sexpr</span>.<span class="type-ahead-def-name">append</span> <span class="type-ahead-signature">: <span class="type">Out</span>, <span class="type">Str</span><span class="sig-arrow"> -&gt; </span><span class="type">Out</span></span></a></li>
+            <li class="hidden"><a class="type-ahead-link" href="../Sexpr/#Sexpr.separate"><span class="type-ahead-module-name">Sexpr</span>.<span class="type-ahead-def-name">separate</span> <span class="type-ahead-signature">: <span class="type">Out</span><span class="sig-arrow"> -&gt; </span><span class="type">Out</span></span></a></li>
+            <li class="hidden"><a class="type-ahead-link" href="../Sexpr/#Sexpr.write_item"><span class="type-ahead-module-name">Sexpr</span>.<span class="type-ahead-def-name">write_item</span> <span class="type-ahead-signature">: <span class="type">Out</span>, (<span class="type">Out</span><span class="sig-arrow"> -&gt; </span><span class="type">Try</span>(<span class="type">Out</span>, <span class="type-var">err</span>))<span class="sig-arrow"> -&gt; </span><span class="type">Try</span>(<span class="type">Out</span>, <span class="type-var">err</span>)</span></a></li>
+            <li class="hidden"><a class="type-ahead-link" href="../Sexpr/#Sexpr.write_payload"><span class="type-ahead-module-name">Sexpr</span>.<span class="type-ahead-def-name">write_payload</span> <span class="type-ahead-signature">: <span class="type">Out</span>, (<span class="type">Out</span><span class="sig-arrow"> -&gt; </span><span class="type">Try</span>(<span class="type">Out</span>, <span class="type-var">err</span>))<span class="sig-arrow"> -&gt; </span><span class="type">Try</span>(<span class="type">Out</span>, <span class="type-var">err</span>)</span></a></li>
+            <li class="hidden"><a class="type-ahead-link" href="../Sexpr/#Sexpr.write_field"><span class="type-ahead-module-name">Sexpr</span>.<span class="type-ahead-def-name">write_field</span> <span class="type-ahead-signature">: <span class="type">Out</span>, <span class="type">Str</span>, (<span class="type">Out</span><span class="sig-arrow"> -&gt; </span><span class="type">Try</span>(<span class="type">Out</span>, <span class="type-var">err</span>))<span class="sig-arrow"> -&gt; </span><span class="type">Try</span>(<span class="type">Out</span>, <span class="type-var">err</span>)</span></a></li>
+            <li class="hidden"><a class="type-ahead-link" href="../Sexpr/#Sexpr.wire_name"><span class="type-ahead-module-name">Sexpr</span>.<span class="type-ahead-def-name">wire_name</span> <span class="type-ahead-signature">: <span class="type">Str</span><span class="sig-arrow"> -&gt; </span><span class="type">Str</span></span></a></li>
+            <li class="hidden"><a class="type-ahead-link" href="../Sexpr/#Sexpr.open"><span class="type-ahead-module-name">Sexpr</span>.<span class="type-ahead-def-name">open</span> <span class="type-ahead-signature">: <span class="type">List</span>(<span class="type">Token</span>)<span class="sig-arrow"> -&gt; </span><span class="type">Try</span>(<span class="type">List</span>(<span class="type">Token</span>), [<span class="type">InvalidSexpr</span>(<span class="type">Str</span>), ..<span class="type-var">others</span>])</span></a></li>
+            <li class="hidden"><a class="type-ahead-link" href="../Sexpr/#Sexpr.number"><span class="type-ahead-module-name">Sexpr</span>.<span class="type-ahead-def-name">number</span> <span class="type-ahead-signature">: <span class="type">List</span>(<span class="type">Token</span>), (<span class="type">Str</span><span class="sig-arrow"> -&gt; </span><span class="type">Try</span>(<span class="type-var">n</span>, _))<span class="sig-arrow"> -&gt; </span><span class="type">Try</span>({ value : <span class="type-var">n</span>, rest : <span class="type">List</span>(<span class="type">Token</span>) }, [<span class="type">InvalidSexpr</span>(<span class="type">Str</span>), ..<span class="type-var">others</span>])</span></a></li>
+            <li class="hidden"><a class="type-ahead-link" href="../Sexpr/#Sexpr.skip_value"><span class="type-ahead-module-name">Sexpr</span>.<span class="type-ahead-def-name">skip_value</span> <span class="type-ahead-signature">: <span class="type">List</span>(<span class="type">Token</span>)<span class="sig-arrow"> -&gt; </span><span class="type">Try</span>(<span class="type">List</span>(<span class="type">Token</span>), [<span class="type">InvalidSexpr</span>(<span class="type">Str</span>), ..<span class="type-var">others</span>])</span></a></li>
+            <li class="hidden"><a class="type-ahead-link" href="../Sexpr/#Sexpr.expected"><span class="type-ahead-module-name">Sexpr</span>.<span class="type-ahead-def-name">expected</span> <span class="type-ahead-signature">: <span class="type">Str</span>, <span class="type">List</span>(<span class="type">Token</span>)<span class="sig-arrow"> -&gt; </span>[<span class="type">InvalidSexpr</span>(<span class="type">Str</span>), ..<span class="type-var">others</span>]</span></a></li>
+            <li class="hidden"><a class="type-ahead-link" href="../Sexpr/#Sexpr.describe"><span class="type-ahead-module-name">Sexpr</span>.<span class="type-ahead-def-name">describe</span> <span class="type-ahead-signature">: <span class="type">Token</span><span class="sig-arrow"> -&gt; </span><span class="type">Str</span></span></a></li>
+            <li class="hidden"><a class="type-ahead-link" href="../Sexpr/#Sexpr.Token"><span class="type-ahead-module-name">Sexpr</span>.<span class="type-ahead-def-name">Token</span> <span class="type-ahead-signature">:= [<span class="type">Open</span>, <span class="type">Close</span>, <span class="type">Text</span>(<span class="type">Str</span>), <span class="type">Symbol</span>(<span class="type">Str</span>), <span class="type">Number</span>(<span class="type">Str</span>)]</span></a></li>
+            <li class="hidden"><a class="type-ahead-link" href="../Sexpr/#Sexpr.Token.is_eq"><span class="type-ahead-module-name">Sexpr.Token</span>.<span class="type-ahead-def-name">is_eq</span> <span class="type-ahead-signature">: _</span></a></li>
+            <li class="hidden"><a class="type-ahead-link" href="../Sexpr/#Sexpr.Out"><span class="type-ahead-module-name">Sexpr</span>.<span class="type-ahead-def-name">Out</span> <span class="type-ahead-signature">:= { text : <span class="type">Str</span>, depth : <span class="type">U64</span> }</span></a></li>
+            <li class="hidden"><a class="type-ahead-link" href="../Sexpr/#Sexpr.Format"><span class="type-ahead-module-name">Sexpr</span>.<span class="type-ahead-def-name">Format</span> <span class="type-ahead-signature">:= [<span class="type">Default</span>]</span></a></li>
+            <li class="hidden"><a class="type-ahead-link" href="../Sexpr/#Sexpr.Format.encode_str"><span class="type-ahead-module-name">Sexpr.Format</span>.<span class="type-ahead-def-name">encode_str</span> <span class="type-ahead-signature">: <span class="type">Str</span>, <span class="type">Out</span><span class="sig-arrow"> -&gt; </span><span class="type">Try</span>(<span class="type">Out</span>, <span class="type-var">_never_fails</span>)</span></a></li>
+            <li class="hidden"><a class="type-ahead-link" href="../Sexpr/#Sexpr.Format.encode_bool"><span class="type-ahead-module-name">Sexpr.Format</span>.<span class="type-ahead-def-name">encode_bool</span> <span class="type-ahead-signature">: <span class="type">Bool</span>, <span class="type">Out</span><span class="sig-arrow"> -&gt; </span><span class="type">Try</span>(<span class="type">Out</span>, <span class="type-var">_never_fails</span>)</span></a></li>
+            <li class="hidden"><a class="type-ahead-link" href="../Sexpr/#Sexpr.Format.encode_u8"><span class="type-ahead-module-name">Sexpr.Format</span>.<span class="type-ahead-def-name">encode_u8</span> <span class="type-ahead-signature">: <span class="type">U8</span>, <span class="type">Out</span><span class="sig-arrow"> -&gt; </span><span class="type">Try</span>(<span class="type">Out</span>, <span class="type-var">_never_fails</span>)</span></a></li>
+            <li class="hidden"><a class="type-ahead-link" href="../Sexpr/#Sexpr.Format.encode_u16"><span class="type-ahead-module-name">Sexpr.Format</span>.<span class="type-ahead-def-name">encode_u16</span> <span class="type-ahead-signature">: <span class="type">U16</span>, <span class="type">Out</span><span class="sig-arrow"> -&gt; </span><span class="type">Try</span>(<span class="type">Out</span>, <span class="type-var">_never_fails</span>)</span></a></li>
+            <li class="hidden"><a class="type-ahead-link" href="../Sexpr/#Sexpr.Format.encode_u32"><span class="type-ahead-module-name">Sexpr.Format</span>.<span class="type-ahead-def-name">encode_u32</span> <span class="type-ahead-signature">: <span class="type">U32</span>, <span class="type">Out</span><span class="sig-arrow"> -&gt; </span><span class="type">Try</span>(<span class="type">Out</span>, <span class="type-var">_never_fails</span>)</span></a></li>
+            <li class="hidden"><a class="type-ahead-link" href="../Sexpr/#Sexpr.Format.encode_u64"><span class="type-ahead-module-name">Sexpr.Format</span>.<span class="type-ahead-def-name">encode_u64</span> <span class="type-ahead-signature">: <span class="type">U64</span>, <span class="type">Out</span><span class="sig-arrow"> -&gt; </span><span class="type">Try</span>(<span class="type">Out</span>, <span class="type-var">_never_fails</span>)</span></a></li>
+            <li class="hidden"><a class="type-ahead-link" href="../Sexpr/#Sexpr.Format.encode_i64"><span class="type-ahead-module-name">Sexpr.Format</span>.<span class="type-ahead-def-name">encode_i64</span> <span class="type-ahead-signature">: <span class="type">I64</span>, <span class="type">Out</span><span class="sig-arrow"> -&gt; </span><span class="type">Try</span>(<span class="type">Out</span>, <span class="type-var">_never_fails</span>)</span></a></li>
+            <li class="hidden"><a class="type-ahead-link" href="../Sexpr/#Sexpr.Format.encode_list"><span class="type-ahead-module-name">Sexpr.Format</span>.<span class="type-ahead-def-name">encode_list</span> <span class="type-ahead-signature">: <span class="type">Out</span>, <span class="type">U64</span>, (<span class="type">Out</span>, (<span class="type">Out</span>, (<span class="type">Out</span><span class="sig-arrow"> -&gt; </span><span class="type">Try</span>(<span class="type">Out</span>, <span class="type-var">err</span>))<span class="sig-arrow"> -&gt; </span><span class="type">Try</span>(<span class="type">Out</span>, <span class="type-var">err</span>))<span class="sig-arrow"> -&gt; </span><span class="type">Try</span>(<span class="type">Out</span>, <span class="type-var">err</span>))<span class="sig-arrow"> -&gt; </span><span class="type">Try</span>(<span class="type">Out</span>, <span class="type-var">err</span>)</span></a></li>
+            <li class="hidden"><a class="type-ahead-link" href="../Sexpr/#Sexpr.Format.encode_tuple"><span class="type-ahead-module-name">Sexpr.Format</span>.<span class="type-ahead-def-name">encode_tuple</span> <span class="type-ahead-signature">: <span class="type">Out</span>, <span class="type">U64</span>, (<span class="type">Out</span>, (<span class="type">Out</span>, (<span class="type">Out</span><span class="sig-arrow"> -&gt; </span><span class="type">Try</span>(<span class="type">Out</span>, <span class="type-var">err</span>))<span class="sig-arrow"> -&gt; </span><span class="type">Try</span>(<span class="type">Out</span>, <span class="type-var">err</span>))<span class="sig-arrow"> -&gt; </span><span class="type">Try</span>(<span class="type">Out</span>, <span class="type-var">err</span>))<span class="sig-arrow"> -&gt; </span><span class="type">Try</span>(<span class="type">Out</span>, <span class="type-var">err</span>)</span></a></li>
+            <li class="hidden"><a class="type-ahead-link" href="../Sexpr/#Sexpr.Format.encode_record"><span class="type-ahead-module-name">Sexpr.Format</span>.<span class="type-ahead-def-name">encode_record</span> <span class="type-ahead-signature">: <span class="type">Out</span>, <span class="type">U64</span>, (<span class="type">Out</span>, (<span class="type">Out</span>, <span class="type">Str</span>, (<span class="type">Out</span><span class="sig-arrow"> -&gt; </span><span class="type">Try</span>(<span class="type">Out</span>, <span class="type-var">err</span>))<span class="sig-arrow"> -&gt; </span><span class="type">Try</span>(<span class="type">Out</span>, <span class="type-var">err</span>))<span class="sig-arrow"> -&gt; </span><span class="type">Try</span>(<span class="type">Out</span>, <span class="type-var">err</span>))<span class="sig-arrow"> -&gt; </span><span class="type">Try</span>(<span class="type">Out</span>, <span class="type-var">err</span>)</span></a></li>
+            <li class="hidden"><a class="type-ahead-link" href="../Sexpr/#Sexpr.Format.encode_tag"><span class="type-ahead-module-name">Sexpr.Format</span>.<span class="type-ahead-def-name">encode_tag</span> <span class="type-ahead-signature">: <span class="type">Out</span>, <span class="type">Str</span>, <span class="type">U64</span>, (<span class="type">Out</span>, (<span class="type">Out</span>, (<span class="type">Out</span><span class="sig-arrow"> -&gt; </span><span class="type">Try</span>(<span class="type">Out</span>, <span class="type-var">err</span>))<span class="sig-arrow"> -&gt; </span><span class="type">Try</span>(<span class="type">Out</span>, <span class="type-var">err</span>))<span class="sig-arrow"> -&gt; </span><span class="type">Try</span>(<span class="type">Out</span>, <span class="type-var">err</span>))<span class="sig-arrow"> -&gt; </span><span class="type">Try</span>(<span class="type">Out</span>, <span class="type-var">err</span>)</span></a></li>
+            <li class="hidden"><a class="type-ahead-link" href="../Sexpr/#Sexpr.Format.rename_field"><span class="type-ahead-module-name">Sexpr.Format</span>.<span class="type-ahead-def-name">rename_field</span> <span class="type-ahead-signature">: <span class="type">Format</span>, <span class="type">Str</span><span class="sig-arrow"> -&gt; </span><span class="type">Str</span></span></a></li>
+            <li class="hidden"><a class="type-ahead-link" href="../Sexpr/#Sexpr.Format.parse_str"><span class="type-ahead-module-name">Sexpr.Format</span>.<span class="type-ahead-def-name">parse_str</span> <span class="type-ahead-signature">: <span class="type">Format</span>, <span class="type">List</span>(<span class="type">Token</span>)<span class="sig-arrow"> -&gt; </span><span class="type">Try</span>({ value : <span class="type">Str</span>, rest : <span class="type">List</span>(<span class="type">Token</span>) }, [<span class="type">InvalidSexpr</span>(<span class="type">Str</span>), ..<span class="type-var">others</span>])</span></a></li>
+            <li class="hidden"><a class="type-ahead-link" href="../Sexpr/#Sexpr.Format.parse_bool"><span class="type-ahead-module-name">Sexpr.Format</span>.<span class="type-ahead-def-name">parse_bool</span> <span class="type-ahead-signature">: <span class="type">Format</span>, <span class="type">List</span>(<span class="type">Token</span>)<span class="sig-arrow"> -&gt; </span><span class="type">Try</span>({ value : <span class="type">Bool</span>, rest : <span class="type">List</span>(<span class="type">Token</span>) }, [<span class="type">InvalidSexpr</span>(<span class="type">Str</span>), ..<span class="type-var">others</span>])</span></a></li>
+            <li class="hidden"><a class="type-ahead-link" href="../Sexpr/#Sexpr.Format.parse_u8"><span class="type-ahead-module-name">Sexpr.Format</span>.<span class="type-ahead-def-name">parse_u8</span> <span class="type-ahead-signature">: <span class="type">Format</span>, <span class="type">List</span>(<span class="type">Token</span>)<span class="sig-arrow"> -&gt; </span><span class="type">Try</span>({ value : <span class="type">U8</span>, rest : <span class="type">List</span>(<span class="type">Token</span>) }, [<span class="type">InvalidSexpr</span>(<span class="type">Str</span>), ..<span class="type-var">others</span>])</span></a></li>
+            <li class="hidden"><a class="type-ahead-link" href="../Sexpr/#Sexpr.Format.parse_u16"><span class="type-ahead-module-name">Sexpr.Format</span>.<span class="type-ahead-def-name">parse_u16</span> <span class="type-ahead-signature">: <span class="type">Format</span>, <span class="type">List</span>(<span class="type">Token</span>)<span class="sig-arrow"> -&gt; </span><span class="type">Try</span>({ value : <span class="type">U16</span>, rest : <span class="type">List</span>(<span class="type">Token</span>) }, [<span class="type">InvalidSexpr</span>(<span class="type">Str</span>), ..<span class="type-var">others</span>])</span></a></li>
+            <li class="hidden"><a class="type-ahead-link" href="../Sexpr/#Sexpr.Format.parse_u32"><span class="type-ahead-module-name">Sexpr.Format</span>.<span class="type-ahead-def-name">parse_u32</span> <span class="type-ahead-signature">: <span class="type">Format</span>, <span class="type">List</span>(<span class="type">Token</span>)<span class="sig-arrow"> -&gt; </span><span class="type">Try</span>({ value : <span class="type">U32</span>, rest : <span class="type">List</span>(<span class="type">Token</span>) }, [<span class="type">InvalidSexpr</span>(<span class="type">Str</span>), ..<span class="type-var">others</span>])</span></a></li>
+            <li class="hidden"><a class="type-ahead-link" href="../Sexpr/#Sexpr.Format.parse_u64"><span class="type-ahead-module-name">Sexpr.Format</span>.<span class="type-ahead-def-name">parse_u64</span> <span class="type-ahead-signature">: <span class="type">Format</span>, <span class="type">List</span>(<span class="type">Token</span>)<span class="sig-arrow"> -&gt; </span><span class="type">Try</span>({ value : <span class="type">U64</span>, rest : <span class="type">List</span>(<span class="type">Token</span>) }, [<span class="type">InvalidSexpr</span>(<span class="type">Str</span>), ..<span class="type-var">others</span>])</span></a></li>
+            <li class="hidden"><a class="type-ahead-link" href="../Sexpr/#Sexpr.Format.parse_i64"><span class="type-ahead-module-name">Sexpr.Format</span>.<span class="type-ahead-def-name">parse_i64</span> <span class="type-ahead-signature">: <span class="type">Format</span>, <span class="type">List</span>(<span class="type">Token</span>)<span class="sig-arrow"> -&gt; </span><span class="type">Try</span>({ value : <span class="type">I64</span>, rest : <span class="type">List</span>(<span class="type">Token</span>) }, [<span class="type">InvalidSexpr</span>(<span class="type">Str</span>), ..<span class="type-var">others</span>])</span></a></li>
+            <li class="hidden"><a class="type-ahead-link" href="../Sexpr/#Sexpr.Format.parse_list_start"><span class="type-ahead-module-name">Sexpr.Format</span>.<span class="type-ahead-def-name">parse_list_start</span> <span class="type-ahead-signature">: <span class="type">Format</span>, <span class="type">List</span>(<span class="type">Token</span>)<span class="sig-arrow"> -&gt; </span><span class="type">Try</span>([<span class="type">Counted</span>({ len : <span class="type">U64</span>, rest : <span class="type">List</span>(<span class="type">Token</span>) }), <span class="type">Uncounted</span>(<span class="type">List</span>(<span class="type">Token</span>))], [<span class="type">InvalidSexpr</span>(<span class="type">Str</span>), ..<span class="type-var">others</span>])</span></a></li>
+            <li class="hidden"><a class="type-ahead-link" href="../Sexpr/#Sexpr.Format.parse_list_next"><span class="type-ahead-module-name">Sexpr.Format</span>.<span class="type-ahead-def-name">parse_list_next</span> <span class="type-ahead-signature">: <span class="type">Format</span>, <span class="type">List</span>(<span class="type">Token</span>)<span class="sig-arrow"> -&gt; </span><span class="type">Try</span>([<span class="type">Item</span>(<span class="type">List</span>(<span class="type">Token</span>)), <span class="type">Done</span>(<span class="type">List</span>(<span class="type">Token</span>))], [<span class="type">InvalidSexpr</span>(<span class="type">Str</span>), ..<span class="type-var">others</span>])</span></a></li>
+            <li class="hidden"><a class="type-ahead-link" href="../Sexpr/#Sexpr.Format.parse_list_after_item"><span class="type-ahead-module-name">Sexpr.Format</span>.<span class="type-ahead-def-name">parse_list_after_item</span> <span class="type-ahead-signature">: <span class="type">Format</span>, <span class="type">List</span>(<span class="type">Token</span>)<span class="sig-arrow"> -&gt; </span><span class="type">Try</span>([<span class="type">Continue</span>(<span class="type">List</span>(<span class="type">Token</span>)), <span class="type">Done</span>(<span class="type">List</span>(<span class="type">Token</span>))], [<span class="type">InvalidSexpr</span>(<span class="type">Str</span>), ..<span class="type-var">others</span>])</span></a></li>
+            <li class="hidden"><a class="type-ahead-link" href="../Sexpr/#Sexpr.Format.parse_record_start"><span class="type-ahead-module-name">Sexpr.Format</span>.<span class="type-ahead-def-name">parse_record_start</span> <span class="type-ahead-signature">: <span class="type">Format</span>, <span class="type">List</span>(<span class="type">Token</span>)<span class="sig-arrow"> -&gt; </span><span class="type">Try</span>([<span class="type">Counted</span>({ len : <span class="type">U64</span>, rest : <span class="type">List</span>(<span class="type">Token</span>) }), <span class="type">Uncounted</span>(<span class="type">List</span>(<span class="type">Token</span>))], [<span class="type">InvalidSexpr</span>(<span class="type">Str</span>), ..<span class="type-var">others</span>])</span></a></li>
+            <li class="hidden"><a class="type-ahead-link" href="../Sexpr/#Sexpr.Format.parse_record_field"><span class="type-ahead-module-name">Sexpr.Format</span>.<span class="type-ahead-def-name">parse_record_field</span> <span class="type-ahead-signature">: <span class="type">Format</span>, <span class="type">FieldNames</span>(<span class="type-var">_shape</span>), <span class="type">List</span>(<span class="type">Token</span>)<span class="sig-arrow"> -&gt; </span><span class="type">Try</span>([<span class="type">Field</span>({ field : <span class="type">FieldName</span>(<span class="type-var">_shape</span>), rest : <span class="type">List</span>(<span class="type">Token</span>) }), <span class="type">TryField</span>({ name : <span class="type">Str</span>, rest : <span class="type">List</span>(<span class="type">Token</span>) }), <span class="type">TryFieldCaseless</span>({ name : <span class="type">Str</span>, rest : <span class="type">List</span>(<span class="type">Token</span>) }), <span class="type">Continue</span>(<span class="type">List</span>(<span class="type">Token</span>)), <span class="type">Done</span>(<span class="type">List</span>(<span class="type">Token</span>))], [<span class="type">InvalidSexpr</span>(<span class="type">Str</span>), ..<span class="type-var">others</span>])</span></a></li>
+            <li class="hidden"><a class="type-ahead-link" href="../Sexpr/#Sexpr.Format.parse_record_after_field"><span class="type-ahead-module-name">Sexpr.Format</span>.<span class="type-ahead-def-name">parse_record_after_field</span> <span class="type-ahead-signature">: <span class="type">Format</span>, <span class="type">List</span>(<span class="type">Token</span>)<span class="sig-arrow"> -&gt; </span><span class="type">Try</span>([<span class="type">Continue</span>(<span class="type">List</span>(<span class="type">Token</span>)), <span class="type">Done</span>(<span class="type">List</span>(<span class="type">Token</span>))], [<span class="type">InvalidSexpr</span>(<span class="type">Str</span>), ..<span class="type-var">others</span>])</span></a></li>
+            <li class="hidden"><a class="type-ahead-link" href="../Sexpr/#Sexpr.Format.skip_record_field"><span class="type-ahead-module-name">Sexpr.Format</span>.<span class="type-ahead-def-name">skip_record_field</span> <span class="type-ahead-signature">: <span class="type">Format</span>, <span class="type">List</span>(<span class="type">Token</span>)<span class="sig-arrow"> -&gt; </span><span class="type">Try</span>(<span class="type">List</span>(<span class="type">Token</span>), [<span class="type">InvalidSexpr</span>(<span class="type">Str</span>), ..<span class="type-var">others</span>])</span></a></li>
+            <li class="hidden"><a class="type-ahead-link" href="../Sexpr/#Sexpr.Format.invalid_value"><span class="type-ahead-module-name">Sexpr.Format</span>.<span class="type-ahead-def-name">invalid_value</span> <span class="type-ahead-signature">: <span class="type">Format</span>, <span class="type">List</span>(<span class="type">Token</span>)<span class="sig-arrow"> -&gt; </span>[<span class="type">InvalidSexpr</span>(<span class="type">Str</span>)]</span></a></li>
+            <li class="hidden"><a class="type-ahead-link" href="../Sexpr/#Sexpr.Format.parse_tag_union"><span class="type-ahead-module-name">Sexpr.Format</span>.<span class="type-ahead-def-name">parse_tag_union</span> <span class="type-ahead-signature">: <span class="type">Format</span>, <span class="type">ParseTagUnionSpec</span>(<span class="type-var">a</span>), <span class="type">List</span>(<span class="type">Token</span>)<span class="sig-arrow"> -&gt; </span><span class="type">Try</span>({ value : <span class="type-var">a</span>, rest : <span class="type">List</span>(<span class="type">Token</span>) }, [<span class="type">InvalidSexpr</span>(<span class="type">Str</span>), ..<span class="type-var">others</span>])</span></a></li>
+            </ul>
+        </form>
+        <div class="main-content">
+<!--! -->
+        <h1 class="module-name">Plan</h1>
+<!--!-->
+        <pre class="entry-type-def"><code class="entry-type-def-code">:= { steps : <a href="https://roc-lang.org/docs/main/List"><span class="type">List</span></a>(<span class="type">Step</span>), next : <span class="type">Next</span> }</code></pre>
+<!--!-->
+        <div class="module-doc">
+                <p>Steps run in order and the first failure stops the plan, unless a MayFail
+tolerates it. <code>next</code> asks kai to read back files and run the Kaifile again
+(<code>Resume</code>).</p>
+        </div>
+<!--!-->
+        <article class="entry entry-value" id="Plan.is_eq">
+            <div class="entry-signature">
+                <a href="#Plan.is_eq" class="entry-anchor" aria-label="Permalink to is_eq"><svg class="link-icon"><use href="#link-icon"/></svg></a>
+                <pre class="entry-signature-pre"><code class="entry-signature-code"><a href="#Plan.is_eq" class="entry-name-link"><strong>is_eq</strong></a> : _</code></pre>
+            </div>
+        </article>
+<!--!-->
+        <article class="entry entry-value" id="Plan.encoder_for">
+            <div class="entry-signature">
+                <a href="#Plan.encoder_for" class="entry-anchor" aria-label="Permalink to encoder_for"><svg class="link-icon"><use href="#link-icon"/></svg></a>
+                <pre class="entry-signature-pre"><code class="entry-signature-code"><a href="#Plan.encoder_for" class="entry-name-link"><strong>encoder_for</strong></a> : _</code></pre>
+            </div>
+        </article>
+<!--!-->
+        <article class="entry entry-value" id="Plan.parser_for">
+            <div class="entry-signature">
+                <a href="#Plan.parser_for" class="entry-anchor" aria-label="Permalink to parser_for"><svg class="link-icon"><use href="#link-icon"/></svg></a>
+                <pre class="entry-signature-pre"><code class="entry-signature-code"><a href="#Plan.parser_for" class="entry-name-link"><strong>parser_for</strong></a> : _</code></pre>
+            </div>
+        </article>
+<!--!-->
+        <article class="entry entry-value" id="Plan.fail">
+            <div class="entry-signature">
+                <a href="#Plan.fail" class="entry-anchor" aria-label="Permalink to fail"><svg class="link-icon"><use href="#link-icon"/></svg></a>
+                <pre class="entry-signature-pre"><code class="entry-signature-code"><a href="#Plan.fail" class="entry-name-link"><strong>fail</strong></a> : <a href="https://roc-lang.org/docs/main/Str"><span class="type">Str</span></a><span class="sig-arrow"> -&gt; </span><span class="type">Failure</span></code></pre>
+            </div>
+            <div class="entry-doc">
+                <p>A failure with no code of its own: <code>plan_failed</code>.</p>
+            </div>
+        </article>
+<!--!-->
+        <article class="entry entry-value" id="Plan.closest">
+            <div class="entry-signature">
+                <a href="#Plan.closest" class="entry-anchor" aria-label="Permalink to closest"><svg class="link-icon"><use href="#link-icon"/></svg></a>
+                <pre class="entry-signature-pre"><code class="entry-signature-code"><a href="#Plan.closest" class="entry-name-link"><strong>closest</strong></a> : <a href="https://roc-lang.org/docs/main/Str"><span class="type">Str</span></a>, <a href="https://roc-lang.org/docs/main/List"><span class="type">List</span></a>(<a href="https://roc-lang.org/docs/main/Str"><span class="type">Str</span></a>)<span class="sig-arrow"> -&gt; </span><a href="https://roc-lang.org/docs/main/List"><span class="type">List</span></a>(<a href="https://roc-lang.org/docs/main/Str"><span class="type">Str</span></a>)</code></pre>
+            </div>
+            <div class="entry-doc">
+                <p>The names closest to a mistyped <code>given</code>: at most two edits away, and
+fewer edits than it has letters.</p>
+            </div>
+        </article>
+<!--!-->
+        <article class="entry entry-value" id="Plan.distance">
+            <div class="entry-signature">
+                <a href="#Plan.distance" class="entry-anchor" aria-label="Permalink to distance"><svg class="link-icon"><use href="#link-icon"/></svg></a>
+                <pre class="entry-signature-pre"><code class="entry-signature-code"><a href="#Plan.distance" class="entry-name-link"><strong>distance</strong></a> : <a href="https://roc-lang.org/docs/main/Str"><span class="type">Str</span></a>, <a href="https://roc-lang.org/docs/main/Str"><span class="type">Str</span></a><span class="sig-arrow"> -&gt; </span><a href="https://roc-lang.org/docs/main/Num#U64"><span class="type">U64</span></a></code></pre>
+            </div>
+            <div class="entry-doc">
+                <p>How many one-byte insertions, deletions or replacements turn <code>a</code> into
+<code>b</code> (Levenshtein distance).</p>
+            </div>
+        </article>
+<!--!-->
+        <article class="entry entry-type" id="Plan.Step">
+            <h2><a href="#Plan.Step" class="entry-anchor" aria-label="Permalink to Step"><svg class="link-icon"><use href="#link-icon"/></svg></a> <a href="#Plan.Step" class="entry-name-link">Step</a></h2>
+            <pre class="entry-type-def"><code class="entry-type-def-code">:= [
+    <span class="type">Note</span>(<a href="https://roc-lang.org/docs/main/Str"><span class="type">Str</span></a>),
+    <span class="type">Print</span>(<a href="https://roc-lang.org/docs/main/Str"><span class="type">Str</span></a>),
+    <span class="type">Stage</span>(<a href="https://roc-lang.org/docs/main/Str"><span class="type">Str</span></a>),
+    <span class="type">MayFail</span>(<a href="https://roc-lang.org/docs/main/Num#U64"><span class="type">U64</span></a>),
+    <span class="type">Confirm</span>(<a href="https://roc-lang.org/docs/main/Str"><span class="type">Str</span></a>),
+    <span class="type">Write</span>(<a href="https://roc-lang.org/docs/main/List"><span class="type">List</span></a>(<span class="type">File</span>)),
+    <span class="type">VerifyPath</span>(
+        { path : <a href="https://roc-lang.org/docs/main/Str"><span class="type">Str</span></a>, argv : <a href="https://roc-lang.org/docs/main/List"><span class="type">List</span></a>(<a href="https://roc-lang.org/docs/main/Str"><span class="type">Str</span></a>), stdout : <a href="https://roc-lang.org/docs/main/Str"><span class="type">Str</span></a>, update : <a href="https://roc-lang.org/docs/main/Str"><span class="type">Str</span></a> },
+    ),
+    <span class="type">CheckSource</span>(<a href="https://roc-lang.org/docs/main/Str"><span class="type">Str</span></a>),
+    <span class="type">Snapshot</span>(
+        {
+            root : <a href="https://roc-lang.org/docs/main/Str"><span class="type">Str</span></a>,
+            destination : <a href="https://roc-lang.org/docs/main/Str"><span class="type">Str</span></a>,
+            exclude : <a href="https://roc-lang.org/docs/main/List"><span class="type">List</span></a>(<a href="https://roc-lang.org/docs/main/Str"><span class="type">Str</span></a>),
+            files : [<span class="type">All</span>, <span class="type">Only</span>(<a href="https://roc-lang.org/docs/main/List"><span class="type">List</span></a>(<a href="https://roc-lang.org/docs/main/Str"><span class="type">Str</span></a>))],
+            store : <a href="https://roc-lang.org/docs/main/Str"><span class="type">Str</span></a>,
+        },
+    ),
+    <span class="type">InstallRunner</span>({ destination : <a href="https://roc-lang.org/docs/main/Str"><span class="type">Str</span></a> }),
+    <span class="type">Realise</span>({ bin : <a href="https://roc-lang.org/docs/main/Str"><span class="type">Str</span></a>, programs : <a href="https://roc-lang.org/docs/main/List"><span class="type">List</span></a>(<span class="type">Program</span>) }),
+    <span class="type">Measure</span>({ files : <a href="https://roc-lang.org/docs/main/List"><span class="type">List</span></a>({ key : <a href="https://roc-lang.org/docs/main/Str"><span class="type">Str</span></a>, urls : <a href="https://roc-lang.org/docs/main/List"><span class="type">List</span></a>(<a href="https://roc-lang.org/docs/main/Str"><span class="type">Str</span></a>) }), result : <a href="https://roc-lang.org/docs/main/Str"><span class="type">Str</span></a> }),
+    <span class="type">ExpectPrograms</span>({ description : <a href="https://roc-lang.org/docs/main/Str"><span class="type">Str</span></a>, programs : <a href="https://roc-lang.org/docs/main/List"><span class="type">List</span></a>(<a href="https://roc-lang.org/docs/main/Str"><span class="type">Str</span></a>) }),
+    <span class="type">Run</span>(
+        {
+            description : <a href="https://roc-lang.org/docs/main/Str"><span class="type">Str</span></a>,
+            argv : <a href="https://roc-lang.org/docs/main/List"><span class="type">List</span></a>(<a href="https://roc-lang.org/docs/main/Str"><span class="type">Str</span></a>),
+            output : <span class="type">Output</span>,
+            secrets : <a href="https://roc-lang.org/docs/main/List"><span class="type">List</span></a>(<a href="https://roc-lang.org/docs/main/Str"><span class="type">Str</span></a>),
+            removed_environment_variables : <a href="https://roc-lang.org/docs/main/List"><span class="type">List</span></a>(<a href="https://roc-lang.org/docs/main/Str"><span class="type">Str</span></a>),
+            kept_environment_variables : <a href="https://roc-lang.org/docs/main/List"><span class="type">List</span></a>(<a href="https://roc-lang.org/docs/main/Str"><span class="type">Str</span></a>),
+        },
+    ),
+    <span class="type">PublishLock</span>({ previous : [<span class="type">Absent</span>, <span class="type">Present</span>(<a href="https://roc-lang.org/docs/main/Str"><span class="type">Str</span></a>)], contents : <a href="https://roc-lang.org/docs/main/Str"><span class="type">Str</span></a> }),
+]</code></pre>
+            <div class="entry-doc">
+                <p>The executor vocabulary; kai checks every step before the first runs.</p>
+            </div>
+            <div class="entry-children-container">
+                <article class="entry entry-value" id="Plan.Step.is_eq">
+                    <div class="entry-signature">
+                        <a href="#Plan.Step.is_eq" class="entry-anchor" aria-label="Permalink to is_eq"><svg class="link-icon"><use href="#link-icon"/></svg></a>
+                        <pre class="entry-signature-pre"><code class="entry-signature-code"><a href="#Plan.Step.is_eq" class="entry-name-link"><strong>is_eq</strong></a> : _</code></pre>
+                    </div>
+                </article>
+                <article class="entry entry-value" id="Plan.Step.encoder_for">
+                    <div class="entry-signature">
+                        <a href="#Plan.Step.encoder_for" class="entry-anchor" aria-label="Permalink to encoder_for"><svg class="link-icon"><use href="#link-icon"/></svg></a>
+                        <pre class="entry-signature-pre"><code class="entry-signature-code"><a href="#Plan.Step.encoder_for" class="entry-name-link"><strong>encoder_for</strong></a> : _</code></pre>
+                    </div>
+                </article>
+                <article class="entry entry-value" id="Plan.Step.parser_for">
+                    <div class="entry-signature">
+                        <a href="#Plan.Step.parser_for" class="entry-anchor" aria-label="Permalink to parser_for"><svg class="link-icon"><use href="#link-icon"/></svg></a>
+                        <pre class="entry-signature-pre"><code class="entry-signature-code"><a href="#Plan.Step.parser_for" class="entry-name-link"><strong>parser_for</strong></a> : _</code></pre>
+                    </div>
+                </article>
+            </div>
+        </article>
+<!--!-->
+        <article class="entry entry-type" id="Plan.Next">
+            <h2><a href="#Plan.Next" class="entry-anchor" aria-label="Permalink to Next"><svg class="link-icon"><use href="#link-icon"/></svg></a> <a href="#Plan.Next" class="entry-name-link">Next</a></h2>
+            <pre class="entry-type-def"><code class="entry-type-def-code">:= [<span class="type">Done</span>, <span class="type">Observe</span>(<a href="https://roc-lang.org/docs/main/List"><span class="type">List</span></a>(<a href="https://roc-lang.org/docs/main/Str"><span class="type">Str</span></a>))]</code></pre>
+            <div class="entry-children-container">
+                <article class="entry entry-value" id="Plan.Next.is_eq">
+                    <div class="entry-signature">
+                        <a href="#Plan.Next.is_eq" class="entry-anchor" aria-label="Permalink to is_eq"><svg class="link-icon"><use href="#link-icon"/></svg></a>
+                        <pre class="entry-signature-pre"><code class="entry-signature-code"><a href="#Plan.Next.is_eq" class="entry-name-link"><strong>is_eq</strong></a> : _</code></pre>
+                    </div>
+                </article>
+                <article class="entry entry-value" id="Plan.Next.encoder_for">
+                    <div class="entry-signature">
+                        <a href="#Plan.Next.encoder_for" class="entry-anchor" aria-label="Permalink to encoder_for"><svg class="link-icon"><use href="#link-icon"/></svg></a>
+                        <pre class="entry-signature-pre"><code class="entry-signature-code"><a href="#Plan.Next.encoder_for" class="entry-name-link"><strong>encoder_for</strong></a> : _</code></pre>
+                    </div>
+                </article>
+                <article class="entry entry-value" id="Plan.Next.parser_for">
+                    <div class="entry-signature">
+                        <a href="#Plan.Next.parser_for" class="entry-anchor" aria-label="Permalink to parser_for"><svg class="link-icon"><use href="#link-icon"/></svg></a>
+                        <pre class="entry-signature-pre"><code class="entry-signature-code"><a href="#Plan.Next.parser_for" class="entry-name-link"><strong>parser_for</strong></a> : _</code></pre>
+                    </div>
+                </article>
+            </div>
+        </article>
+<!--!-->
+        <article class="entry entry-type" id="Plan.File">
+            <div class="entry-signature">
+                <a href="#Plan.File" class="entry-anchor" aria-label="Permalink to File"><svg class="link-icon"><use href="#link-icon"/></svg></a>
+                <pre class="entry-signature-pre"><code class="entry-signature-code"><a href="#Plan.File" class="entry-name-link"><strong>File</strong></a> : { path : <a href="https://roc-lang.org/docs/main/Str"><span class="type">Str</span></a>, contents : <a href="https://roc-lang.org/docs/main/Str"><span class="type">Str</span></a> }</code></pre>
+            </div>
+        </article>
+<!--!-->
+        <article class="entry entry-type" id="Plan.Program">
+            <div class="entry-signature">
+                <a href="#Plan.Program" class="entry-anchor" aria-label="Permalink to Program"><svg class="link-icon"><use href="#link-icon"/></svg></a>
+                <pre class="entry-signature-pre"><code class="entry-signature-code"><a href="#Plan.Program" class="entry-name-link"><strong>Program</strong></a> : {
+    name : <a href="https://roc-lang.org/docs/main/Str"><span class="type">Str</span></a>,
+    urls : <a href="https://roc-lang.org/docs/main/List"><span class="type">List</span></a>(<a href="https://roc-lang.org/docs/main/Str"><span class="type">Str</span></a>),
+    sha256 : <a href="https://roc-lang.org/docs/main/Str"><span class="type">Str</span></a>,
+    size : <a href="https://roc-lang.org/docs/main/Num#U64"><span class="type">U64</span></a>,
+    unpack : [<span class="type">File</span>, <span class="type">Archive</span>(<a href="https://roc-lang.org/docs/main/Str"><span class="type">Str</span></a>)],
+}</code></pre>
+            </div>
+            <div class="entry-doc">
+                <p>A download pinned by digest and length; a later URL is a mirror of the
+first. <code>File</code> is the program itself. <code>Archive(path)</code> is a tar.gz or
+tar.xz, unpacked whole, with the program at <code>path</code> inside it.</p>
+            </div>
+        </article>
+<!--!-->
+        <article class="entry entry-type" id="Plan.Output">
+            <div class="entry-signature">
+                <a href="#Plan.Output" class="entry-anchor" aria-label="Permalink to Output"><svg class="link-icon"><use href="#link-icon"/></svg></a>
+                <pre class="entry-signature-pre"><code class="entry-signature-code"><a href="#Plan.Output" class="entry-name-link"><strong>Output</strong></a> : [<span class="type">Inherit</span>, <span class="type">Quiet</span>, <span class="type">Remembered</span>(<a href="https://roc-lang.org/docs/main/List"><span class="type">List</span></a>(<a href="https://roc-lang.org/docs/main/Str"><span class="type">Str</span></a>)), <span class="type">Artifact</span>(<span class="type">Artifact</span>)]</code></pre>
+            </div>
+            <div class="entry-doc">
+                <p><code>Quiet</code> shows the child&#39;s stderr only when it fails. <code>Remembered(files)</code>
+is Quiet, and kai skips the run once it succeeded with the same argv
+and the same contents of <code>files</code>, which lie in the generated root.</p>
+            </div>
+        </article>
+<!--!-->
+        <article class="entry entry-type" id="Plan.Artifact">
+            <div class="entry-signature">
+                <a href="#Plan.Artifact" class="entry-anchor" aria-label="Permalink to Artifact"><svg class="link-icon"><use href="#link-icon"/></svg></a>
+                <pre class="entry-signature-pre"><code class="entry-signature-code"><a href="#Plan.Artifact" class="entry-name-link"><strong>Artifact</strong></a> : { name : <a href="https://roc-lang.org/docs/main/Str"><span class="type">Str</span></a>, label : <a href="https://roc-lang.org/docs/main/Str"><span class="type">Str</span></a>, output : <a href="https://roc-lang.org/docs/main/Str"><span class="type">Str</span></a> }</code></pre>
+            </div>
+            <div class="entry-doc">
+                <p><code>output</code> is the declared output name; the store path is the child&#39;s
+last stdout line (<code>nix build --print-out-paths</code>, <code>guix build</code>).</p>
+            </div>
+        </article>
+<!--!-->
+        <article class="entry entry-type" id="Plan.Failure">
+            <div class="entry-signature">
+                <a href="#Plan.Failure" class="entry-anchor" aria-label="Permalink to Failure"><svg class="link-icon"><use href="#link-icon"/></svg></a>
+                <pre class="entry-signature-pre"><code class="entry-signature-code"><a href="#Plan.Failure" class="entry-name-link"><strong>Failure</strong></a> : { code : <a href="https://roc-lang.org/docs/main/Str"><span class="type">Str</span></a>, message : <a href="https://roc-lang.org/docs/main/Str"><span class="type">Str</span></a>, hint : <a href="https://roc-lang.org/docs/main/Str"><span class="type">Str</span></a>, suggestions : <a href="https://roc-lang.org/docs/main/List"><span class="type">List</span></a>(<a href="https://roc-lang.org/docs/main/Str"><span class="type">Str</span></a>) }</code></pre>
+            </div>
+            <div class="entry-doc">
+                <p>Why there is no plan: a stable <code>code</code> scripts can match, as
+docs/plugin.md lists them, what went wrong, the command that fixes it
+(&quot;&quot; when none) and the names the request may have meant.</p>
+            </div>
+        </article>
+<!--!-->
+<!--!-->
+        </div>
+        <footer><p>Made by people who like to make nice things.</p></footer>
+    </main>
+</body>
+</html>

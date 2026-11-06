@@ -1,0 +1,142 @@
+/* kai.blu.cx's look for the API reference that `roc docs` generates:
+   appended to its styles.css by reference.sh, so it overrides Roc's
+   colours in light and dark mode alike. Gold on dark glass over Thomas
+   Cole's painting, monospace text, the tour's highlighting colours. */
+
+:root,
+:root:root {
+  color-scheme: dark;
+  --violet: #e8c872;
+  --violet-bg: rgb(232 200 114 / 10%);
+  --link-color: #e8c872;
+  --code-link-color: #e8c872;
+  --link-hover-color: #fff;
+  --text-hover-color: #fff;
+  --text-color: #ece8dc;
+  --code-color: #ece8dc;
+  --code-bg: rgb(0 0 0 / 38%);
+  --body-bg-color: transparent;
+  --sidebar-bg-color: rgb(8 8 8 / 62%);
+  --border-color: rgb(232 200 114 / 30%);
+  --faded-color: #a8a08a;
+  --gray: #b3ab95;
+  --green: #e0a86a;
+  --blue: #9fc0d6;
+  --cyan: #9fc0d6;
+  --orange: #b9cc94;
+  --magenta: #d6a3c4;
+  --search-border-color: rgb(232 200 114 / 35%);
+  --violet-border-subtle: rgb(232 200 114 / 25%);
+  --violet-border-hover: rgb(232 200 114 / 60%);
+  --gray-border-subtle: rgb(232 200 114 / 18%);
+  --font-sans: "JetBrains Mono", ui-monospace, Menlo, Consolas, monospace;
+  --font-mono: "JetBrains Mono", ui-monospace, Menlo, Consolas, monospace;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:root {
+    --violet: #e8c872;
+    --violet-bg: rgb(232 200 114 / 10%);
+    --link-color: #e8c872;
+    --code-link-color: #e8c872;
+    --link-hover-color: #fff;
+    --text-color: #ece8dc;
+    --code-color: #ece8dc;
+    --code-bg: rgb(0 0 0 / 38%);
+    --body-bg-color: transparent;
+    --sidebar-bg-color: rgb(8 8 8 / 62%);
+    --border-color: rgb(232 200 114 / 30%);
+    --faded-color: #a8a08a;
+    --gray: #b3ab95;
+    --green: #e0a86a;
+    --blue: #9fc0d6;
+    --cyan: #9fc0d6;
+    --orange: #b9cc94;
+    --magenta: #d6a3c4;
+    --search-border-color: rgb(232 200 114 / 35%);
+  }
+}
+
+html {
+  background: #111;
+  scrollbar-color: rgb(232 200 114 / 30%) transparent;
+}
+
+body {
+  background: transparent;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  background:
+    radial-gradient(ellipse at center, rgb(17 17 17 / 62%) 0, rgb(17 17 17 / 86%) 75%),
+    url("/images/pastoral-1920.webp") center / cover no-repeat,
+    #111;
+}
+
+#sidebar-nav,
+main {
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+}
+
+main {
+  background: rgb(10 10 10 / 42%);
+}
+
+#sidebar-nav {
+  border-right: 1px solid rgb(232 200 114 / 22%);
+}
+
+/* The package name in gold Didot, without Roc's bird. */
+.logo svg {
+  display: none;
+}
+
+.pkg-full-name,
+.pkg-full-name a {
+  color: #e8c872 !important;
+  font-family: "GFS Didot", serif;
+}
+
+h1,
+h2,
+.module-name {
+  color: #e8c872;
+  font-family: "EB Garamond", serif;
+  font-weight: 500;
+}
+
+/* The bar injected above every page: back to the rest of the site. */
+.kai-bar {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  display: flex;
+  gap: 1.2rem;
+  align-items: center;
+  padding: 0.55rem 1rem;
+  border-bottom: 1px solid rgb(232 200 114 / 22%);
+  background: rgb(8 8 8 / 70%);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  font: 500 0.8rem / 1 "JetBrains Mono", ui-monospace, monospace;
+}
+
+.kai-bar a {
+  color: #a8a08a;
+  text-decoration: none;
+}
+
+.kai-bar a:hover,
+.kai-bar a[aria-current="page"] {
+  color: #e8c872;
+}
+
+.kai-bar .kai-mark {
+  color: #e8c872;
+  font: 400 1.1rem / 1 "GFS Didot", serif;
+}

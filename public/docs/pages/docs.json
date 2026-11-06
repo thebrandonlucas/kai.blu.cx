@@ -1,0 +1,26 @@
+{
+  "sections": [
+    { "title": "Getting started", "pages": [
+      { "slug": "introduction", "title": "What is Kai" },
+      { "slug": "install", "title": "Install" },
+      { "slug": "first-project", "title": "Your first project" }
+    ] },
+    { "title": "Kaifiles", "pages": [
+      { "slug": "settings", "title": "Settings" },
+      { "slug": "tasks-and-builds", "title": "Tasks and builds" },
+      { "slug": "reusing", "title": "Reusing configuration" },
+      { "slug": "lock", "title": "The lock" }
+    ] },
+    { "title": "Running Kai", "pages": [
+      { "slug": "backends", "title": "Backends" },
+      { "slug": "direnv", "title": "direnv" },
+      { "slug": "options", "title": "Options" },
+      { "slug": "errors", "title": "Exit codes and errors" },
+      { "slug": "limits", "title": "Limits" }
+    ] },
+    { "title": "Extending", "pages": [
+      { "slug": "plugins", "title": "Writing a plugin" },
+      { "slug": "developing", "title": "Developing Kai" }
+    ] }
+  ]
+}
