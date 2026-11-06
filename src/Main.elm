@@ -760,7 +760,7 @@ hint model =
               else
                 Just
                     (button [ class "hint-button", onClick (Move -1), attribute "aria-label" "Back" ]
-                        [ span [ class "hint-arrow hint-up" ] [ text "↑" ], text "back ", kbd [] [ text "k" ], kbd [] [ text "↑" ] ]
+                        [ text "back ", kbd [] [ text "k" ], kbd [] [ text "↑" ] ]
                     )
             , if last then
                 Just
@@ -771,8 +771,7 @@ hint model =
               else
                 Just
                     (button [ class "hint-button", onClick (Move 1), attribute "aria-label" "Next" ]
-                        [ span [ class "hint-arrow" ] [ text "↓" ]
-                        , text
+                        [ text
                             (if first then
                                 "take the tour "
 
