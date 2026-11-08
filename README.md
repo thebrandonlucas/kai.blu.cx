@@ -60,22 +60,24 @@ needs no rebuild:
   `reference-theme.css` is appended to each reference's stylesheet, and a bar
   linking back to the site is added to every page. Run it for each release.
 
-## Editing in Syncthing
+## Editing and preview
 
-The tour and the guides are edited in the Sync folder's `kai.blu.cx/`
-(`tour/` and `docs/`), on any device. blu-tower's `kai-site-sync` service
-copies each change, within seconds, to the preview and to this repo
-(`public/tour/` and `public/docs/pages/`), so the Syncthing copy is the source
-and edits made only here are overwritten.
+Git is the only source of the content: the tour (`public/tour/`), the guides
+(`public/docs/pages/`) and the blog's posts (`public/blog/posts/`) are files in
+this repo, and every change is a commit on the `tour` branch.
 
-## Preview
+Each commit there is on the preview, <https://kai.internal.blu.cx> (your own
+devices only), within about half a minute: blu-tower's `kai-preview` service
+checks the branch every 15 seconds, builds the new commit in a separate
+worktree (`../kai.nix.fun-preview`, so uncommitted edits never show) and copies
+the build to the preview. It also takes commits pushed to the forge's `tour`
+branch (from a laptop: `rad clone`, edit, push), fast-forward only and only
+while this checkout is clean.
 
-Before deploying, the build is previewed on the tailnet at
-<https://kai.internal.blu.cx> (your own devices only): on blu-tower,
+From a phone, ask an agent in Paseo working in this repo to make the change
+and commit it.
 
-```sh
-rsync -a --delete dev@10.77.0.1:src/kai.nix.fun/public/ /srv/kai-preview/
-```
+Publishing stays a separate step: merge `tour` into `main` and deploy (below).
 
 ## Background
 
