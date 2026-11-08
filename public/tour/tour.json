@@ -1,7 +1,5 @@
 {
   "steps": [
-    { "id": "01-roc", "title": "roc", "markdown": "01-roc.md", "nix": "01-roc.nix", "kaifile": "03-first-kaifile.roc" },
-    { "id": "02-kai", "title": "kai", "markdown": "02-kai.md", "kaifile": "03-first-kaifile.roc", "terminal": "05-shells-and-tasks.term" },
-    { "id": "03-foundations", "title": "why", "markdown": "03-foundations.md", "figure": "03-foundations.txt" }
+    { "id": "01-roc", "title": "roc", "markdown": "01-roc.md", "nix": "01-roc.nix", "kaifile": "03-first-kaifile.roc" }
   ]
 }
