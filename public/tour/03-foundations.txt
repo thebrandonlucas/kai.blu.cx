@@ -1,0 +1,17 @@
+  Setting up a project, the usual way
+
+    1. read the README
+    2. install Python 3.11 (not 3.12!)
+    3. install Node 20, with nvm
+    4. brew install postgresql@16
+    5. run ./setup.sh, fix what it breaks
+    6. ask a teammate what you missed
+    7. it works on your machine... for now
+
+
+  With Kai
+
+    $ git clone .../project && cd project
+    $ kai shell
+
+    every tool, at the version the project pinned
