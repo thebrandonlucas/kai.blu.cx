@@ -1946,3 +1946,8 @@ main {
   width: auto;
   vertical-align: -0.3rem;
 }
+
+/* Roc's footer line ("Made by people who like to make nice things."). */
+footer {
+  display: none;
+}

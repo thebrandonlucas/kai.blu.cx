@@ -25,3 +25,31 @@ document.addEventListener("click", async (event) => {
     // No clipboard (an insecure page, or refused): the command is still there to select.
   }
 });
+
+// Reading keys, on pages that mark their scrolling area with data-scroll
+// (the blog and the changelog; the tour and docs handle their own keys and
+// mark them handled): j / k or the arrows scroll, Space and PageUp/Down a
+// screen, g / G the top and bottom, and h / l (or ← →) follow the page's
+// data-nav="prev" / "next" links.
+document.addEventListener("keydown", (event) => {
+  if (event.ctrlKey || event.metaKey || event.altKey || event.defaultPrevented) return;
+  const target = event.target;
+  if (target && (target.isContentEditable || /^(INPUT|TEXTAREA|SELECT)$/.test(target.tagName))) return;
+  const scroller = document.querySelector("[data-scroll]");
+  if (!scroller) return;
+  const page = scroller.clientHeight * 0.85;
+  const by = {
+    j: 90, ArrowDown: 90, k: -90, ArrowUp: -90,
+    " ": page, PageDown: page, PageUp: -page,
+  }[event.key];
+  if (by !== undefined) {
+    event.preventDefault();
+    scroller.scrollBy({ top: by, behavior: "smooth" });
+    return;
+  }
+  if (event.key === "g" || event.key === "Home") { event.preventDefault(); scroller.scrollTo({ top: 0, behavior: "smooth" }); return; }
+  if (event.key === "G" || event.key === "End") { event.preventDefault(); scroller.scrollTo({ top: scroller.scrollHeight, behavior: "smooth" }); return; }
+  const nav = { h: "prev", ArrowLeft: "prev", l: "next", ArrowRight: "next" }[event.key];
+  const link = nav && document.querySelector(`[data-nav="${nav}"]`);
+  if (link) { event.preventDefault(); link.click(); }
+});

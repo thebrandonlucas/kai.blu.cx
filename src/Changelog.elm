@@ -8,7 +8,7 @@ release's notes instead.
 
 import Browser
 import Html exposing (Html, a, div, main_, p, span, text)
-import Html.Attributes exposing (class, href)
+import Html.Attributes exposing (attribute, class, href)
 import Http
 import Json.Decode as Decode
 import Markdown
@@ -76,15 +76,14 @@ view : Model -> Html Msg
 view model =
     div [ class "desktop" ]
         [ SiteBar.view SiteBar.Changelog Nothing
-        , main_ [ class "page-tiling" ]
-            [ div [ class "window window-reading" ]
-                [ div [ class "titlebar" ]
-                    [ span [ class "titlebar-name" ] [ text "~/CHANGELOG.md" ]
-                    , span [ class "titlebar-meta" ]
-                        [ a [ class "feed-link", href ("https://github.com/" ++ repo ++ "/releases.atom") ] [ text "feed" ] ]
-                    ]
-                , div [ class "window-body" ] [ body model ]
+        -- The whole page, no window; data-scroll gives it site-keys.js's
+        -- reading keys.
+        , main_ [ class "page-full", attribute "data-scroll" "" ]
+            [ p [ class "page-keys" ]
+                [ text "j k scroll · "
+                , a [ href ("https://github.com/" ++ repo ++ "/releases.atom") ] [ text "feed" ]
                 ]
+            , body model
             ]
         ]
 

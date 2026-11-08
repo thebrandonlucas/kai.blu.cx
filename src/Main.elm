@@ -47,6 +47,15 @@ type alias Step =
     , kaifile : Maybe String
     , terminal : Maybe String
 
+    -- The same project in plain Nix and Guix, for comparison: tabs in a
+    -- window above the Kaifile.
+    , nix : Maybe String
+    , guix : Maybe String
+
+    -- A picture of the step's point, in a window of its own; until there is
+    -- artwork, a text sketch.
+    , figure : Maybe String
+
     -- The tab shown first when the step has both (default: the Kaifile).
     , open : Pane
     }
@@ -57,6 +66,8 @@ type alias Step =
 type Pane
     = KaifilePane
     | TerminalPane
+    | NixPane
+    | GuixPane
 
 
 {-| A step's files, by path, as they arrive.
@@ -117,22 +128,33 @@ init hash =
 
 stepDecoder : Decoder Step
 stepDecoder =
-    Decode.map6 Step
-        (Decode.field "id" Decode.string)
-        (Decode.field "title" Decode.string)
-        (Decode.field "markdown" Decode.string)
-        (Decode.maybe (Decode.field "kaifile" Decode.string))
-        (Decode.maybe (Decode.field "terminal" Decode.string))
-        (Decode.maybe (Decode.field "open" Decode.string)
-            |> Decode.map
-                (\open ->
-                    if open == Just "terminal" then
-                        TerminalPane
+    let
+        with =
+            Decode.map2 (|>)
 
-                    else
-                        KaifilePane
-                )
-        )
+        optional name =
+            Decode.maybe (Decode.field name Decode.string)
+    in
+    Decode.succeed Step
+        |> with (Decode.field "id" Decode.string)
+        |> with (Decode.field "title" Decode.string)
+        |> with (Decode.field "markdown" Decode.string)
+        |> with (optional "kaifile")
+        |> with (optional "terminal")
+        |> with (optional "nix")
+        |> with (optional "guix")
+        |> with (optional "figure")
+        |> with
+            (optional "open"
+                |> Decode.map
+                    (\open ->
+                        if open == Just "terminal" then
+                            TerminalPane
+
+                        else
+                            KaifilePane
+                    )
+            )
 
 
 
@@ -221,7 +243,7 @@ update msg model =
         ToggleTab ->
             case currentStep model of
                 Just step ->
-                    ( { model | tabs = Dict.insert step.id (other (paneOf model step)) model.tabs }, Cmd.none )
+                    ( { model | tabs = Dict.insert step.id (nextPane (stepTabs step) (paneOf model step)) model.tabs }, Cmd.none )
 
                 Nothing ->
                     ( model, Cmd.none )
@@ -238,7 +260,7 @@ update msg model =
 
 stepFiles : Step -> List String
 stepFiles step =
-    step.markdown :: List.filterMap identity [ step.kaifile, step.terminal ]
+    step.markdown :: List.filterMap identity [ step.kaifile, step.terminal, step.nix, step.guix, step.figure ]
 
 
 fetch : String -> Cmd Msg
@@ -515,7 +537,9 @@ stepWorkspaces model =
 
 
 {-| A tour step: one glass window with its text, tiled beside a window
-group holding its Kaifile and terminal as tabs, if it has them.
+group holding its Kaifile and terminal as tabs, if it has them. A step
+comparing Kai with plain Nix and Guix stacks those two as tabs above its
+Kaifile instead.
 -}
 stepView : Files -> Int -> Int -> Step -> Pane -> Html Msg
 stepView files total i step pane =
@@ -524,25 +548,81 @@ stepView files total i step pane =
             i + 1
 
         tabs =
-            List.filterMap identity
-                [ Maybe.map (\path -> ( KaifilePane, path )) step.kaifile
-                , Maybe.map (\path -> ( TerminalPane, path )) step.terminal
-                ]
+            stepTabs step
+
+        side =
+            case step.figure of
+                Just path ->
+                    [ div [ class "window window-code" ]
+                        [ titlebar "figure" "sketch"
+                        , div [ class "window-body" ] [ fileView files path figureView ]
+                        ]
+                    ]
+
+                Nothing ->
+                    sideWindows files step pane tabs
     in
     section [ id ("ws-" ++ String.fromInt n), class "workspace" ]
-        [ div [ classList [ ( "tiling", True ), ( "tiling-split", not (List.isEmpty tabs) ) ] ]
+        [ div [ classList [ ( "tiling", True ), ( "tiling-split", not (List.isEmpty side) ) ] ]
             (div [ class "window window-prose" ]
                 [ titlebar ("~/tour/" ++ step.id ++ ".md") (String.fromInt n ++ "/" ++ String.fromInt total)
                 , div [ class "window-body" ] [ fileView files step.markdown markdownView ]
                 ]
-                :: (if List.isEmpty tabs then
-                        []
+                :: side
+            )
+        ]
 
-                    else
-                        [ windowGroup files step.id pane tabs ]
+
+{-| The windows beside a step's text: its tabbed window, and for a
+comparison its Kaifile below.
+-}
+sideWindows : Files -> Step -> Pane -> List ( Pane, String ) -> List (Html Msg)
+sideWindows files step pane tabs =
+    if List.isEmpty tabs then
+        []
+
+    else if isComparison step then
+        [ div [ class "stack" ]
+            (windowGroup files step.id pane tabs
+                :: (case step.kaifile of
+                        Just path ->
+                            [ div [ class "window window-code" ]
+                                [ titlebar (paneName KaifilePane) (paneMeta KaifilePane)
+                                , div [ class "window-body" ] [ fileView files path codeView ]
+                                ]
+                            ]
+
+                        Nothing ->
+                            []
                    )
             )
         ]
+
+    else
+        [ windowGroup files step.id pane tabs ]
+
+
+{-| The tabs of a step's tabbed window: its Nix and Guix files when it
+compares them with Kai, else its Kaifile and terminal.
+-}
+stepTabs : Step -> List ( Pane, String )
+stepTabs step =
+    if isComparison step then
+        List.filterMap identity
+            [ Maybe.map (\path -> ( NixPane, path )) step.nix
+            , Maybe.map (\path -> ( GuixPane, path )) step.guix
+            ]
+
+    else
+        List.filterMap identity
+            [ Maybe.map (\path -> ( KaifilePane, path )) step.kaifile
+            , Maybe.map (\path -> ( TerminalPane, path )) step.terminal
+            ]
+
+
+isComparison : Step -> Bool
+isComparison step =
+    step.nix /= Nothing || step.guix /= Nothing
 
 
 {-| One window, several tabs; the shown one fills the window.
@@ -557,7 +637,7 @@ windowGroup files stepId pane tabs =
             else
                 List.head tabs |> Maybe.map Tuple.first |> Maybe.withDefault KaifilePane
     in
-    div [ classList [ ( "window", True ), ( "window-group", True ), ( "window-term", shown == TerminalPane ), ( "window-code", shown == KaifilePane ) ] ]
+    div [ classList [ ( "window", True ), ( "window-group", True ), ( "window-term", shown == TerminalPane ), ( "window-code", shown /= TerminalPane ) ] ]
         [ div [ class "tabbar", attribute "role" "tablist" ]
             (List.map
                 (\( p, _ ) ->
@@ -593,11 +673,15 @@ windowGroup files stepId pane tabs =
                         Just
                             (fileView files
                                 path
-                                (if p == KaifilePane then
-                                    codeView
+                                (case p of
+                                    KaifilePane ->
+                                        codeView
 
-                                 else
-                                    terminalView
+                                    TerminalPane ->
+                                        terminalView
+
+                                    _ ->
+                                        plainCodeView
                                 )
                             )
 
@@ -618,6 +702,12 @@ paneName pane =
         TerminalPane ->
             "terminal"
 
+        NixPane ->
+            "flake.nix"
+
+        GuixPane ->
+            "manifest.scm"
+
 
 paneMeta : Pane -> String
 paneMeta pane =
@@ -628,15 +718,45 @@ paneMeta pane =
         TerminalPane ->
             "kai 0.0.11"
 
+        NixPane ->
+            "nix"
 
-other : Pane -> Pane
-other pane =
-    case pane of
-        KaifilePane ->
-            TerminalPane
+        GuixPane ->
+            "guile"
 
-        TerminalPane ->
-            KaifilePane
+
+{-| The tab after `pane` in `tabs`, wrapping around; the second tab when
+`pane` isn't one of them, since the first is the one shown then.
+-}
+nextPane : List ( Pane, String ) -> Pane -> Pane
+nextPane tabs pane =
+    let
+        panes =
+            List.map Tuple.first tabs
+    in
+    case dropUntil pane panes of
+        _ :: next :: _ ->
+            next
+
+        [ _ ] ->
+            List.head panes |> Maybe.withDefault pane
+
+        [] ->
+            List.drop 1 panes |> List.head |> Maybe.withDefault pane
+
+
+dropUntil : a -> List a -> List a
+dropUntil x list =
+    case list of
+        [] ->
+            []
+
+        y :: rest ->
+            if y == x then
+                list
+
+            else
+                dropUntil x rest
 
 
 {-| The tab a step shows: the reader's choice, else the step's own.
@@ -648,7 +768,7 @@ paneOf model step =
 
 hasTabs : Step -> Bool
 hasTabs step =
-    step.kaifile /= Nothing && step.terminal /= Nothing
+    List.length (stepTabs step) > 1
 
 
 {-| The step on screen (workspace 1 is the hero, not a step).
@@ -697,6 +817,20 @@ folded to one line (hover for the URLs); the numbers stay the file's.
 codeView : String -> Html msg
 codeView source =
     pre [ class "code" ] (codeLines 1 (String.lines (String.trimRight source)))
+
+
+{-| A text sketch standing in for a picture: as written, no line numbers.
+-}
+figureView : String -> Html msg
+figureView source =
+    pre [ class "code figure" ] [ text (String.trimRight source) ]
+
+
+{-| Any other file, with line numbers and no highlighting.
+-}
+plainCodeView : String -> Html msg
+plainCodeView source =
+    pre [ class "code" ] (List.indexedMap (\i line -> codeLine (i + 1) [ text line ]) (String.lines (String.trimRight source)))
 
 
 codeLines : Int -> List String -> List (Html msg)

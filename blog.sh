@@ -38,9 +38,19 @@ for i in "${!files[@]}"; do
   original=$(field "$f" original)
   [ -n "$updated" ] || updated="${date}T00:00:00Z"
   mkdir -p "$out/$slug"
+  # Its neighbours, for the newer / older links (h / l).
+  nav=()
+  if [ "$i" -gt 0 ]; then
+    n=${files[$((i - 1))]}
+    nav+=(-V newer="$(basename "$n" .md)" -V newer_title="$(field "$n" title)")
+  fi
+  if [ $((i + 1)) -lt ${#files[@]} ]; then
+    o=${files[$((i + 1))]}
+    nav+=(-V older="$(basename "$o" .md)" -V older_title="$(field "$o" title)")
+  fi
   pandoc -f gfm+yaml_metadata_block -t html5 --template=templates/post.html \
     -V bar="$bar" -V slug="$slug" -V long_date="$(long_date "$date")" \
-    -V canonical="${original:-$site/blog/$slug/}" \
+    -V canonical="${original:-$site/blog/$slug/}" "${nav[@]}" \
     "$f" -o "$out/$slug/index.html"
   list+="<li><a class=\"post-link\" href=\"/blog/$slug/\"><span class=\"post-date\">$date</span><span class=\"post-title\">$(printf '%s' "$title" | xml)</span></a>"
   [ -n "$description" ] && list+="<p class=\"post-summary\">$(printf '%s' "$description" | xml)</p>"
