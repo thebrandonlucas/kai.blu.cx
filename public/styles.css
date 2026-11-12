@@ -1332,3 +1332,8 @@ body {
 .page-keys a {
   color: var(--gold-dim);
 }
+
+/* HTML the app made (Markdown), set as the contents of <kai-html>. */
+kai-html {
+  display: block;
+}

@@ -1,0 +1,13 @@
+{
+  "release": "0.5.0",
+  "files": {
+    "runtime.mjs": {
+      "url": "https://github.com/lukewilliamboswell/roc-signals/releases/download/0.5.0/runtime.mjs",
+      "sha256": "2ddaa95e155a56d46ca4f1a034b5ad705d403cb697b5a7cdc36a504d0e607736"
+    },
+    "worker.mjs": {
+      "url": "https://github.com/lukewilliamboswell/roc-signals/releases/download/0.5.0/worker.mjs",
+      "sha256": "b1b48c74a96b77eabd7c81bc33a0f9adc611d94c36fc8309092707ad6028993c"
+    }
+  }
+}

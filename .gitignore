@@ -6,3 +6,6 @@ result
 /public/blog/*
 !/public/blog/posts/
 /public/feed.xml
+public/app.wasm
+public/runtime.mjs
+public/worker.mjs
