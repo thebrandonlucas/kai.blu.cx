@@ -10,7 +10,10 @@ set -euo pipefail
 cd "$(dirname "$0")"
 
 roc test signals/main.roc
-roc build --target=wasm32 --opt=size signals/main.roc --output=public/app.wasm
+# Without specializing (boxy lowering): 1 MB in 25 s, against 4 MB in over
+# 2 minutes specialized, for a page whose work is light. See
+# https://github.com/thebrandonlucas/roc-issues/tree/master/roc/IMPROVEMENT-010-specialization-code-size
+roc build --target=wasm32 --opt=size --specialize=no signals/main.roc --output=public/app.wasm
 
 for file in runtime.mjs worker.mjs; do
   url=$(jq -r ".files[\"$file\"].url" signals/runtime.lock.json)
