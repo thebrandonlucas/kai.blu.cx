@@ -10,7 +10,7 @@ forge="https://forge.tail42aee1.ts.net"
 key="/var/lib/ci-secrets/deploy_ed25519"
 here="$(cd "$(dirname "$0")" && pwd)"
 
-# CI jobs get no writable home; elm keeps its packages under it.
+# CI jobs get no writable home; Roc keeps the platform it downloads under it.
 export HOME="$(mktemp -d)"
 export XDG_CACHE_HOME="$HOME/.cache"
 # deploy.sh and rsync call plain `ssh`: give it CI's key and the VPS's

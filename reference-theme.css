@@ -166,7 +166,7 @@ body {
   opacity: 1;
 }
 
-/* The bar's key numbers, as in SiteBar.elm. */
+/* The bar's key numbers, as in signals/SiteBar.roc. */
 .kai-bar .kai-num {
   margin-right: 0.35rem;
   color: rgb(232 200 114 / 55%);

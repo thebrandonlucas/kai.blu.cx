@@ -870,7 +870,7 @@ body {
   font-style: italic;
 }
 
-/* --- The site bar (SiteBar.elm), on every page. --- */
+/* --- The site bar (signals/SiteBar.roc), on every page. --- */
 
 .site-bar .bar-site {
   gap: 1.15rem;
@@ -992,7 +992,7 @@ body {
   }
 }
 
-/* The site bar's key numbers (SiteBar.elm, site-keys.js). */
+/* The site bar's key numbers (signals/SiteBar.roc, site-keys.js). */
 .bar-num {
   margin-right: 0.35rem;
   color: rgb(232 200 114 / 55%);

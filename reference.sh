@@ -26,7 +26,7 @@ for part in std:plugins/std/main.roc platform:platform/main.roc; do
   cat "$theme" >> "$out/$name/styles.css"
   cp public/favicon.svg "$out/$name/favicon.svg"
   # Fonts, and the site bar (reference-bar.html, the static twin of
-  # SiteBar.elm, with its number keys), on every page.
+  # signals/SiteBar.roc, with its number keys), on every page.
   find "$out/$name" -name index.html -print0 | xargs -0 sed -i \
     -e 's#<link rel="stylesheet" href="\([./]*\)styles.css">#<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500\&amp;family=GFS+Didot\&amp;family=JetBrains+Mono:wght@400;500\&amp;display=swap"><link rel="stylesheet" href="\1styles.css">#'
   BAR=$(tr -d '\n' < reference-bar.html) \

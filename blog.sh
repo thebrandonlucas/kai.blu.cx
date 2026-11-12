@@ -22,7 +22,7 @@ long_date() { date -d "$1" "+%B %-d, %Y"; }
 # Newest first.
 mapfile -t files < <(for f in "$posts"/*.md; do echo "$(field "$f" date) $f"; done | sort -r | cut -d' ' -f2-)
 
-# The bar, as in SiteBar.elm, with blog current.
+# The bar, as in signals/SiteBar.roc, with blog current.
 bar=$(sed -e 's#data-key="4"#data-key="4" aria-current="page"#' -e 's#class="bar-link" href="/blog/"#class="bar-link bar-link-active" href="/blog/"#' site-bar.html | tr -d '\n')
 
 rm -rf "$out"/images && cp -r "$posts"/images "$out"/images 2>/dev/null || true

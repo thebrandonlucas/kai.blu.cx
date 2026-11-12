@@ -27,8 +27,8 @@ document.addEventListener("click", async (event) => {
 });
 
 // Reading keys, on pages that mark their scrolling area with data-scroll
-// (the blog and the changelog; the tour and docs handle their own keys and
-// mark them handled): j / k or the arrows scroll, Space and PageUp/Down a
+// (the docs, the blog and the changelog; the tour handles its own keys and
+// marks them handled): j / k or the arrows scroll, Space and PageUp/Down a
 // screen, g / G the top and bottom, and h / l (or ← →) follow the page's
 // data-nav="prev" / "next" links.
 document.addEventListener("keydown", (event) => {

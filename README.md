@@ -16,11 +16,31 @@ bar or the hint in the bottom right. `#n` in the URL opens workspace *n*
 
 ```sh
 nix develop
-./build.sh        # src/Main.elm -> public/elm.js
+./build.sh        # signals/ -> public/app.wasm, with roc-signals' runtime
 ```
 
 `public/` is the whole site, served as static files by Caddy on the VPS that
 also serves blu.cx.
+
+## The app
+
+The home page and tour, the guides and the changelog are one app in
+[Roc](https://www.roc-lang.org) on
+[roc-signals](https://github.com/lukewilliamboswell/roc-signals) 0.5.0, in
+`signals/`; it shows the page its path names. `build.sh` runs its tests
+(`roc test signals/main.roc`), builds it for the browser (`public/app.wasm`)
+and downloads the release's `runtime.mjs` and `worker.mjs`, checked against
+`signals/runtime.lock.json`. The flake gives the Roc nightly the release was
+built with. Each page loads `site-app.mjs`, which mounts the app on `#app`.
+
+What roc-signals doesn't model is in `public/site-ports.mjs`: scrolling the
+tour and following its scroll, keys pressed anywhere on the page, and
+`<kai-html>`, which shows the HTML of Markdown rendered by
+`signals/Markdown.roc`. Gaps in roc-signals found while porting are drafted
+in [roc-issues](https://github.com/thebrandonlucas/roc-issues/tree/master/roc-signals).
+
+Caddy has to serve `app.wasm` as `application/wasm` and the `.mjs` files as
+`text/javascript`.
 
 ## Writing the tour
 
@@ -43,8 +63,8 @@ needs no rebuild:
 
 ## Docs and reference
 
-- **Guides**, at `/docs/` (`public/docs/index.html`, `src/Docs.elm` →
-  `public/docs.js`): a file tree of the pages beside a reading window.
+- **Guides**, at `/docs/` (`public/docs/index.html`, `signals/Docs.roc`): a
+  file tree of the pages beside a reading window.
   The pages are in `public/docs/pages/`: `docs.json` lists the sections and
   their pages, each page is `<slug>.md`, and `/docs/#<slug>` opens one.
   Keys: <kbd>j</kbd>/<kbd>k</kbd> scroll, <kbd>h</kbd>/<kbd>l</kbd> the
