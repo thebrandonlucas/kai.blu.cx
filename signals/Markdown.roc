@@ -13,7 +13,7 @@
 ## on the page: roc-signals 0.5.0 draws a tree from data only to a depth
 ## fixed in the code, since a template inside a template has a context of
 ## its own type (see
-## https://github.com/thebrandonlucas/roc-issues/tree/master/roc-signals/RS-009-data-depth-trees).
+## https://github.com/thebrandonlucas/roc-issues/tree/master/roc-signals/RS-013-data-depth-trees).
 Markdown := [].{
 
 	## Raw HTML in the source: passed through (the site's own pages), or
