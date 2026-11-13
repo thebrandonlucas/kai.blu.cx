@@ -66,7 +66,8 @@ link = |n, current, url, label|
 
 ## A community link: opens in a new tab. The icon is decorative; roc-signals
 ## 0.5.0 drops `alt=""`, so `aria-hidden` alone keeps it out of the
-## accessible name (https://github.com/thebrandonlucas/roc-issues/tree/master/roc-signals/RS-006-empty-attribute-values).
+## accessible name (https://github.com/lukewilliamboswell/roc-signals/issues/205;
+## roc-issues archive/RS-006-empty-attribute-values).
 icon : U64, Str, Str, Str -> Elem(ctx)
 icon = |n, url, name, path|
 	Engine.element(

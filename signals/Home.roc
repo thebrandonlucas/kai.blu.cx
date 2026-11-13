@@ -378,7 +378,8 @@ hero = |{}|
 			# ϗαί: the kai compendium (drawn, since GFS Didot has none), then αί.
 			# roc-signals 0.5.0 drops `alt=""`, so `aria-hidden` keeps the
 			# drawing out of the heading's name
-			# (https://github.com/thebrandonlucas/roc-issues/tree/master/roc-signals/RS-006-empty-attribute-values).
+			# (https://github.com/lukewilliamboswell/roc-signals/issues/205; roc-issues
+			# archive/RS-006-empty-attribute-values).
 			Engine.element(
 				"h1",
 				[Engine.class("wordmark"), Engine.attr("aria-label", "kαί")],

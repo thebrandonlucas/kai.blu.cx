@@ -4,8 +4,12 @@ import pf.Port
 ## What the pages ask of the browser that roc-signals 0.5.0 does not model,
 ## answered by public/site-ports.mjs: scrolling an element, its scroll
 ## position as it changes, and keys pressed anywhere on the page. See
-## https://github.com/thebrandonlucas/roc-issues/tree/master/roc-signals/RS-005-layout-measurement
-## and https://github.com/thebrandonlucas/roc-issues/tree/master/roc-signals/RS-004-document-key-events.
+## https://github.com/lukewilliamboswell/roc-signals/issues/204 (closed in favour
+## of #211, #213 and #214) and
+## https://github.com/lukewilliamboswell/roc-signals/issues/203 (closed in favour
+## of #212); roc-issues archive/RS-005-layout-measurement and
+## archive/RS-004-document-key-events. Drop these ports once the site is on a
+## release that has those.
 Ports := [].{
 
 	## Where to scroll: a screen (the element's height times `n`, for the

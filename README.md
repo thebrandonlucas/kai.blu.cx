@@ -37,7 +37,9 @@ What roc-signals doesn't model is in `public/site-ports.mjs`: scrolling the
 tour and following its scroll, keys pressed anywhere on the page, and
 `<kai-html>`, which shows the HTML of Markdown rendered by
 `signals/Markdown.roc`. Gaps in roc-signals found while porting are drafted
-in [roc-issues](https://github.com/thebrandonlucas/roc-issues/tree/master/roc-signals).
+in [roc-issues](https://github.com/thebrandonlucas/roc-issues/tree/master/roc-signals);
+those filed upstream are in its
+[archive](https://github.com/thebrandonlucas/roc-issues/tree/master/archive).
 
 Caddy has to serve `app.wasm` as `application/wasm` and the `.mjs` files as
 `text/javascript`.

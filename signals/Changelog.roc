@@ -23,7 +23,8 @@ Changelog := [].{
 				# The whole page, no window; data-scroll gives it site-keys.js's
 				# reading keys. roc-signals 0.5.0 drops an attribute whose value
 				# is "", so it has one
-				# (https://github.com/thebrandonlucas/roc-issues/tree/master/roc-signals/RS-006-empty-attribute-values).
+				# (https://github.com/lukewilliamboswell/roc-signals/issues/205; roc-issues
+				# archive/RS-006-empty-attribute-values).
 				Engine.element(
 					"main",
 					[Engine.class("page-full"), Engine.attr("data-scroll", "page")],

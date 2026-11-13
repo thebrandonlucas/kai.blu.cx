@@ -255,7 +255,8 @@ reading = |model| {
 				|| Engine.element(
 					# roc-signals 0.5.0 drops an attribute whose value is "", so
 					# `data-scroll` has one
-					# (https://github.com/thebrandonlucas/roc-issues/tree/master/roc-signals/RS-006-empty-attribute-values).
+					# (https://github.com/lukewilliamboswell/roc-signals/issues/205; roc-issues
+					# archive/RS-006-empty-attribute-values).
 					"div",
 					[Engine.attr("id", "reading"), Engine.class("window-body"), Engine.attr("data-scroll", "reading")],
 					[
